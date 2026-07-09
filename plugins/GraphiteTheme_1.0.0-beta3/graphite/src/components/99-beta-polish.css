@@ -1,0 +1,4455 @@
+/*
+  Graphite beta polish layer.
+  Consolidated refinement rules from the alpha cycle; keep new stable fixes
+  here only when they do not belong in a narrower component file.
+*/
+
+/* v0.1.1 fixes: dropdowns need to be solid, because translucent menus are a crime. */
+.dropdown-menu,
+.dropdown-menu.show,
+.popover,
+.tooltip-inner,
+.react-select__menu,
+.react-select__menu-list,
+.react-select__option,
+[class*="menuPortal"],
+[class*="MenuPortal"],
+[class*="menu-list"],
+[class*="MenuList"] {
+  background-color: var(--graphite-panel) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-image: none !important;
+}
+
+.dropdown-menu {
+  background-clip: padding-box !important;
+  overflow: hidden !important;
+}
+
+.dropdown-menu .dropdown-item,
+.dropdown-menu button,
+.dropdown-menu a,
+.dropdown-menu li,
+.dropdown-menu .btn,
+.dropdown-menu .btn-link {
+  background-color: transparent !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu button:hover,
+.dropdown-menu button:focus,
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+  background-color: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.dropdown-menu::before,
+.dropdown-menu::after,
+.popover::before,
+.popover::after {
+  opacity: 1 !important;
+}
+
+/* v0.1.1 fixes: Stash image preview/zoom overlay buttons should not become chunky blue censor stickers. */
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card .btn-primary[class*="overlay"],
+.gallery-card .btn-primary[class*="overlay"],
+.image-card .btn-primary[class*="overlay"],
+.scene-card .fa-search,
+.gallery-card .fa-search,
+.image-card .fa-search,
+.scene-card svg[data-icon="search"],
+.gallery-card svg[data-icon="search"],
+.image-card svg[data-icon="search"] {
+  background-color: rgba(8, 17, 29, 0.72) !important;
+  border-color: rgba(236, 239, 244, 0.18) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card .btn-primary[class*="overlay"],
+.gallery-card .btn-primary[class*="overlay"],
+.image-card .btn-primary[class*="overlay"] {
+  width: auto !important;
+  height: auto !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  padding: 0.45rem !important;
+  border-radius: 999px !important;
+}
+
+.card-img-overlay .btn-primary:hover,
+.scene-card .btn-primary.position-absolute:hover,
+.gallery-card .btn-primary.position-absolute:hover,
+.image-card .btn-primary.position-absolute:hover {
+  background-color: rgba(49, 56, 66, 0.88) !important;
+  transform: none !important;
+}
+
+/* v0.1.2 fixes: make the card/image preview magnifier overlay behave like an icon, not a Fisher-Price censor block. */
+.scene-card [class*="preview"] .btn,
+.scene-card [class*="Preview"] .btn,
+.scene-card [class*="thumbnail"] .btn,
+.scene-card [class*="Thumbnail"] .btn,
+.gallery-card [class*="preview"] .btn,
+.gallery-card [class*="Preview"] .btn,
+.gallery-card [class*="thumbnail"] .btn,
+.gallery-card [class*="Thumbnail"] .btn,
+.image-card [class*="preview"] .btn,
+.image-card [class*="Preview"] .btn,
+.image-card [class*="thumbnail"] .btn,
+.image-card [class*="Thumbnail"] .btn,
+.scene-card [class*="image"] .btn-primary,
+.gallery-card [class*="image"] .btn-primary,
+.image-card [class*="image"] .btn-primary,
+.scene-card button[title*="Preview"],
+.scene-card button[title*="Zoom"],
+.scene-card button[title*="View"],
+.gallery-card button[title*="Preview"],
+.gallery-card button[title*="Zoom"],
+.gallery-card button[title*="View"],
+.image-card button[title*="Preview"],
+.image-card button[title*="Zoom"],
+.image-card button[title*="View"] {
+  background: rgba(8, 17, 29, 0.48) !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  border-radius: 999px !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+  min-width: 1.9rem !important;
+  min-height: 1.9rem !important;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.scene-card [class*="preview"] .btn:hover,
+.scene-card [class*="Preview"] .btn:hover,
+.scene-card [class*="thumbnail"] .btn:hover,
+.scene-card [class*="Thumbnail"] .btn:hover,
+.gallery-card [class*="preview"] .btn:hover,
+.gallery-card [class*="Preview"] .btn:hover,
+.gallery-card [class*="thumbnail"] .btn:hover,
+.gallery-card [class*="Thumbnail"] .btn:hover,
+.image-card [class*="preview"] .btn:hover,
+.image-card [class*="Preview"] .btn:hover,
+.image-card [class*="thumbnail"] .btn:hover,
+.image-card [class*="Thumbnail"] .btn:hover,
+.scene-card [class*="image"] .btn-primary:hover,
+.gallery-card [class*="image"] .btn-primary:hover,
+.image-card [class*="image"] .btn-primary:hover {
+  background: rgba(8, 17, 29, 0.72) !important;
+  transform: none !important;
+}
+
+/* v0.1.2 density pass: slimmer pills and compact action buttons. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  padding: 0.16rem 0.36rem !important;
+  line-height: 1.05 !important;
+  font-size: 0.78rem !important;
+}
+
+.btn-sm,
+.btn-group-sm > .btn,
+.card-footer .btn,
+.scene-card .btn-group .btn,
+.gallery-card .btn-group .btn,
+.image-card .btn-group .btn,
+.performer-card .btn-group .btn,
+.movie-card .btn-group .btn,
+.studio-card .btn-group .btn {
+  padding: 0.24rem 0.44rem !important;
+  min-height: 1.75rem !important;
+  line-height: 1.1 !important;
+}
+
+/* v0.1.3: calm the card counter/action pills. The blue was getting main-character syndrome. */
+.card-footer .btn,
+.scene-card .btn-group .btn,
+.gallery-card .btn-group .btn,
+.image-card .btn-group .btn,
+.performer-card .btn-group .btn,
+.movie-card .btn-group .btn,
+.studio-card .btn-group .btn,
+.scene-card .btn-primary:not(.position-absolute),
+.gallery-card .btn-primary:not(.position-absolute),
+.image-card .btn-primary:not(.position-absolute) {
+  background: rgba(32, 36, 42, 0.82) !important;
+  border: 1px solid rgba(95, 168, 255, 0.32) !important;
+  color: var(--graphite-text-soft) !important;
+  border-radius: 0.48rem !important;
+  padding: 0.18rem 0.38rem !important;
+  min-height: 1.45rem !important;
+  line-height: 1 !important;
+  font-size: 0.78rem !important;
+  box-shadow: none !important;
+}
+
+.card-footer .btn:hover,
+.scene-card .btn-group .btn:hover,
+.gallery-card .btn-group .btn:hover,
+.image-card .btn-group .btn:hover,
+.performer-card .btn-group .btn:hover,
+.movie-card .btn-group .btn:hover,
+.studio-card .btn-group .btn:hover,
+.scene-card .btn-primary:not(.position-absolute):hover,
+.gallery-card .btn-primary:not(.position-absolute):hover,
+.image-card .btn-primary:not(.position-absolute):hover {
+  background: rgba(49, 56, 66, 0.95) !important;
+  border-color: rgba(95, 168, 255, 0.52) !important;
+  color: var(--graphite-text) !important;
+  transform: none !important;
+}
+
+.card-footer .btn svg,
+.scene-card .btn-group .btn svg,
+.gallery-card .btn-group .btn svg,
+.image-card .btn-group .btn svg,
+.performer-card .btn-group .btn svg,
+.movie-card .btn-group .btn svg,
+.studio-card .btn-group .btn svg,
+.card-footer .btn .fa,
+.scene-card .btn-group .btn .fa,
+.gallery-card .btn-group .btn .fa,
+.image-card .btn-group .btn .fa {
+  color: var(--graphite-accent-2) !important;
+}
+
+.card-footer,
+.scene-card .card-footer,
+.gallery-card .card-footer,
+.image-card .card-footer,
+.performer-card .card-footer,
+.movie-card .card-footer,
+.studio-card .card-footer {
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite v0.2.0 design-system pass
+   Principle: blue means state, not decoration. Wild concept, apparently.
+------------------------------------------------------------------------- */
+:root {
+  --g-bg-0: #16191e;
+  --g-bg-1: #1b2026;
+  --g-surface-1: #20262d;
+  --g-surface-2: #26303a;
+  --g-surface-3: #303945;
+  --g-border-1: rgba(219, 229, 241, 0.10);
+  --g-border-2: rgba(219, 229, 241, 0.16);
+  --g-text-1: #f0f4f8;
+  --g-text-2: #c9d1dc;
+  --g-text-3: #9aa6b4;
+  --g-accent: #5fa8ff;
+  --g-accent-soft: rgba(95, 168, 255, 0.14);
+  --g-accent-border: rgba(95, 168, 255, 0.36);
+  --g-radius-control: 8px;
+  --g-radius-card: 12px;
+  --g-space-1: 0.25rem;
+  --g-space-2: 0.5rem;
+  --g-space-3: 0.75rem;
+  --g-space-4: 1rem;
+}
+
+/* App chrome */
+.navbar,
+.navbar.bg-dark,
+.navbar-dark,
+.bg-dark,
+.top-nav,
+.main-nav {
+  background: var(--g-bg-1) !important;
+  border-bottom: 1px solid var(--g-border-1) !important;
+  box-shadow: none !important;
+  min-height: 3.05rem !important;
+  padding-top: 0.32rem !important;
+  padding-bottom: 0.32rem !important;
+}
+
+.navbar .container-fluid,
+.navbar .container,
+.navbar-nav,
+.nav {
+  align-items: center !important;
+}
+
+/* Global top navigation: compact, not giant blue app-store buttons. */
+.navbar .nav-link,
+.navbar .btn,
+.navbar a.btn,
+.navbar button.btn,
+.top-nav .nav-link,
+.top-nav .btn,
+.main-nav .nav-link,
+.main-nav .btn {
+  min-height: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem 0.62rem !important;
+  margin: 0 0.16rem !important;
+  border-radius: var(--g-radius-control) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--g-text-2) !important;
+  box-shadow: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 650 !important;
+  line-height: 1.1 !important;
+  transform: none !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover,
+.top-nav .nav-link:hover,
+.top-nav .btn:hover,
+.main-nav .nav-link:hover,
+.main-nav .btn:hover {
+  background: var(--g-surface-2) !important;
+  border-color: var(--g-border-2) !important;
+  color: var(--g-text-1) !important;
+  transform: none !important;
+}
+
+.navbar .nav-link.active,
+.navbar .btn.active,
+.navbar .btn-primary,
+.navbar .btn-primary:focus,
+.top-nav .nav-link.active,
+.top-nav .btn.active,
+.main-nav .nav-link.active,
+.main-nav .btn.active {
+  background: var(--g-accent-soft) !important;
+  border-color: var(--g-accent-border) !important;
+  color: var(--g-text-1) !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent) !important;
+}
+
+.navbar .nav-link svg,
+.navbar .btn svg,
+.navbar .nav-link .fa,
+.navbar .btn .fa,
+.top-nav svg,
+.main-nav svg {
+  margin-right: 0.32rem !important;
+  opacity: 0.95;
+}
+
+/* Buttons: default to graphite. Accent only when state matters. */
+.btn-primary:not(.navbar .btn-primary):not(.top-nav .btn-primary):not(.main-nav .btn-primary):not(.external-links-button-link):not(.external-links-button .btn-primary):not(.favorite-button) {
+  background: var(--g-accent) !important;
+  border-color: var(--g-accent) !important;
+}
+
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light,
+.detail-header .btn,
+.scene-details .btn,
+.performer-details .btn,
+.movie-details .btn,
+.studio-details .btn,
+.gallery-details .btn,
+.image-details .btn {
+  background: var(--g-surface-2) !important;
+  border: 1px solid var(--g-border-1) !important;
+  color: var(--g-text-2) !important;
+  box-shadow: none !important;
+}
+
+.detail-header .btn:hover,
+.scene-details .btn:hover,
+.performer-details .btn:hover,
+.movie-details .btn:hover,
+.studio-details .btn:hover,
+.gallery-details .btn:hover,
+.image-details .btn:hover {
+  background: var(--g-surface-3) !important;
+  border-color: var(--g-border-2) !important;
+  color: var(--g-text-1) !important;
+  transform: none !important;
+}
+
+/* Detail pages: restore rhythm and stop the blue divider from auditioning for Broadway. */
+.detail-header,
+.scene-details,
+.performer-details,
+.movie-details,
+.studio-details,
+.gallery-details,
+.image-details {
+  background: var(--g-bg-1) !important;
+}
+
+.detail-header h1,
+.scene-details h1,
+.performer-details h1,
+.movie-details h1,
+.studio-details h1,
+.gallery-details h1,
+.image-details h1 {
+  margin-bottom: 0.9rem !important;
+}
+
+.scene-details h2,
+.scene-details .title,
+.detail-header h2,
+.detail-header .title {
+  margin-top: 0.8rem !important;
+  margin-bottom: 0.55rem !important;
+}
+
+/* Split panes / gutters / resizers: subtle divider, never accent blue. */
+.gutter,
+.gutter-horizontal,
+.gutter-vertical,
+.Resizer,
+.Resizer.vertical,
+.Resizer.horizontal,
+[class*="gutter"],
+[class*="Gutter"],
+[class*="resizer"],
+[class*="Resizer"],
+[class*="resize-handle"],
+[class*="ResizeHandle"],
+[class*="splitter"],
+[class*="Splitter"] {
+  background: var(--g-border-1) !important;
+  background-color: var(--g-border-1) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.gutter-horizontal,
+.Resizer.vertical,
+[class*="gutter-horizontal"],
+[class*="vertical"] [class*="Resizer"] {
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+}
+
+/* Scene/detail action row: compact graphite controls. */
+.scene-details .btn,
+.detail-header .btn,
+.performer-details .btn,
+.movie-details .btn,
+.studio-details .btn,
+.gallery-details .btn,
+.image-details .btn {
+  min-height: 2rem !important;
+  padding: 0.32rem 0.5rem !important;
+  border-radius: var(--g-radius-control) !important;
+}
+
+/* Tabs: slim underline, less Bootstrap cosplay. */
+.nav-tabs {
+  border-bottom: 1px solid var(--g-border-1) !important;
+  gap: 0.25rem;
+}
+
+.nav-tabs .nav-link,
+.scene-details .nav-tabs .nav-link,
+.detail-header .nav-tabs .nav-link {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--g-text-3) !important;
+  padding: 0.48rem 0.5rem !important;
+  margin: 0 !important;
+  font-weight: 650 !important;
+  box-shadow: none !important;
+}
+
+.nav-tabs .nav-link:hover,
+.scene-details .nav-tabs .nav-link:hover,
+.detail-header .nav-tabs .nav-link:hover {
+  color: var(--g-text-1) !important;
+  background: transparent !important;
+}
+
+.nav-tabs .nav-link.active,
+.scene-details .nav-tabs .nav-link.active,
+.detail-header .nav-tabs .nav-link.active {
+  color: var(--g-accent) !important;
+  background: transparent !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent) !important;
+}
+
+/* Tags: keep the v0.1.3 size Jason liked, but make the color less noisy on detail pages. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  font-size: 0.78rem !important;
+  line-height: 1.05 !important;
+  padding: 0.16rem 0.36rem !important;
+}
+
+.scene-details .badge,
+.scene-details .tag-item,
+.scene-details .tag,
+.scene-details .scene-tag,
+.detail-header .badge,
+.detail-header .tag-item,
+.detail-header .tag,
+.detail-header .scene-tag {
+  background: rgba(38, 48, 58, 0.94) !important;
+  border: 1px solid rgba(95, 168, 255, 0.28) !important;
+  color: #b9d8fb !important;
+}
+
+.scene-details .badge:hover,
+.scene-details .tag-item:hover,
+.scene-details .tag:hover,
+.scene-details .scene-tag:hover {
+  background: rgba(48, 57, 69, 0.98) !important;
+  border-color: rgba(95, 168, 255, 0.45) !important;
+}
+
+/* Cards: tiny cleanup to match the new system without changing the layout. */
+.card,
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card {
+  background: var(--g-surface-1) !important;
+  border-color: var(--g-border-1) !important;
+}
+
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  background: var(--g-surface-2) !important;
+  border-color: rgba(95, 168, 255, 0.26) !important;
+}
+
+/* Image zoom buttons: preserve v0.1.3 fix after the button pass. */
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card button[title*="Preview"],
+.scene-card button[title*="Zoom"],
+.scene-card button[title*="View"],
+.gallery-card button[title*="Preview"],
+.gallery-card button[title*="Zoom"],
+.gallery-card button[title*="View"],
+.image-card button[title*="Preview"],
+.image-card button[title*="Zoom"],
+.image-card button[title*="View"] {
+  background: rgba(8, 17, 29, 0.48) !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  color: var(--graphite-text) !important;
+  border-radius: 999px !important;
+  min-width: 1.9rem !important;
+  min-height: 1.9rem !important;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+
+/* =========================================================
+   Graphite 1.0.0-alpha1 design-system cleanup
+   ---------------------------------------------------------
+   Rules:
+   - Accent blue means active/focus/hover, not random decoration.
+   - Keep detail layouts familiar; refine spacing only.
+   - Tags retain the Graphite 0.1.3 look.
+   ========================================================= */
+
+:root {
+  --graphite-space-1: 4px;
+  --graphite-space-2: 8px;
+  --graphite-space-3: 12px;
+  --graphite-space-4: 16px;
+  --graphite-space-5: 24px;
+
+  --graphite-surface-0: #17191d;
+  --graphite-surface-1: #1c2026;
+  --graphite-surface-2: #20242a;
+  --graphite-surface-3: #252a31;
+  --graphite-surface-4: #2b313a;
+
+  --graphite-radius-xs: 6px;
+  --graphite-radius-sm: 8px;
+  --graphite-radius: 12px;
+  --graphite-radius-lg: 16px;
+}
+
+/* Global nav: same pages, less cafeteria-tray padding. */
+.navbar .nav-link,
+.navbar .btn,
+.main-nav .nav-link,
+.top-nav .nav-link,
+.nav-pills .nav-link {
+  min-height: 32px !important;
+  padding: 0.34rem 0.62rem !important;
+  line-height: 1.15 !important;
+}
+
+.navbar .btn,
+.btn-toolbar .btn,
+.operation-buttons .btn {
+  padding-top: 0.34rem !important;
+  padding-bottom: 0.34rem !important;
+}
+
+/* Buttons: neutral by default, blue only when it has a job. */
+.btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning),
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light {
+  background: var(--graphite-surface-4) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):hover,
+.btn-secondary:hover,
+.btn-dark:hover,
+.btn-outline-secondary:hover,
+.btn-outline-light:hover {
+  background: var(--graphite-hover) !important;
+  border-color: rgba(95, 168, 255, 0.32) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Detail-page splitters: kill the giant blue lightsaber. */
+.scene-detail-container,
+.scene-details-container,
+.detail-container,
+.scene-player-container,
+.scene-tabs-container,
+.scene-details,
+.scene-page,
+.details-page {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.scene-detail-container > *,
+.scene-details-container > *,
+.detail-container > *,
+.scene-page > *,
+.details-page > * {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.scene-detail-container .col,
+.scene-detail-container [class*="col-"],
+.scene-details-container .col,
+.scene-details-container [class*="col-"],
+.detail-container .col,
+.detail-container [class*="col-"] {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+/* Common Stash splitter/resizer classes and generic draggable separators. */
+.gutter,
+.gutter-horizontal,
+.gutter-vertical,
+.Resizer,
+.Resizer.horizontal,
+.Resizer.vertical,
+.SplitPane .Resizer,
+.Pane.vertical.Pane1 + .Resizer,
+[class*="splitter"],
+[class*="Splitter"],
+[class*="resizer"],
+[class*="Resizer"],
+[class*="gutter"] {
+  background: var(--graphite-border-soft) !important;
+  border-color: var(--graphite-border-soft) !important;
+  box-shadow: none !important;
+}
+
+.gutter-horizontal,
+.Resizer.vertical,
+[class*="gutter-horizontal"],
+[class*="vertical"][class*="Resizer"] {
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+}
+
+.gutter-vertical,
+.Resizer.horizontal,
+[class*="gutter-vertical"],
+[class*="horizontal"][class*="Resizer"] {
+  height: 1px !important;
+  min-height: 1px !important;
+  max-height: 1px !important;
+}
+
+/* Remove accidental accent borders on detail panes. */
+.scene-details [style*="border"],
+.detail-header [style*="border"],
+.scene-tabs-container [style*="border"] {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+/* Scene detail rhythm. Don't redesign; just stop the metadata traffic jam. */
+.scene-details .card-body,
+.detail-header .card-body,
+.scene-detail-container .card-body {
+  padding: var(--graphite-space-3) !important;
+}
+
+.scene-details h1,
+.scene-details h2,
+.detail-header h1,
+.detail-header h2 {
+  line-height: 1.16 !important;
+  margin-bottom: var(--graphite-space-2) !important;
+}
+
+.scene-details .rating-stars,
+.scene-details .star-rating,
+.detail-header .rating-stars,
+.detail-header .star-rating {
+  margin: var(--graphite-space-2) 0 !important;
+}
+
+/* Tabs: quieter, smaller, active line instead of active blob. */
+.nav-tabs .nav-link,
+.scene-tabs .nav-link,
+.detail-tabs .nav-link {
+  padding: 0.42rem 0.68rem !important;
+  color: var(--graphite-muted) !important;
+  background: transparent !important;
+}
+
+.nav-tabs .nav-link.active,
+.scene-tabs .nav-link.active,
+.detail-tabs .nav-link.active {
+  background: transparent !important;
+  color: var(--graphite-text) !important;
+  box-shadow: inset 0 -2px 0 var(--graphite-accent) !important;
+}
+
+/* Keep Graphite 0.1.3-style tags: small, calm, blue-tinted, not billboard-sized. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  background: rgba(95, 168, 255, 0.13) !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  color: var(--graphite-accent-2) !important;
+  border-radius: 999px !important;
+  font-weight: 650 !important;
+  line-height: 1.15 !important;
+  padding: 0.24rem 0.48rem !important;
+}
+
+/* Image preview / zoom overlay: transparent button, visible icon, no blue censor square. */
+.image-card .btn,
+.gallery-card .btn,
+.scene-card-preview .btn,
+.scene-card .preview-button,
+.scene-card .image-preview-button,
+.scene-card [class*="Preview"] .btn,
+.scene-card [class*="Zoom"] .btn,
+.image-card [class*="Preview"] .btn,
+.image-card [class*="Zoom"] .btn,
+[class*="preview"] .btn,
+[class*="zoom"] .btn,
+[class*="Zoom"] .btn {
+  background: rgba(0, 0, 0, 0.34) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+.image-card .btn:hover,
+.gallery-card .btn:hover,
+[class*="preview"] .btn:hover,
+[class*="zoom"] .btn:hover,
+[class*="Zoom"] .btn:hover {
+  background: rgba(0, 0, 0, 0.52) !important;
+  border-color: rgba(95, 168, 255, 0.38) !important;
+}
+
+/* Dropdown/menu transparency fixes from prototype are now foundation. */
+.dropdown-menu,
+.popover,
+.tooltip-inner,
+.react-select__menu,
+[class*="menu"] [role="listbox"] {
+  background: var(--graphite-panel) !important;
+  border: 1px solid var(--graphite-border) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42) !important;
+  overflow: hidden;
+}
+
+.dropdown-item,
+.react-select__option,
+[role="option"] {
+  background-clip: padding-box !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha2
+   Selector corrections from real Stash 0.31.1 DOM.
+   ------------------------------------------------------------------------- */
+
+/* Scene/details divider: this is a divider column, not a decorative accent wall. */
+.scene-divider,
+.scene-divider.d-none,
+.scene-divider.d-xl-block {
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+  flex: 0 0 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: var(--g-border-1, #353c46) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.scene-divider > .btn,
+.scene-divider > button,
+.scene-divider .btn-primary {
+  display: none !important;
+}
+
+/* Top navigation: Stash puts .active on the wrapper div, not the button itself. Bootstrap, naturally, chose violence. */
+.navbar-nav {
+  gap: 0.18rem !important;
+}
+
+.navbar-nav > .nav-link {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.btn,
+.navbar-nav > .nav-link > a.minimal.btn-primary,
+.navbar-nav > .nav-link > a.btn.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  gap: 0.38rem !important;
+  height: 2rem !important;
+  min-height: 2rem !important;
+  padding: 0.28rem 0.68rem !important;
+  margin: 0 !important;
+  border-radius: var(--g-radius-control, 8px) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--g-text-2, #aeb7c3) !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.btn svg,
+.navbar-nav > .nav-link > a.minimal.btn .nav-menu-icon,
+.navbar-nav > .nav-link > a.minimal.btn .fa-icon {
+  display: inline-block !important;
+  margin: 0 !important;
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+  color: currentColor !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.btn span {
+  display: inline-block !important;
+  font-size: 0.88rem !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.btn:hover,
+.navbar-nav > .nav-link > a.minimal.btn:focus {
+  background: var(--g-surface-2, #262b33) !important;
+  border-color: var(--g-border-2, #46505d) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.navbar-nav > .nav-link.active > a.minimal.btn,
+.navbar-nav > .nav-link.active > a.minimal.btn-primary,
+.navbar-nav > .nav-link.active > a.btn.btn-primary {
+  background: var(--g-accent-soft, rgba(95,168,255,.16)) !important;
+  border-color: var(--g-accent-border, rgba(95,168,255,.42)) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent, #63a7ff) !important;
+}
+
+/* Card popover counters/actions: graphite chips, not bright blue candy buttons. */
+.card-popovers.btn-group,
+.card-popovers {
+  gap: 0.12rem !important;
+}
+
+.card-popovers .btn,
+.card-popovers .btn-primary,
+.card-popovers a.btn,
+.card-popovers button.btn,
+.card-footer .card-popovers .btn,
+.card-footer .card-popovers .btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.26rem !important;
+  min-width: 1.45rem !important;
+  min-height: 1.32rem !important;
+  height: 1.32rem !important;
+  padding: 0.12rem 0.36rem !important;
+  border-radius: 0.42rem !important;
+  background: rgba(32, 36, 42, 0.92) !important;
+  border: 1px solid rgba(95, 168, 255, 0.24) !important;
+  color: var(--g-text-2, #aeb7c3) !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  font-size: 0.74rem !important;
+  font-weight: 650 !important;
+  transform: none !important;
+}
+
+.card-popovers .btn:hover,
+.card-popovers .btn-primary:hover,
+.card-popovers a.btn:hover,
+.card-popovers button.btn:hover {
+  background: rgba(49, 56, 66, 0.96) !important;
+  border-color: rgba(95, 168, 255, 0.46) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+  transform: none !important;
+}
+
+.card-popovers .btn svg,
+.card-popovers .btn .fa-icon {
+  width: 0.74rem !important;
+  height: 0.74rem !important;
+  opacity: 0.85 !important;
+  color: currentColor !important;
+}
+
+/* Magnifier/preview overlay buttons: icon-sized and translucent. Firefox supports :has now; thanks for doing one useful thing, web platform. */
+.card .btn-primary:has(svg[data-icon="search"]),
+.card .btn-primary:has(svg[data-icon="magnifying-glass"]),
+.card .btn-primary:has(svg[data-icon="eye"]),
+.scene-card .btn-primary:has(svg[data-icon="search"]),
+.scene-card .btn-primary:has(svg[data-icon="magnifying-glass"]),
+.gallery-card .btn-primary:has(svg[data-icon="search"]),
+.gallery-card .btn-primary:has(svg[data-icon="magnifying-glass"]),
+.image-card .btn-primary:has(svg[data-icon="search"]),
+.image-card .btn-primary:has(svg[data-icon="magnifying-glass"]) {
+  width: 1.65rem !important;
+  height: 1.65rem !important;
+  min-width: 1.65rem !important;
+  min-height: 1.65rem !important;
+  padding: 0.22rem !important;
+  border-radius: 999px !important;
+  background: rgba(8, 17, 29, 0.42) !important;
+  border: 1px solid rgba(236, 239, 244, 0.14) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.card .btn-primary:has(svg[data-icon="search"]) span,
+.card .btn-primary:has(svg[data-icon="magnifying-glass"]) span,
+.card .btn-primary:has(svg[data-icon="eye"]) span {
+  display: none !important;
+}
+
+.card .btn-primary:has(svg[data-icon="search"]):hover,
+.card .btn-primary:has(svg[data-icon="magnifying-glass"]):hover,
+.card .btn-primary:has(svg[data-icon="eye"]):hover {
+  background: rgba(8, 17, 29, 0.68) !important;
+  border-color: rgba(95, 168, 255, 0.32) !important;
+}
+
+/* Detail-page action buttons: keep them graphite unless actively selected/focused. */
+.scene-tabs .btn-primary,
+.scene-details .btn-primary,
+.detail-header .btn-primary,
+.scene-header .btn-primary {
+  background: var(--g-surface-2, #262b33) !important;
+  border-color: var(--g-border-1, #353c46) !important;
+  color: var(--g-text-2, #aeb7c3) !important;
+}
+
+.scene-tabs .btn-primary:hover,
+.scene-details .btn-primary:hover,
+.detail-header .btn-primary:hover,
+.scene-header .btn-primary:hover {
+  background: var(--g-surface-3, #303741) !important;
+  border-color: var(--g-accent-border, rgba(95,168,255,.42)) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha3
+   Specificity cleanup for Stash 0.31.1 nav, card counters, and ratings.
+   ------------------------------------------------------------------------- */
+
+/* Top navigation: remove the pill/outline war entirely. Active = quiet underline. */
+.navbar-nav,
+body .navbar-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+.navbar-nav > .nav-link,
+body .navbar-nav > .nav-link,
+.navbar-nav > .nav-link.active,
+body .navbar-nav > .nav-link.active {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.p-4.p-xl-2.btn.btn-primary,
+.navbar-nav > .nav-link > a.minimal.btn.btn-primary,
+body .navbar-nav > .nav-link > a.minimal.p-4.p-xl-2.btn.btn-primary,
+body .navbar-nav > .nav-link > a.minimal.btn.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  gap: 0.42rem !important;
+  height: 2.05rem !important;
+  min-height: 2.05rem !important;
+  padding: 0.3rem 0.72rem !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  line-height: 1 !important;
+  font-size: 0.9rem !important;
+  font-weight: 650 !important;
+  transform: none !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.p-4.p-xl-2.btn.btn-primary:hover,
+.navbar-nav > .nav-link > a.minimal.btn.btn-primary:hover,
+body .navbar-nav > .nav-link > a.minimal.p-4.p-xl-2.btn.btn-primary:hover,
+body .navbar-nav > .nav-link > a.minimal.btn.btn-primary:hover {
+  background: rgba(255,255,255,0.045) !important;
+  border-color: rgba(219,229,241,0.11) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+  box-shadow: none !important;
+}
+
+.navbar-nav > .nav-link.active > a.minimal.p-4.p-xl-2.btn.btn-primary,
+.navbar-nav > .nav-link.active > a.minimal.btn.btn-primary,
+body .navbar-nav > .nav-link.active > a.minimal.p-4.p-xl-2.btn.btn-primary,
+body .navbar-nav > .nav-link.active > a.minimal.btn.btn-primary {
+  background: rgba(255,255,255,0.055) !important;
+  background-image: none !important;
+  border-color: rgba(219,229,241,0.14) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent, #5fa8ff) !important;
+  outline: 0 !important;
+}
+
+.navbar-nav > .nav-link > a.minimal.btn.btn-primary svg,
+body .navbar-nav > .nav-link > a.minimal.btn.btn-primary svg,
+.navbar-nav > .nav-link > a.minimal.btn.btn-primary .nav-menu-icon,
+body .navbar-nav > .nav-link > a.minimal.btn.btn-primary .nav-menu-icon {
+  display: inline-block !important;
+  width: 0.9rem !important;
+  height: 0.9rem !important;
+  margin: 0 !important;
+  color: currentColor !important;
+}
+
+/* Scene/image/group card footer counters: force graphite chips over Bootstrap primary. */
+.card .card-popovers.btn-group,
+.card-footer .card-popovers.btn-group,
+.scene-card .card-popovers.btn-group,
+.image-card .card-popovers.btn-group,
+.gallery-card .card-popovers.btn-group,
+body .card-popovers.btn-group {
+  display: inline-flex !important;
+  gap: 0.12rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.card .card-popovers.btn-group .btn.minimal.btn-primary,
+.card-footer .card-popovers.btn-group .btn.minimal.btn-primary,
+.scene-card .card-popovers.btn-group .btn.minimal.btn-primary,
+.image-card .card-popovers.btn-group .btn.minimal.btn-primary,
+.gallery-card .card-popovers.btn-group .btn.minimal.btn-primary,
+body .card-popovers.btn-group .btn.minimal.btn-primary,
+body .card-popovers.btn-group a.minimal.btn.btn-primary,
+body .card-popovers.btn-group button.minimal.btn.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.24rem !important;
+  height: 1.22rem !important;
+  min-height: 1.22rem !important;
+  min-width: 1.35rem !important;
+  padding: 0.1rem 0.34rem !important;
+  background: rgba(34, 40, 48, 0.94) !important;
+  background-image: none !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  border-radius: 999px !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  font-size: 0.72rem !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.card .card-popovers.btn-group .btn.minimal.btn-primary:hover,
+.card-footer .card-popovers.btn-group .btn.minimal.btn-primary:hover,
+body .card-popovers.btn-group .btn.minimal.btn-primary:hover,
+body .card-popovers.btn-group a.minimal.btn.btn-primary:hover,
+body .card-popovers.btn-group button.minimal.btn.btn-primary:hover {
+  background: rgba(45, 53, 64, 0.98) !important;
+  border-color: rgba(95, 168, 255, 0.42) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+}
+
+body .card-popovers.btn-group .btn.minimal.btn-primary svg,
+body .card-popovers.btn-group .btn.minimal.btn-primary .fa-icon {
+  width: 0.68rem !important;
+  height: 0.68rem !important;
+  color: currentColor !important;
+  opacity: 0.8 !important;
+}
+
+/* Rating stars: stars are not buttons. Stop putting them in little boxes, Bootstrap. */
+.rating-stars .btn,
+.star-rating .btn,
+.scene-details .rating-stars .btn,
+.scene-details .star-rating .btn,
+.detail-header .rating-stars .btn,
+.detail-header .star-rating .btn,
+body .rating-stars button,
+body .star-rating button {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 0.05rem !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: #ffd84d !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.rating-stars .btn svg,
+.star-rating .btn svg,
+.scene-details .rating-stars .btn svg,
+.scene-details .star-rating .btn svg,
+.detail-header .rating-stars .btn svg,
+.detail-header .star-rating .btn svg,
+body .rating-stars button svg,
+body .star-rating button svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin: 0 !important;
+  color: currentColor !important;
+}
+
+.rating-stars .btn:hover,
+.star-rating .btn:hover,
+body .rating-stars button:hover,
+body .star-rating button:hover {
+  background: transparent !important;
+  border: 0 !important;
+  color: #ffe680 !important;
+  box-shadow: none !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha4
+   Restore useful scene divider handle; keep it graphite. More Bootstrap pest control.
+   ------------------------------------------------------------------------- */
+
+/* Scene divider: keep the collapsible handle, remove the blue slab. */
+body .scene-divider,
+body .scene-divider.d-none,
+body .scene-divider.d-xl-block {
+  width: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  flex: 0 0 18px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: var(--g-bg-1, #17191d) !important;
+  background-color: var(--g-bg-1, #17191d) !important;
+  border-left: 1px solid var(--g-border-1, #353c46) !important;
+  border-right: 1px solid var(--g-border-1, #353c46) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+body .scene-divider > .btn,
+body .scene-divider > button,
+body .scene-divider .btn-primary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: sticky !important;
+  top: 50% !important;
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  background: var(--g-surface-2, #262b33) !important;
+  background-color: var(--g-surface-2, #262b33) !important;
+  background-image: none !important;
+  border: 1px solid var(--g-border-1, #353c46) !important;
+  border-left: 0 !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  opacity: 0.82 !important;
+  transform: translateY(-50%) !important;
+  z-index: 3 !important;
+}
+
+body .scene-divider > .btn:hover,
+body .scene-divider > button:hover,
+body .scene-divider .btn-primary:hover {
+  background: var(--g-surface-3, #303741) !important;
+  background-color: var(--g-surface-3, #303741) !important;
+  border-color: rgba(95, 168, 255, 0.35) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+  opacity: 1 !important;
+}
+
+body .scene-divider svg,
+body .scene-divider .fa-icon {
+  width: 0.7rem !important;
+  height: 0.7rem !important;
+  color: currentColor !important;
+}
+
+/* Scene detail action buttons under FPS/resolution: smaller, tighter, calmer. */
+body .scene-details .btn-group .btn,
+body .scene-details .btn-primary,
+body .detail-header .btn-group .btn,
+body .detail-header .btn-primary,
+body .scene-header .btn-group .btn,
+body .scene-header .btn-primary,
+body .scene-tabs .btn-primary {
+  min-width: 2.05rem !important;
+  width: auto !important;
+  height: 2.05rem !important;
+  min-height: 2.05rem !important;
+  padding: 0.34rem 0.54rem !important;
+  border-radius: 0.48rem !important;
+  background: var(--g-surface-2, #262b33) !important;
+  background-color: var(--g-surface-2, #262b33) !important;
+  background-image: none !important;
+  border-color: var(--g-border-1, #353c46) !important;
+  box-shadow: none !important;
+}
+
+body .scene-details .btn-primary svg,
+body .detail-header .btn-primary svg,
+body .scene-header .btn-primary svg {
+  width: 0.88rem !important;
+  height: 0.88rem !important;
+}
+
+/* Card footer chips: nuke Bootstrap's --bs-btn-* variables too, because apparently subtlety was unavailable. */
+body .card-popovers,
+body .card-popovers.btn-group,
+body .scene-card .card-popovers,
+body .image-card .card-popovers,
+body .gallery-card .card-popovers,
+body .card-footer .card-popovers {
+  --bs-btn-bg: rgba(34, 40, 48, 0.94) !important;
+  --bs-btn-border-color: rgba(95, 168, 255, 0.22) !important;
+  --bs-btn-color: var(--g-text-2, #c9d1dc) !important;
+  --bs-btn-hover-bg: rgba(45, 53, 64, 0.98) !important;
+  --bs-btn-hover-border-color: rgba(95, 168, 255, 0.42) !important;
+  --bs-btn-hover-color: var(--g-text-1, #f0f4f8) !important;
+}
+
+body .card-popovers .btn,
+body .card-popovers .btn-primary,
+body .card-popovers .minimal.btn,
+body .card-popovers .minimal.btn-primary,
+body .card-popovers button,
+body .card-popovers a,
+body .scene-card .card-popovers .btn,
+body .image-card .card-popovers .btn,
+body .gallery-card .card-popovers .btn,
+body .card-footer .card-popovers .btn {
+  height: 1.16rem !important;
+  min-height: 1.16rem !important;
+  min-width: 1.28rem !important;
+  padding: 0.08rem 0.32rem !important;
+  border-radius: 999px !important;
+  background: rgba(34, 40, 48, 0.94) !important;
+  background-color: rgba(34, 40, 48, 0.94) !important;
+  background-image: none !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+body .card-popovers .btn:hover,
+body .card-popovers .btn-primary:hover,
+body .card-popovers button:hover,
+body .card-popovers a:hover {
+  background: rgba(45, 53, 64, 0.98) !important;
+  background-color: rgba(45, 53, 64, 0.98) !important;
+  border-color: rgba(95, 168, 255, 0.42) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+}
+
+/* Image/card overlay buttons: keep the icon, kill the blue square. */
+body .image-card .position-absolute.btn,
+body .image-card .position-absolute.btn-primary,
+body .image-card button.position-absolute,
+body .image-card a.position-absolute,
+body .scene-card .position-absolute.btn,
+body .scene-card .position-absolute.btn-primary,
+body .gallery-card .position-absolute.btn,
+body .gallery-card .position-absolute.btn-primary,
+body .image-card .btn-primary:has(svg),
+body .scene-card .btn-primary:has(svg[data-icon="search"]),
+body .scene-card .btn-primary:has(svg[data-icon="magnifying-glass"]),
+body .gallery-card .btn-primary:has(svg[data-icon="search"]),
+body .gallery-card .btn-primary:has(svg[data-icon="magnifying-glass"]) {
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  min-width: 1.7rem !important;
+  min-height: 1.7rem !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(5, 10, 18, 0.36) !important;
+  background-color: rgba(5, 10, 18, 0.36) !important;
+  background-image: none !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+  box-shadow: none !important;
+}
+
+body .image-card .position-absolute.btn:hover,
+body .image-card .position-absolute.btn-primary:hover,
+body .scene-card .position-absolute.btn:hover,
+body .gallery-card .position-absolute.btn:hover {
+  background: rgba(5, 10, 18, 0.6) !important;
+  background-color: rgba(5, 10, 18, 0.6) !important;
+  border-color: rgba(95, 168, 255, 0.35) !important;
+}
+
+body .image-card .position-absolute.btn svg,
+body .scene-card .position-absolute.btn svg,
+body .gallery-card .position-absolute.btn svg {
+  width: 0.82rem !important;
+  height: 0.82rem !important;
+  color: currentColor !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha5
+   Undo alpha4 layout crimes; target real image preview/card counter DOM.
+   ------------------------------------------------------------------------- */
+
+/* Scene divider: preserve Stash's original layout behavior. Only recolor it. */
+body .scene-divider,
+body .scene-divider.d-none,
+body .scene-divider.d-xl-block {
+  /* Do not force width/flex here; Stash uses this column for layout. */
+  width: revert !important;
+  min-width: revert !important;
+  max-width: revert !important;
+  flex: revert !important;
+  padding: revert !important;
+  margin: revert !important;
+  position: relative !important;
+  overflow: visible !important;
+  background: var(--g-bg-1, #17191d) !important;
+  background-color: var(--g-bg-1, #17191d) !important;
+  border-left: 1px solid var(--g-border-1, #353c46) !important;
+  border-right: 1px solid var(--g-border-1, #353c46) !important;
+  box-shadow: none !important;
+}
+
+body .scene-divider > .btn,
+body .scene-divider > button.btn,
+body .scene-divider > button.btn-primary,
+body .scene-divider .btn-primary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: static !important;
+  top: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 7px 7px 0 !important;
+  background: var(--g-surface-2, #262b33) !important;
+  background-color: var(--g-surface-2, #262b33) !important;
+  background-image: none !important;
+  border: 1px solid var(--g-border-1, #353c46) !important;
+  border-left: 0 !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  opacity: .9 !important;
+}
+/* Preview magnifier: hidden until hover */
+body .image-card-preview .preview-button,
+body .scene-card-preview .preview-button,
+body .gallery-card-preview .preview-button {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .16s ease, visibility .16s ease;
+}
+
+body .image-card-preview:hover .preview-button,
+body .image-card-preview:focus-within .preview-button,
+body .scene-card-preview:hover .preview-button,
+body .scene-card-preview:focus-within .preview-button,
+body .gallery-card-preview:hover .preview-button,
+body .gallery-card-preview:focus-within .preview-button {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+/* Exact image preview magnifier DOM from Stash 0.31.1. */
+body .image-card-preview .preview-button,
+body .scene-card-preview .preview-button,
+body .gallery-card-preview .preview-button {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .image-card-preview .preview-button > button.btn.btn-primary,
+body .image-card-preview .preview-button > .btn.btn-primary,
+body .scene-card-preview .preview-button > button.btn.btn-primary,
+body .gallery-card-preview .preview-button > button.btn.btn-primary {
+  --bs-btn-bg: rgba(5, 10, 18, .38) !important;
+  --bs-btn-border-color: rgba(236, 239, 244, .16) !important;
+  --bs-btn-color: var(--g-text-1, #f0f4f8) !important;
+  --bs-btn-hover-bg: rgba(5, 10, 18, .62) !important;
+  --bs-btn-hover-border-color: rgba(95, 168, 255, .32) !important;
+  width: 1.55rem !important;
+  height: 1.55rem !important;
+  min-width: 1.55rem !important;
+  min-height: 1.55rem !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(5, 10, 18, .38) !important;
+  background-color: rgba(5, 10, 18, .38) !important;
+  background-image: none !important;
+  border: 1px solid rgba(236, 239, 244, .16) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+  box-shadow: none !important;
+}
+
+body .image-card-preview .preview-button > button.btn.btn-primary:hover,
+body .image-card-preview .preview-button > .btn.btn-primary:hover,
+body .scene-card-preview .preview-button > button.btn.btn-primary:hover,
+body .gallery-card-preview .preview-button > button.btn.btn-primary:hover {
+  background: rgba(5, 10, 18, .62) !important;
+  background-color: rgba(5, 10, 18, .62) !important;
+  border-color: rgba(95, 168, 255, .32) !important;
+}
+
+body .image-card-preview .preview-button svg,
+body .scene-card-preview .preview-button svg,
+body .gallery-card-preview .preview-button svg {
+  width: .72rem !important;
+  height: .72rem !important;
+  color: currentColor !important;
+}
+
+/* Exact card counter DOM from Stash 0.31.1. Make counters graphite, not Fisher-Price blue. */
+body div.card-popovers.btn-group,
+body [role="group"].card-popovers.btn-group {
+  gap: .14rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body [role="group"].card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+body [role="group"].card-popovers.btn-group > div > a.minimal.btn.btn-primary,
+body div.card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+body div.card-popovers.btn-group > div > a.minimal.btn.btn-primary {
+  --bs-btn-bg: rgba(34, 40, 48, .96) !important;
+  --bs-btn-border-color: rgba(95, 168, 255, .24) !important;
+  --bs-btn-color: var(--g-text-2, #c9d1dc) !important;
+  --bs-btn-hover-bg: rgba(45, 53, 64, .98) !important;
+  --bs-btn-hover-border-color: rgba(95, 168, 255, .44) !important;
+  --bs-btn-hover-color: var(--g-text-1, #f0f4f8) !important;
+  --bs-btn-active-bg: rgba(45, 53, 64, .98) !important;
+  --bs-btn-active-border-color: rgba(95, 168, 255, .44) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .22rem !important;
+  height: 1.12rem !important;
+  min-height: 1.12rem !important;
+  min-width: 1.24rem !important;
+  padding: .06rem .3rem !important;
+  border-radius: 999px !important;
+  background: rgba(34, 40, 48, .96) !important;
+  background-color: rgba(34, 40, 48, .96) !important;
+  background-image: none !important;
+  border: 1px solid rgba(95, 168, 255, .24) !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  font-size: .7rem !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+body [role="group"].card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+body [role="group"].card-popovers.btn-group > div > a.minimal.btn.btn-primary:hover,
+body div.card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+body div.card-popovers.btn-group > div > a.minimal.btn.btn-primary:hover {
+  background: rgba(45, 53, 64, .98) !important;
+  background-color: rgba(45, 53, 64, .98) !important;
+  border-color: rgba(95, 168, 255, .44) !important;
+  color: var(--g-text-1, #f0f4f8) !important;
+}
+
+body [role="group"].card-popovers.btn-group > div > .btn svg,
+body div.card-popovers.btn-group > div > .btn svg {
+  width: .62rem !important;
+  height: .62rem !important;
+  color: currentColor !important;
+  opacity: .78 !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha6
+   Dope-style pragmatic overrides for Stash 0.31.1.
+   Target the actual DOM instead of negotiating with Bootstrap, because Bootstrap
+   negotiates like a raccoon in a trench coat.
+   ------------------------------------------------------------------------- */
+
+/* Top nav: kill Bootstrap button chrome; active = text + underline only. */
+html body nav.top-nav .navbar-nav > .nav-link > a.btn.btn-primary,
+html body nav .navbar-nav > .nav-link > a.minimal.btn.btn-primary,
+html body .navbar-nav > .nav-link > a.minimal.btn.btn-primary {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: var(--g-text-2, #c9d1dc) !important;
+  border-radius: 0 !important;
+  padding: .55rem .62rem !important;
+  min-height: 2.35rem !important;
+  height: 2.35rem !important;
+  transform: none !important;
+}
+
+html body nav.top-nav .navbar-nav > .nav-link.active,
+html body nav .navbar-nav > .nav-link.active,
+html body .navbar-nav > .nav-link.active {
+  border-bottom: 2px solid var(--g-accent, #63a7ff) !important;
+}
+
+html body nav.top-nav .navbar-nav > .nav-link.active > a.btn.btn-primary,
+html body nav .navbar-nav > .nav-link.active > a.minimal.btn.btn-primary,
+html body .navbar-nav > .nav-link.active > a.minimal.btn.btn-primary {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--g-text-1, #edf1f7) !important;
+}
+
+html body nav.top-nav .navbar-nav > .nav-link > a.btn.btn-primary:hover,
+html body nav .navbar-nav > .nav-link > a.minimal.btn.btn-primary:hover,
+html body .navbar-nav > .nav-link > a.minimal.btn.btn-primary:hover {
+  background: rgba(95, 168, 255, .08) !important;
+  background-color: rgba(95, 168, 255, .08) !important;
+  color: var(--g-text-1, #edf1f7) !important;
+  transform: none !important;
+}
+
+/* Image/gallery/card magnifier: transparent button, no blue lozenge/circle. */
+html body .preview-button,
+html body .image-card-preview .preview-button,
+html body .scene-card-preview .preview-button,
+html body .gallery-card-preview .preview-button {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .preview-button > button.btn.btn-primary,
+html body .preview-button button.btn.btn-primary,
+html body .image-card-preview .preview-button > button.btn.btn-primary,
+html body .image-card-preview .preview-button button.btn.btn-primary,
+html body .scene-card-preview .preview-button > button.btn.btn-primary,
+html body .gallery-card-preview .preview-button > button.btn.btn-primary {
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-hover-bg: rgba(5, 10, 18, .42) !important;
+  --bs-btn-hover-border-color: rgba(236, 239, 244, .18) !important;
+  --bs-btn-active-bg: rgba(5, 10, 18, .55) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: rgba(237, 241, 247, .92) !important;
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  min-width: 1.6rem !important;
+  min-height: 1.6rem !important;
+  padding: .2rem !important;
+  border-radius: 999px !important;
+  transform: none !important;
+}
+
+html body .preview-button > button.btn.btn-primary:hover,
+html body .preview-button button.btn.btn-primary:hover,
+html body .image-card-preview .preview-button > button.btn.btn-primary:hover,
+html body .image-card-preview .preview-button button.btn.btn-primary:hover,
+html body .scene-card-preview .preview-button > button.btn.btn-primary:hover,
+html body .gallery-card-preview .preview-button > button.btn.btn-primary:hover {
+  background: rgba(5, 10, 18, .42) !important;
+  background-color: rgba(5, 10, 18, .42) !important;
+  border: 1px solid rgba(236, 239, 244, .18) !important;
+}
+
+/* Card footer/popover counters: graphite chips, including exact pasted DOM. */
+html body div.card-popovers.btn-group,
+html body [role="group"].card-popovers.btn-group,
+html body .card-footer div.card-popovers.btn-group {
+  display: inline-flex !important;
+  gap: .16rem !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body div.card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+html body div.card-popovers.btn-group > div > a.minimal.btn.btn-primary,
+html body [role="group"].card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+html body [role="group"].card-popovers.btn-group > div > a.minimal.btn.btn-primary,
+html body .card-footer .card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+html body .card-footer .card-popovers.btn-group > div > a.minimal.btn.btn-primary {
+  --bs-btn-bg: #232a33 !important;
+  --bs-btn-border-color: rgba(95, 168, 255, .22) !important;
+  --bs-btn-color: #c9d1dc !important;
+  --bs-btn-hover-bg: #2b3440 !important;
+  --bs-btn-hover-border-color: rgba(95, 168, 255, .42) !important;
+  background: #232a33 !important;
+  background-color: #232a33 !important;
+  background-image: none !important;
+  border: 1px solid rgba(95, 168, 255, .22) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .22rem !important;
+  height: 1.08rem !important;
+  min-height: 1.08rem !important;
+  min-width: 1.22rem !important;
+  padding: .04rem .3rem !important;
+  border-radius: 999px !important;
+  font-size: .68rem !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html body div.card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+html body div.card-popovers.btn-group > div > a.minimal.btn.btn-primary:hover,
+html body [role="group"].card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+html body [role="group"].card-popovers.btn-group > div > a.minimal.btn.btn-primary:hover,
+html body .card-footer .card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+html body .card-footer .card-popovers.btn-group > div > a.minimal.btn.btn-primary:hover {
+  background: #2b3440 !important;
+  background-color: #2b3440 !important;
+  border-color: rgba(95, 168, 255, .42) !important;
+  color: #edf1f7 !important;
+}
+
+html body div.card-popovers.btn-group > div > .btn svg,
+html body [role="group"].card-popovers.btn-group > div > .btn svg,
+html body .card-footer .card-popovers.btn-group > div > .btn svg {
+  color: currentColor !important;
+  fill: currentColor !important;
+  width: .58rem !important;
+  height: .58rem !important;
+  opacity: .82 !important;
+}
+
+html body div.card-popovers.btn-group > div > .btn span,
+html body [role="group"].card-popovers.btn-group > div > .btn span,
+html body .card-footer .card-popovers.btn-group > div > .btn span {
+  color: currentColor !important;
+}
+
+/* Divider handle: keep the hide/show hit area, just remove the blue. */
+html body div[class*="-divider"] > button.btn.btn-primary,
+html body .scene-divider > button.btn.btn-primary {
+  background: #232a33 !important;
+  background-color: #232a33 !important;
+  background-image: none !important;
+  border-color: rgba(95, 168, 255, .22) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+}
+
+html body div[class*="-divider"] > button.btn.btn-primary:hover,
+html body .scene-divider > button.btn.btn-primary:hover {
+  background: #2b3440 !important;
+  background-color: #2b3440 !important;
+  border-color: rgba(95, 168, 255, .42) !important;
+  color: #edf1f7 !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha7
+   Counterattack against nested card-popover anchors and the preview button
+   blue wart. More specific than Bootstrap, less tragic than !important soup.
+   ------------------------------------------------------------------------- */
+
+/* Card counters on image/scene/performer cards: Stash sometimes wraps buttons
+   in anchors, sometimes divs, sometimes tiny DOM nesting crimes. Normalize all
+   wrappers, then style the actual button no matter where it lives. */
+html body [role="group"].card-popovers.btn-group,
+html body div.card-popovers.btn-group,
+html body .card .card-popovers.btn-group,
+html body .scene-card .card-popovers.btn-group,
+html body .image-card .card-popovers.btn-group,
+html body .performer-card .card-popovers.btn-group,
+html body .gallery-card .card-popovers.btn-group,
+html body .studio-card .card-popovers.btn-group,
+html body .movie-card .card-popovers.btn-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body [role="group"].card-popovers.btn-group > *,
+html body div.card-popovers.btn-group > *,
+html body .card-popovers.btn-group > a,
+html body .card-popovers.btn-group > div {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+html body .card-popovers.btn-group button.btn,
+html body .card-popovers.btn-group button.btn-primary,
+html body .card-popovers.btn-group button.minimal.btn,
+html body .card-popovers.btn-group button.minimal.btn-primary,
+html body .card-popovers.btn-group a > button.btn,
+html body .card-popovers.btn-group a > button.btn-primary,
+html body .card-popovers.btn-group a > button.minimal.btn,
+html body .card-popovers.btn-group a > button.minimal.btn-primary,
+html body .card-popovers.btn-group div > button.btn,
+html body .card-popovers.btn-group div > button.btn-primary,
+html body .card-popovers.btn-group .tag-count button,
+html body .card-popovers.btn-group .performer-count button,
+html body .card-popovers.btn-group .scene-count button,
+html body .card-popovers.btn-group .group-count button,
+html body .card-popovers.btn-group .image-count button,
+html body .card-popovers.btn-group .gallery-count button,
+html body .card-popovers.btn-group .organized button,
+html body .card-popovers.btn-group .other-copies button {
+  --bs-btn-bg: #232a33 !important;
+  --bs-btn-border-color: rgba(95, 168, 255, .22) !important;
+  --bs-btn-color: #c9d1dc !important;
+  --bs-btn-hover-bg: #2b3440 !important;
+  --bs-btn-hover-border-color: rgba(95, 168, 255, .42) !important;
+  --bs-btn-hover-color: #edf1f7 !important;
+  --bs-btn-active-bg: #2b3440 !important;
+  --bs-btn-active-border-color: rgba(95, 168, 255, .42) !important;
+  --bs-btn-active-color: #edf1f7 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  width: auto !important;
+  min-width: 20px !important;
+  padding: 2px 6px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: #232a33 !important;
+  background-color: #232a33 !important;
+  background-image: none !important;
+  border: 1px solid rgba(95, 168, 255, .22) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  font-size: 11px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+html body .card-popovers.btn-group button.btn:hover,
+html body .card-popovers.btn-group button.btn-primary:hover,
+html body .card-popovers.btn-group a > button.btn:hover,
+html body .card-popovers.btn-group div > button.btn:hover {
+  background: #2b3440 !important;
+  background-color: #2b3440 !important;
+  border-color: rgba(95, 168, 255, .42) !important;
+  color: #edf1f7 !important;
+  transform: none !important;
+}
+
+html body .card-popovers.btn-group button.btn svg,
+html body .card-popovers.btn-group a > button.btn svg,
+html body .card-popovers.btn-group div > button.btn svg,
+html body .card-popovers.btn-group button.btn .fa-icon,
+html body .card-popovers.btn-group a > button.btn .fa-icon,
+html body .card-popovers.btn-group div > button.btn .fa-icon {
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  color: currentColor !important;
+  fill: currentColor !important;
+  opacity: .82 !important;
+  margin: 0 !important;
+}
+
+html body .card-popovers.btn-group button.btn span,
+html body .card-popovers.btn-group a > button.btn span,
+html body .card-popovers.btn-group div > button.btn span {
+  color: currentColor !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+/* Preview/magnifier overlay: the clickable area may be the wrapper, the button,
+   or a pseudo-ish Bootstrap background. Flatten every layer. */
+html body .thumbnail-section .preview-button,
+html body .image-card-preview .preview-button,
+html body .scene-card-preview .preview-button,
+html body .gallery-card-preview .preview-button,
+html body .image-card-link .preview-button,
+html body .scene-card-link .preview-button,
+html body .gallery-card-link .preview-button {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  opacity: 1 !important;
+}
+
+html body .thumbnail-section .preview-button::before,
+html body .thumbnail-section .preview-button::after,
+html body .image-card-preview .preview-button::before,
+html body .image-card-preview .preview-button::after,
+html body .scene-card-preview .preview-button::before,
+html body .scene-card-preview .preview-button::after,
+html body .gallery-card-preview .preview-button::before,
+html body .gallery-card-preview .preview-button::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .preview-button > button.btn,
+html body .preview-button > button.btn-primary,
+html body .preview-button button.btn,
+html body .preview-button button.btn-primary,
+html body .thumbnail-section .preview-button > button.btn.btn-primary,
+html body .image-card-preview .preview-button > button.btn.btn-primary,
+html body .scene-card-preview .preview-button > button.btn.btn-primary,
+html body .gallery-card-preview .preview-button > button.btn.btn-primary,
+html body .image-card-preview .preview-button button:has(svg[data-icon="magnifying-glass"]),
+html body .image-card-preview .preview-button button:has(svg[data-icon="search"]),
+html body .scene-card-preview .preview-button button:has(svg[data-icon="magnifying-glass"]),
+html body .gallery-card-preview .preview-button button:has(svg[data-icon="magnifying-glass"]) {
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-color: rgba(237, 241, 247, .92) !important;
+  --bs-btn-hover-bg: rgba(5, 10, 18, .42) !important;
+  --bs-btn-hover-border-color: rgba(236, 239, 244, .18) !important;
+  --bs-btn-active-bg: rgba(5, 10, 18, .55) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: rgba(237, 241, 247, .92) !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+html body .preview-button > button.btn:hover,
+html body .preview-button > button.btn-primary:hover,
+html body .preview-button button.btn:hover,
+html body .preview-button button.btn-primary:hover {
+  background: rgba(5, 10, 18, .42) !important;
+  background-color: rgba(5, 10, 18, .42) !important;
+  border: 1px solid rgba(236, 239, 244, .18) !important;
+  transform: none !important;
+}
+
+html body .preview-button svg,
+html body .image-card-preview .preview-button svg,
+html body .scene-card-preview .preview-button svg,
+html body .gallery-card-preview .preview-button svg {
+  width: 12px !important;
+  height: 12px !important;
+  color: currentColor !important;
+  fill: currentColor !important;
+  margin: 0 !important;
+  opacity: .95 !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha8
+   Stop un-hiding Stash's duplicate utility nav, de-blue card chips and
+   image preview buttons, and center the scene divider handle.
+   ------------------------------------------------------------------------- */
+
+/* Stash renders the utility nav twice: once in the collapsible nav and once
+   in .navbar-buttons. Our earlier broad flex rule made both visible. Oops. */
+html body nav.top-nav .navbar-collapse > .navbar-nav + .navbar-nav,
+html body nav.top-nav .navbar-collapse.collapse > .navbar-nav + .navbar-nav,
+html body nav.top-nav .navbar-collapse .navbar-nav:nth-of-type(2) {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Card counter chips: exact DOM shapes for scene/image/performer cards.
+   Static = graphite. Hover/active = slightly brighter graphite. Blue can go
+   stand in the corner and think about what it did. */
+html body .card-popovers.btn-group,
+html body [role="group"].card-popovers.btn-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .card-popovers.btn-group > a,
+html body .card-popovers.btn-group > div {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+html body .card-popovers.btn-group > a > button.minimal.btn.btn-primary,
+html body .card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+html body .card-popovers.btn-group button.minimal.btn.btn-primary,
+html body .performer-card .card-popovers.btn-group > a > button.minimal.btn.btn-primary,
+html body .image-card .card-popovers.btn-group > div > button.minimal.btn.btn-primary,
+html body .scene-card .card-popovers.btn-group button.minimal.btn.btn-primary,
+html body .gallery-card .card-popovers.btn-group button.minimal.btn.btn-primary {
+  --bs-btn-bg: #242b34 !important;
+  --bs-btn-border-color: rgba(219, 229, 241, 0.13) !important;
+  --bs-btn-color: #c9d1dc !important;
+  --bs-btn-hover-bg: #303945 !important;
+  --bs-btn-hover-border-color: rgba(219, 229, 241, 0.20) !important;
+  --bs-btn-hover-color: #f0f4f8 !important;
+  --bs-btn-active-bg: #303945 !important;
+  --bs-btn-active-border-color: rgba(95, 168, 255, 0.36) !important;
+  --bs-btn-active-color: #f0f4f8 !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  width: auto !important;
+  min-width: 21px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  padding: 2px 6px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: #242b34 !important;
+  background-color: #242b34 !important;
+  background-image: none !important;
+  border: 1px solid rgba(219, 229, 241, 0.13) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  line-height: 1 !important;
+  font-size: 11px !important;
+  font-weight: 650 !important;
+  transform: none !important;
+}
+
+html body .card-popovers.btn-group > a > button.minimal.btn.btn-primary:hover,
+html body .card-popovers.btn-group > div > button.minimal.btn.btn-primary:hover,
+html body .card-popovers.btn-group button.minimal.btn.btn-primary:hover,
+html body .card-popovers.btn-group > a > button.minimal.btn.btn-primary:focus,
+html body .card-popovers.btn-group > div > button.minimal.btn.btn-primary:focus,
+html body .card-popovers.btn-group button.minimal.btn.btn-primary:focus {
+  background: #303945 !important;
+  background-color: #303945 !important;
+  background-image: none !important;
+  border-color: rgba(219, 229, 241, 0.20) !important;
+  color: #f0f4f8 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html body .card-popovers.btn-group button.minimal.btn.btn-primary svg,
+html body .card-popovers.btn-group button.minimal.btn.btn-primary .fa-icon {
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  margin: 0 !important;
+  color: currentColor !important;
+  fill: currentColor !important;
+  opacity: .82 !important;
+}
+
+html body .card-popovers.btn-group button.minimal.btn.btn-primary span {
+  color: currentColor !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+/* Preview/magnifier: remove every blue layer, including Bootstrap's button
+   variables and any pseudo-layers. Keep only the icon itself. */
+html body .image-card-preview .preview-button,
+html body .scene-card-preview .preview-button,
+html body .gallery-card-preview .preview-button,
+html body .thumbnail-section .preview-button,
+html body .image-card-link .preview-button,
+html body .preview-button {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html body .preview-button::before,
+html body .preview-button::after,
+html body .preview-button button::before,
+html body .preview-button button::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .preview-button > button.btn.btn-primary,
+html body .preview-button button.btn.btn-primary,
+html body .image-card-preview .preview-button > button.btn.btn-primary,
+html body .image-card-preview .preview-button button.btn.btn-primary,
+html body .thumbnail-section .preview-button > button.btn.btn-primary,
+html body .thumbnail-section .preview-button button.btn.btn-primary {
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-color: rgba(237, 241, 247, .95) !important;
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-hover-color: #ffffff !important;
+  --bs-btn-active-bg: transparent !important;
+  --bs-btn-active-border-color: transparent !important;
+  appearance: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: rgba(237, 241, 247, .95) !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  line-height: 1 !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+html body .preview-button > button.btn.btn-primary:hover,
+html body .preview-button button.btn.btn-primary:hover,
+html body .image-card-preview .preview-button > button.btn.btn-primary:hover,
+html body .image-card-preview .preview-button button.btn.btn-primary:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+}
+
+html body .preview-button svg,
+html body .preview-button .fa-icon {
+  width: 14px !important;
+  height: 14px !important;
+  color: currentColor !important;
+  fill: currentColor !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.65)) !important;
+  opacity: .98 !important;
+}
+
+/* Scene divider: preserve Stash's collapsible handle, center it on the rail,
+   and keep it graphite instead of mall-kiosk blue. */
+html body .scene-divider,
+html body div.scene-divider.d-none.d-xl-block {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: stretch !important;
+  width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #1b2026 !important;
+  border-left: 1px solid rgba(219, 229, 241, 0.10) !important;
+  border-right: 1px solid rgba(219, 229, 241, 0.10) !important;
+}
+
+html body .scene-divider > button.btn.btn-primary,
+html body div.scene-divider.d-none.d-xl-block > button.btn.btn-primary {
+  position: sticky !important;
+  top: 50vh !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 44px !important;
+  min-width: 18px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  background: #242b34 !important;
+  background-color: #242b34 !important;
+  background-image: none !important;
+  border: 1px solid rgba(219, 229, 241, 0.16) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+}
+
+html body .scene-divider > button.btn.btn-primary:hover,
+html body div.scene-divider.d-none.d-xl-block > button.btn.btn-primary:hover {
+  background: #303945 !important;
+  background-color: #303945 !important;
+  color: #f0f4f8 !important;
+  border-color: rgba(95, 168, 255, 0.36) !important;
+}
+
+html body .scene-divider > button.btn.btn-primary svg,
+html body div.scene-divider.d-none.d-xl-block > button.btn.btn-primary svg {
+  width: 10px !important;
+  height: 10px !important;
+  margin: 0 !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha9
+   Nuclear-but-contained overrides for Stash 0.31 card counters and image
+   preview buttons. These sit at the very end on purpose: Bootstrap started it.
+   ------------------------------------------------------------------------- */
+
+/* Card counter chips: override the broad .btn-primary accent rule with higher
+   specificity and explicit non-blue values. Covers scene/image/performer cards,
+   including buttons wrapped in anchors. */
+html body #root .grid-card.card .card-popovers.btn-group,
+html body #root .scene-card.card .card-popovers.btn-group,
+html body #root .image-card.card .card-popovers.btn-group,
+html body #root .performer-card.card .card-popovers.btn-group,
+html body #root .gallery-card.card .card-popovers.btn-group,
+html body #root [role="group"].card-popovers.btn-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .card-popovers.btn-group > a,
+html body #root .card-popovers.btn-group > div {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+html body #root .card-popovers.btn-group button.btn,
+html body #root .card-popovers.btn-group button.btn-primary,
+html body #root .card-popovers.btn-group button.minimal.btn,
+html body #root .card-popovers.btn-group button.minimal.btn-primary,
+html body #root .card-popovers.btn-group > a > button.btn,
+html body #root .card-popovers.btn-group > a > button.btn-primary,
+html body #root .card-popovers.btn-group > a > button.minimal.btn.btn-primary,
+html body #root .card-popovers.btn-group > div > button.btn,
+html body #root .card-popovers.btn-group > div > button.btn-primary,
+html body #root .card-popovers.btn-group > div > button.minimal.btn.btn-primary {
+  --g-accent: #242b34 !important;
+  --g-accent-2: #303945 !important;
+  --g-accent-soft: #242b34 !important;
+  --g-accent-border: rgba(219, 229, 241, 0.14) !important;
+  --bs-btn-bg: #242b34 !important;
+  --bs-btn-border-color: rgba(219, 229, 241, 0.14) !important;
+  --bs-btn-color: #c9d1dc !important;
+  --bs-btn-hover-bg: #303945 !important;
+  --bs-btn-hover-border-color: rgba(219, 229, 241, 0.22) !important;
+  --bs-btn-hover-color: #f0f4f8 !important;
+  --bs-btn-active-bg: #303945 !important;
+  --bs-btn-active-border-color: rgba(219, 229, 241, 0.22) !important;
+  --bs-btn-active-color: #f0f4f8 !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  width: auto !important;
+  min-width: 21px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  padding: 2px 6px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: #242b34 !important;
+  background-color: #242b34 !important;
+  background-image: none !important;
+  border: 1px solid rgba(219, 229, 241, 0.14) !important;
+  color: #c9d1dc !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  line-height: 1 !important;
+  font-size: 11px !important;
+  font-weight: 650 !important;
+  transform: none !important;
+}
+
+html body #root .card-popovers.btn-group button.btn:hover,
+html body #root .card-popovers.btn-group button.btn-primary:hover,
+html body #root .card-popovers.btn-group > a > button.btn:hover,
+html body #root .card-popovers.btn-group > div > button.btn:hover,
+html body #root .card-popovers.btn-group button.btn:focus,
+html body #root .card-popovers.btn-group button.btn-primary:focus {
+  background: #303945 !important;
+  background-color: #303945 !important;
+  background-image: none !important;
+  border-color: rgba(219, 229, 241, 0.22) !important;
+  color: #f0f4f8 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+/* Image preview magnifier: kill the blue background, restore a round dark
+   hover target, and keep the icon readable. */
+html body #root .thumbnail-section .preview-button,
+html body #root .image-card-preview .preview-button,
+html body #root .image-card-link .preview-button {
+  --g-accent: transparent !important;
+  --g-accent-soft: transparent !important;
+  --g-accent-border: transparent !important;
+  position: absolute !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  border-radius: 999px !important;
+  background: rgba(5, 10, 18, 0.36) !important;
+  background-color: rgba(5, 10, 18, 0.36) !important;
+  background-image: none !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35) !important;
+  overflow: hidden !important;
+}
+
+html body #root .thumbnail-section .preview-button::before,
+html body #root .thumbnail-section .preview-button::after,
+html body #root .image-card-preview .preview-button::before,
+html body #root .image-card-preview .preview-button::after,
+html body #root .image-card-link .preview-button::before,
+html body #root .image-card-link .preview-button::after,
+html body #root .thumbnail-section .preview-button button::before,
+html body #root .thumbnail-section .preview-button button::after,
+html body #root .image-card-preview .preview-button button::before,
+html body #root .image-card-preview .preview-button button::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .thumbnail-section .preview-button button.btn,
+html body #root .thumbnail-section .preview-button button.btn-primary,
+html body #root .thumbnail-section .preview-button button.btn.btn-primary,
+html body #root .image-card-preview .preview-button button.btn,
+html body #root .image-card-preview .preview-button button.btn-primary,
+html body #root .image-card-preview .preview-button button.btn.btn-primary,
+html body #root .image-card-link .preview-button button.btn,
+html body #root .image-card-link .preview-button button.btn-primary,
+html body #root .image-card-link .preview-button button.btn.btn-primary {
+  --g-accent: transparent !important;
+  --g-accent-2: transparent !important;
+  --g-accent-soft: transparent !important;
+  --g-accent-border: transparent !important;
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-color: #eef2f7 !important;
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-hover-color: #ffffff !important;
+  --bs-btn-active-bg: transparent !important;
+  --bs-btn-active-border-color: transparent !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  color: #eef2f7 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+html body #root .thumbnail-section .preview-button:hover,
+html body #root .image-card-preview .preview-button:hover,
+html body #root .image-card-link .preview-button:hover {
+  background: rgba(5, 10, 18, 0.52) !important;
+  background-color: rgba(5, 10, 18, 0.52) !important;
+  border-color: rgba(236, 239, 244, 0.24) !important;
+}
+
+html body #root .thumbnail-section .preview-button button.btn:hover,
+html body #root .image-card-preview .preview-button button.btn:hover,
+html body #root .image-card-link .preview-button button.btn:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .thumbnail-section .preview-button svg,
+html body #root .image-card-preview .preview-button svg,
+html body #root .image-card-link .preview-button svg,
+html body #root .thumbnail-section .preview-button .fa-icon,
+html body #root .image-card-preview .preview-button .fa-icon,
+html body #root .image-card-link .preview-button .fa-icon {
+  width: 13px !important;
+  height: 13px !important;
+  color: #eef2f7 !important;
+  fill: currentColor !important;
+  margin: 0 !important;
+  opacity: .98 !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.75)) !important;
+}
+
+
+/* Graphite alpha10 user-tuning pass
+   - darker base around #0d0e0f
+   - purple accent instead of blue
+   - quieter performer-card controls
+   - adjusted title sizing
+*/
+
+:root {
+  --g-accent: var(--graphite-accent) !important;
+  --g-accent-2: var(--graphite-accent-2) !important;
+  --g-accent-soft: rgba(167, 139, 250, 0.16) !important;
+  --g-accent-border: rgba(167, 139, 250, 0.34) !important;
+}
+
+/* Sweep up older alpha blue literals where the variables do not reach. */
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  border-color: rgba(167, 139, 250, 0.28) !important;
+}
+
+.btn-primary {
+  background: var(--graphite-accent) !important;
+  border-color: var(--graphite-accent) !important;
+  color: #100a1e !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent-2) !important;
+  color: #100a1e !important;
+}
+
+.navbar-nav .nav-link.active > a,
+.navbar-nav .nav-link > a.active,
+.top-nav .navbar-nav .nav-link.active > a,
+.top-nav .navbar-nav .nav-link > a.active {
+  border-color: rgba(167, 139, 250, 0.55) !important;
+  box-shadow: inset 0 -2px 0 rgba(167, 139, 250, 0.7) !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-pills .nav-link.active {
+  color: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent) !important;
+}
+
+/* Performer cards: favorite/link/social controls should not get a filled button bg. */
+.performer-card .favorite-button,
+.performer-card button.favorite-button,
+.performer-card .performer-card__link,
+.performer-card .performer-card__links .btn,
+.performer-card .external-links-button .btn,
+.performer-card .external-links-button button,
+.performer-card .card-controls .btn,
+.performer-card button.hide-not-favorite,
+.performer-card button.not-favorite {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.performer-card .favorite-button:hover,
+.performer-card button.favorite-button:hover,
+.performer-card .performer-card__link:hover,
+.performer-card .performer-card__links .btn:hover,
+.performer-card .external-links-button .btn:hover,
+.performer-card .external-links-button button:hover,
+.performer-card .card-controls .btn:hover,
+.performer-card button.hide-not-favorite:hover,
+.performer-card button.not-favorite:hover {
+  background: rgba(236, 239, 244, 0.08) !important;
+  background-color: rgba(236, 239, 244, 0.08) !important;
+  border-color: transparent !important;
+  color: var(--graphite-text) !important;
+}
+
+.performer-card .favorite-button.favorite,
+.performer-card button.favorite-button.favorite,
+.performer-card button.favorite {
+  color: var(--graphite-accent-2) !important;
+}
+
+/* Performer/group card names were a little shouty. */
+.performer-card h5.card-section-title,
+.performer-card .card-section-title,
+.group-card h5.card-section-title,
+.group-card .card-section-title,
+.movie-card h5.card-section-title,
+.movie-card .card-section-title {
+  font-size: 1.05rem !important;
+  line-height: 1.22 !important;
+}
+
+/* Scene detail title: restore stock-ish h3 scale. */
+h3.scene-header,
+.scene-header h3,
+.scene-header .TruncatedText {
+  font-size: 1.75rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Card footer chips remain graphite, not accent-colored. */
+html body #root .card-popovers.btn-group button.btn,
+html body #root .card-popovers.btn-group button.btn-primary,
+html body #root .card-popovers.btn-group > a > button.btn,
+html body #root .card-popovers.btn-group > div > button.btn {
+  --g-accent: #1b2026 !important;
+  --g-accent-2: #262c34 !important;
+  --g-accent-soft: #1b2026 !important;
+  --g-accent-border: rgba(219, 229, 241, 0.14) !important;
+  background: #1b2026 !important;
+  background-color: #1b2026 !important;
+  border-color: rgba(219, 229, 241, 0.14) !important;
+  color: #cbd3df !important;
+}
+
+html body #root .card-popovers.btn-group button.btn:hover,
+html body #root .card-popovers.btn-group button.btn-primary:hover,
+html body #root .card-popovers.btn-group > a > button.btn:hover,
+html body #root .card-popovers.btn-group > div > button.btn:hover {
+  background: #262c34 !important;
+  background-color: #262c34 !important;
+  border-color: rgba(219, 229, 241, 0.22) !important;
+  color: #f0f4f8 !important;
+}
+
+/* alpha11: Scene detail metadata block should sit on Graphite, not Bootstrap gray. */
+html body #root .scene-details,
+html body #root .scene-details.col-9,
+html body #root .scene-details.col-12,
+html body #root div.scene-details {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: var(--g-border-1) !important;
+  color: var(--g-text-1) !important;
+}
+
+html body #root .scene-details h6 {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--g-text-1) !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 0.28rem !important;
+  padding: 0 !important;
+}
+
+/* External Links plugin inside performer cards */
+.performer-card__links>a.external-links-button-link,
+.performer-card__links>a.external-links-button-link:hover,
+.performer-card__links>a.external-links-button-link:focus,
+.performer-card__links>a.external-links-button-link:active,
+.performer-card__links>.external-links-button>button,
+.performer-card__links>.external-links-button>button:hover,
+.performer-card__links>.external-links-button>button:focus,
+.performer-card__links>.external-links-button>button:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Let each plugin service class control icon color */
+.performer-card__links>a.external-links-button-link.twitter,
+.performer-card__links>a.external-links-button-link.instagram,
+.performer-card__links>a.external-links-button-link.facebook,
+.performer-card__links>a.external-links-button-link.youtube,
+.performer-card__links>a.external-links-button-link.reddit,
+.performer-card__links>a.external-links-button-link.tiktok,
+.performer-card__links>a.external-links-button-link.tumblr,
+.performer-card__links>a.external-links-button-link.twitch,
+.performer-card__links>a.external-links-button-link.imdb,
+.performer-card__links>a.external-links-button-link.patreon,
+.performer-card__links>a.external-links-button-link.telegram,
+.performer-card__links>a.external-links-button-link.vk,
+.performer-card__links>a.external-links-button-link.wordpress {
+  background: inherit !important;
+}
+
+/* External Links plugin: direct social links */
+.performer-card__links>a.external-links-button-link.btn.link.performer-card__link,
+.performer-card__links>a.external-links-button-link.btn.link.performer-card__link:hover,
+.performer-card__links>a.external-links-button-link.btn.link.performer-card__link:focus,
+.performer-card__links>a.external-links-button-link.btn.link.performer-card__link:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* External Links plugin: dropdown link button */
+.performer-card__links>.external-links-button.dropdown>button.btn.link.performer-card__link,
+.performer-card__links>.external-links-button.dropdown>button.btn.link.performer-card__link:hover,
+.performer-card__links>.external-links-button.dropdown>button.btn.link.performer-card__link:focus,
+.performer-card__links>.external-links-button.dropdown>button.btn.link.performer-card__link:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Performer favorite heart: escape Graphite button styling */
+.performer-card button.minimal.mousetrap.favorite-button.btn.btn-primary,
+.performer-card button.minimal.mousetrap.favorite-button.btn.btn-primary:hover,
+.performer-card button.minimal.mousetrap.favorite-button.btn.btn-primary:focus,
+.performer-card button.minimal.mousetrap.favorite-button.btn.btn-primary:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   alpha13: Settings pages — use more of the viewport
+   Stash's settings content defaults to a polite little column in the
+   middle of a giant monitor, because apparently empty space pays rent.
+   Let every settings tab breathe wider without changing the sidebar/nav.
+   ═══════════════════════════════════════════════════════════════════ */
+body #settings-container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+body #settings-container .tab-content {
+  max-width: min(1680px, calc(100vw - 3rem)) !important;
+  width: 100% !important;
+}
+
+body #settings-container .tab-pane,
+body #settings-container .tab-pane.active {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Common Stash settings wrappers. Keep them full-width so multi-column
+   plugin/settings rows can actually use the room we just freed. */
+body #settings-container .setting-section,
+body #settings-container .settings-section,
+body #settings-container .setting-group,
+body #settings-container .card,
+body #settings-container .form-container {
+  max-width: none !important;
+}
+
+@media (min-width: 1200px) {
+  body #settings-container .tab-content {
+    max-width: min(1760px, calc(100vw - 4rem)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body #settings-container .tab-content {
+    max-width: calc(100vw - 1rem) !important;
+  }
+}
+
+/* Hook used by graphite.js on Settings → Plugins. It keeps existing plugin
+   order intact, then sinks disabled rows. CSS gets to do layout; JS gets to
+   do the tiny bit CSS cannot do without lying through its little teeth. */
+body #settings-container .graphite-plugin-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body #settings-container .graphite-plugin-disabled-row {
+  opacity: 0.72;
+}
+
+body #settings-container .graphite-plugin-disabled-row:hover {
+  opacity: 0.88;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   alpha14: menus, filter modals, scrape/tagger plugin pages
+   The glamorous part of theming: teaching plugin UIs that random blue-grey
+   slabs are not a personality.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* React-select / Stash select menus: solid graphite panels everywhere,
+   including portals that render outside normal page containers. */
+body .react-select__menu,
+body .react-select__menu-list,
+body .react-select__menu-portal,
+body [class*="-menu"],
+body [class*="__menu"],
+body [class*="MenuPortal"] {
+  background: var(--graphite-panel) !important;
+  color: var(--graphite-text) !important;
+}
+
+body .react-select__control,
+body [class*="__control"] {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+  min-height: 34px !important;
+}
+
+body .react-select__control:hover,
+body [class*="__control"]:hover,
+body .react-select__control--is-focused,
+body [class*="__control--is-focused"] {
+  border-color: rgba(167, 139, 250, 0.62) !important;
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.18) !important;
+}
+
+body .react-select__value-container,
+body [class*="__value-container"] {
+  min-width: 0 !important;
+  padding: 2px 8px !important;
+  gap: 4px !important;
+}
+
+body .react-select__single-value,
+body .react-select__multi-value__label,
+body [class*="__single-value"],
+body [class*="__multi-value__label"] {
+  color: var(--graphite-text) !important;
+}
+
+body .react-select__multi-value,
+body [class*="__multi-value"] {
+  background: #d8e0e8 !important;
+  border-radius: 4px !important;
+  color: #101418 !important;
+}
+
+body .react-select__multi-value__label,
+body [class*="__multi-value__label"] {
+  color: #101418 !important;
+}
+
+body .react-select__multi-value__remove,
+body [class*="__multi-value__remove"] {
+  color: #2b323a !important;
+}
+
+body .react-select__multi-value__remove:hover,
+body [class*="__multi-value__remove"]:hover {
+  background: rgba(255, 107, 107, 0.22) !important;
+  color: #111 !important;
+}
+
+body .react-select__indicators,
+body [class*="__indicators"] {
+  flex: 0 0 auto !important;
+}
+
+body .react-select__indicator-separator,
+body [class*="__indicator-separator"] {
+  background-color: var(--graphite-border) !important;
+  opacity: 0.6 !important;
+}
+
+body .react-select__input-container,
+body [class*="__input-container"] {
+  color: var(--graphite-text) !important;
+  min-width: 2px !important;
+}
+
+body .react-select__option,
+body [role="option"] {
+  background: var(--graphite-panel) !important;
+  color: var(--graphite-text-soft) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+body .react-select__option--is-focused,
+body .react-select__option:hover,
+body [role="option"]:hover,
+body [role="option"][aria-selected="true"] {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+body .react-select__option--is-selected,
+body [role="option"][aria-selected="true"] {
+  background: rgba(167, 139, 250, 0.28) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Edit Filter modal: cleaner stacked rows, less Bootstrap dungeon. */
+body .modal-content:has(.filter-item),
+body .modal-content:has(.saved-filter-list),
+body .modal-content:has([class*="filter"] .pin-button),
+body .modal-content:has([class*="filter"] [title*="Pin"]),
+body .modal-content:has([class*="Filter"] [title*="Pin"]) {
+  background: var(--graphite-panel) !important;
+  border: 1px solid var(--graphite-border) !important;
+  border-radius: var(--graphite-radius-lg) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.62) !important;
+  overflow: hidden !important;
+}
+
+body .modal-content:has(.filter-item) .modal-header,
+body .modal-content:has(.saved-filter-list) .modal-header,
+body .modal-content:has([class*="filter"] [title*="Pin"]) .modal-header,
+body .modal-content:has([class*="Filter"] [title*="Pin"]) .modal-header {
+  background: var(--graphite-panel-2) !important;
+  border-bottom: 1px solid var(--graphite-border) !important;
+  padding: 0.75rem 0.95rem !important;
+}
+
+body .modal-content:has(.filter-item) .modal-body,
+body .modal-content:has(.saved-filter-list) .modal-body,
+body .modal-content:has([class*="filter"] [title*="Pin"]) .modal-body,
+body .modal-content:has([class*="Filter"] [title*="Pin"]) .modal-body {
+  background: var(--graphite-bg-2) !important;
+  padding: 0.8rem !important;
+}
+
+body .filter-item,
+body .filter-row,
+body [class*="filter-row"],
+body [class*="FilterRow"],
+body [class*="filter-item"],
+body [class*="FilterItem"] {
+  background: var(--graphite-panel-2) !important;
+  border: 1px solid var(--graphite-border) !important;
+  border-radius: var(--graphite-radius) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+body .filter-item:hover,
+body .filter-row:hover,
+body [class*="filter-row"]:hover,
+body [class*="FilterRow"]:hover,
+body [class*="filter-item"]:hover,
+body [class*="FilterItem"]:hover {
+  border-color: rgba(167, 139, 250, 0.36) !important;
+  background: #20262c !important;
+}
+
+body .filter-item:focus-within,
+body .filter-row:focus-within,
+body [class*="filter-row"]:focus-within,
+body [class*="FilterRow"]:focus-within,
+body [class*="filter-item"]:focus-within,
+body [class*="FilterItem"]:focus-within {
+  border-color: rgba(167, 139, 250, 0.7) !important;
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.22) !important;
+}
+
+body .filter-item .btn,
+body .filter-row .btn,
+body [class*="filter-row"] .btn,
+body [class*="FilterRow"] .btn,
+body [class*="filter-item"] .btn,
+body [class*="FilterItem"] .btn {
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+/* Scrape/tagger plugin result pages: generic but bounded polish for pages
+   with lots of match rows, selects, and action buttons. */
+body .scrape-dialog,
+body .scrape-result,
+body .scrape-results,
+body .scraper-result,
+body .scraper-results,
+body [class*="scrape-result"],
+body [class*="ScrapeResult"],
+body [class*="tagger"] [class*="result"],
+body [id*="tagger"] [class*="result"] {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text) !important;
+}
+
+body .scrape-dialog .card,
+body .scrape-result.card,
+body .scraper-result.card,
+body [class*="scrape-result"].card,
+body [class*="ScrapeResult"].card,
+body [class*="tagger"] .card,
+body [id*="tagger"] .card {
+  background: var(--graphite-panel-2) !important;
+  border: 1px solid var(--graphite-border) !important;
+  border-radius: var(--graphite-radius) !important;
+  box-shadow: var(--graphite-shadow-soft) !important;
+}
+
+body .scrape-dialog .card .card,
+body .scrape-result .card,
+body .scraper-result .card,
+body [class*="scrape-result"] .card,
+body [class*="ScrapeResult"] .card,
+body [class*="tagger"] .card .card,
+body [id*="tagger"] .card .card {
+  background: rgba(13, 14, 15, 0.34) !important;
+  border-color: rgba(236, 239, 244, 0.10) !important;
+}
+
+body .scrape-dialog .form-control,
+body .scrape-dialog .form-select,
+body .scrape-result .form-control,
+body .scrape-result .form-select,
+body .scraper-result .form-control,
+body .scraper-result .form-select,
+body [class*="tagger"] .form-control,
+body [class*="tagger"] .form-select,
+body [id*="tagger"] .form-control,
+body [id*="tagger"] .form-select {
+  background-color: var(--graphite-panel) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Keep action buttons aligned in wide scrape rows instead of floating in
+   weird dead space. */
+body .scrape-dialog .btn,
+body .scrape-result .btn,
+body .scraper-result .btn,
+body [class*="scrape-result"] .btn,
+body [class*="ScrapeResult"] .btn,
+body [class*="tagger"] .btn,
+body [id*="tagger"] .btn {
+  white-space: nowrap !important;
+}
+
+body .scrape-dialog img,
+body .scrape-result img,
+body .scraper-result img,
+body [class*="scrape-result"] img,
+body [class*="ScrapeResult"] img,
+body [class*="tagger"] img,
+body [id*="tagger"] img {
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+/* Preview/image overlay buttons inside scrape/tagger cards: dark glass,
+   not random bright plugin chrome. */
+body .scrape-dialog .btn.position-absolute,
+body .scrape-result .btn.position-absolute,
+body .scraper-result .btn.position-absolute,
+body [class*="scrape-result"] .btn.position-absolute,
+body [class*="ScrapeResult"] .btn.position-absolute,
+body [class*="tagger"] .btn.position-absolute,
+body [id*="tagger"] .btn.position-absolute {
+  background: rgba(12, 14, 16, 0.68) !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   alpha15: tagger/search-result page cleanup
+   The tagger UI is a plugin-form circus: Bootstrap rows, inline colors,
+   oversized gutters, and thumbnails fighting for custody of the same pixels.
+   These rules keep its meaning intact while making it look like Graphite.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Whole tagger cards/results */
+body .search-item {
+  background: color-mix(in srgb, var(--graphite-panel-2) 84%, #5f7380 16%) !important;
+  border: 1px solid rgba(236, 239, 244, 0.10) !important;
+  border-radius: var(--graphite-radius) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: var(--graphite-shadow-soft) !important;
+  padding: 1rem !important;
+  overflow: hidden !important;
+}
+
+body .search-item > .row {
+  align-items: flex-start !important;
+  gap: 0.5rem 0 !important;
+}
+
+body .search-item + .search-item {
+  margin-top: 1rem !important;
+}
+
+body .search-item .col-12.col-lg.overflow-hidden.align-items-center.d-flex {
+  align-items: center !important;
+  min-width: 0 !important;
+}
+
+/* Header/query area: use width cleanly instead of right-floating button soup. */
+body .search-item > .row > .col-12.col-lg.my-1 {
+  min-width: min(38rem, 100%) !important;
+}
+
+body .search-item .input-group {
+  border-radius: var(--graphite-radius-sm) !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 0 1px rgba(236, 239, 244, 0.08) !important;
+}
+
+body .search-item .input-group-text {
+  background: var(--graphite-panel) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text) !important;
+  font-weight: 700 !important;
+}
+
+body .search-item .text-input.form-control,
+body .search-item input.form-control {
+  background: #12171c !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text) !important;
+}
+
+body .search-item .text-right {
+  text-align: right !important;
+}
+
+body .search-item .tagger-remove .btn,
+body .search-item .btn-danger {
+  background: rgba(239, 68, 68, 0.14) !important;
+  border-color: rgba(248, 113, 113, 0.44) !important;
+  color: #fca5a5 !important;
+}
+
+body .search-item .tagger-remove .btn:hover,
+body .search-item .btn-danger:hover {
+  background: rgba(239, 68, 68, 0.24) !important;
+  border-color: rgba(248, 113, 113, 0.66) !important;
+  color: #fff !important;
+}
+
+/* Thumbnail blocks: stop the sprite button from layering like a haunted postage stamp. */
+body .search-item .scene-card {
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body .search-item .scene-card-preview {
+  border-radius: var(--graphite-radius-sm) !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 0 1px rgba(236, 239, 244, 0.12) inset !important;
+}
+
+body .search-item .scene-card-preview-image,
+body .search-item .scene-card-preview-video {
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+body .search-item .scene-card .sprite-button,
+body .search-item button.sprite-button.btn.btn-link {
+  position: absolute !important;
+  top: 5px !important;
+  right: 5px !important;
+  z-index: 5 !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(12, 14, 16, 0.76) !important;
+  border: 1px solid rgba(236, 239, 244, 0.18) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  color: var(--graphite-text) !important;
+  text-decoration: none !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.42) !important;
+}
+
+body .search-item .scene-card .sprite-button svg,
+body .search-item button.sprite-button.btn.btn-link svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+body .search-item .tagger-img-res,
+body .search-item .scene-specs-overlay span {
+  border-radius: 4px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.34) !important;
+}
+
+/* Original-scene preview inside the tagger result. */
+body .search-item .original-scene-details {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  margin-top: 0.85rem !important;
+  color: var(--graphite-text) !important;
+}
+
+body .search-item .original-scene-details > .row,
+body .search-item .original-scene-details .collapse.show {
+  background: rgba(13, 14, 15, 0.20) !important;
+  border: 1px solid rgba(236, 239, 244, 0.08) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  padding: 0.85rem !important;
+  margin: 0 !important;
+}
+
+body .search-item .original-scene-details h4,
+body .search-item .original-scene-details h5 {
+  color: var(--graphite-text) !important;
+  margin-bottom: 0.35rem !important;
+}
+
+body .search-item .original-scene-details h4 {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+}
+
+body .search-item .original-scene-details h5 {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+}
+
+body .search-item .original-scene-details .TruncatedText {
+  color: var(--graphite-text-soft) !important;
+  line-height: 1.38 !important;
+}
+
+body .search-item .scene-path,
+body .search-item .scene-duration {
+  color: var(--graphite-text-soft) !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Performer preview chips/images in tagger results. */
+body .search-item .performer-tag-container {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 84px !important;
+  min-width: 84px !important;
+  margin: 0.25rem 0.35rem 0.55rem 0 !important;
+  padding: 0.32rem !important;
+  background: rgba(167, 139, 250, 0.10) !important;
+  border: 1px solid rgba(167, 139, 250, 0.22) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  overflow: hidden !important;
+}
+
+body .search-item .performer-tag-container[style*="rgb(15, 153, 96)"] {
+  background: rgba(34, 197, 94, 0.16) !important;
+  border-color: rgba(34, 197, 94, 0.42) !important;
+}
+
+body .search-item .performer-tag-container .performer-tag {
+  padding: 0 !important;
+  margin: 0 auto 0.25rem auto !important;
+}
+
+body .search-item .performer-tag-container .image-thumbnail {
+  width: 64px !important;
+  height: 82px !important;
+  object-fit: cover !important;
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+body .search-item .performer-tag-container .badge {
+  max-width: 100% !important;
+  padding: 0.18rem 0.35rem !important;
+  font-size: 0.68rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Tagger match tags: preserve green/red match meaning, but make them Graphite chips. */
+body .search-item .tag-item.badge,
+body .search-item .tag-item.badge-secondary {
+  background: rgba(167, 139, 250, 0.11) !important;
+  border: 1px solid rgba(167, 139, 250, 0.25) !important;
+  color: var(--graphite-accent-2) !important;
+  border-radius: 999px !important;
+  padding: 0.25rem 0.62rem !important;
+  margin: 0.16rem !important;
+  font-weight: 650 !important;
+  line-height: 1.15 !important;
+}
+
+body .search-item .tag-item.badge[style*="rgb(15, 153, 96)"],
+body .search-item .tag-item.badge-secondary[style*="rgb(15, 153, 96)"] {
+  background: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.38) !important;
+  color: #bbf7d0 !important;
+}
+
+body .search-item .tag-item.badge[style*="rgb(255, 115, 115)"],
+body .search-item .tag-item.badge-secondary[style*="rgb(255, 115, 115)"] {
+  background: rgba(239, 68, 68, 0.14) !important;
+  border-color: rgba(248, 113, 113, 0.42) !important;
+  color: #fecaca !important;
+}
+
+body .search-item .tag-item a,
+body .search-item .tag-item a:visited,
+body .search-item .tag-item div,
+body .search-item .tag-item span {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* Expanded found match area. */
+body .search-item .search-result {
+  background: rgba(13, 14, 15, 0.46) !important;
+  border: 1px solid rgba(236, 239, 244, 0.10) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  color: var(--graphite-text) !important;
+  list-style: none !important;
+  padding: 0.85rem !important;
+}
+
+body .search-item .search-result.selected-result,
+body .search-item .search-result.active {
+  outline: 1px solid rgba(167, 139, 250, 0.18) !important;
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.10) inset !important;
+}
+
+body .search-item .optional-field {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  min-width: 0 !important;
+}
+
+body .search-item .optional-field + .optional-field {
+  margin-top: 0.45rem !important;
+}
+
+body .search-item .optional-field-content {
+  min-width: 0 !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+body .search-item .include-exclude-button,
+body .search-item .btn-minimal.include-exclude-button {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  background: var(--graphite-button-bg) !important;
+  border: 1px solid var(--graphite-border) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+body .search-item .optional-field.included .include-exclude-button,
+body .search-item .include-exclude-button.text-success {
+  background: rgba(34, 197, 94, 0.14) !important;
+  border-color: rgba(34, 197, 94, 0.42) !important;
+  color: #bbf7d0 !important;
+}
+
+body .search-item .optional-field.excluded .include-exclude-button,
+body .search-item .include-exclude-button.text-danger {
+  background: rgba(239, 68, 68, 0.14) !important;
+  border-color: rgba(248, 113, 113, 0.42) !important;
+  color: #fecaca !important;
+}
+
+body .search-item .scene-image-container {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  margin-right: 0.8rem !important;
+}
+
+body .search-item .scene-image-container img {
+  border-radius: var(--graphite-radius-sm) !important;
+  box-shadow: 0 0 0 1px rgba(236, 239, 244, 0.12) inset !important;
+}
+
+/* Matched metadata rows on the right side of expanded results. */
+body .search-item .search-result .row:nth-child(even),
+body .search-item .search-result .row.mx-0,
+body .search-item .search-result [class*="matched"],
+body .search-item .search-result [class*="Matched"] {
+  border-radius: var(--graphite-radius-sm) !important;
+}
+
+body .search-item .search-result .react-select__control,
+body .search-item .search-result [class*="__control"] {
+  background: #12171c !important;
+  border-color: rgba(236, 239, 244, 0.12) !important;
+}
+
+body .search-item .search-result .form-control,
+body .search-item .search-result .form-select {
+  background: #12171c !important;
+  border-color: rgba(236, 239, 244, 0.12) !important;
+}
+
+/* Collapse button centered and less chunky. */
+body .search-item .collapse-button.btn,
+body .search-item button.collapse-button.btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 36px !important;
+  min-width: 42px !important;
+  margin: 0.75rem auto 0 !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  background: var(--graphite-accent) !important;
+  border-color: rgba(167, 139, 250, 0.62) !important;
+  color: #111827 !important;
+  box-shadow: none !important;
+}
+
+body .search-item .stash-id-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  background: rgba(167, 139, 250, 0.12) !important;
+  color: var(--graphite-accent-2) !important;
+}
+
+body .search-item .stash-id-pill > span {
+  background: rgba(59, 130, 246, 0.90) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+}
+
+body .search-item .stash-id-pill a {
+  color: var(--graphite-accent-2) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Narrow view: let the plugin breathe without horizontal nonsense. */
+@media (max-width: 991.98px) {
+  body .search-item {
+    padding: 0.8rem !important;
+  }
+
+  body .search-item .original-scene-details .col,
+  body .search-item .original-scene-details .col-lg-6 {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body .search-item .performer-tag-container {
+    width: 76px !important;
+    min-width: 76px !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Alpha21: stop over-theming the wrong things; make missed detail panels obey.
+   ------------------------------------------------------------------------- */
+
+/* External Links plugin in performer headers: leave service buttons alone. */
+html body #root .performer-head .name-icons .external-links-button,
+html body #root .performer-head .name-icons .external-links-button.dropdown,
+html body #root .performer-head .name-icons .external-links-button > button,
+html body #root .performer-head .name-icons .external-links-button > button.btn,
+html body #root .performer-head .name-icons .external-links-button > button.btn-primary,
+html body #root .performer-head .name-icons .external-links-button > button.btn-secondary,
+html body #root .performer-head .name-icons a.external-links-button-link,
+html body #root .performer-head .name-icons a.external-links-button-link.btn,
+html body #root .performer-head .name-icons a.external-links-button-link.btn-primary,
+html body #root .performer-head .name-icons a.external-links-button-link.btn-secondary {
+  background: revert !important;
+  background-color: revert !important;
+  background-image: revert !important;
+  border-color: revert !important;
+  box-shadow: revert !important;
+}
+
+/* But keep native Stash favorite/expand buttons Graphite-consistent. */
+html body #root .performer-head .name-icons > .favorite-button,
+html body #root .performer-head .name-icons > button.favorite-button,
+html body #root .performer-head .detail-expand-collapse {
+  background: var(--graphite-panel-3) !important;
+  border: 1px solid rgba(236, 239, 244, 0.08) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+/* Image/Gallery details sometimes render as generic detail groups instead of
+   .image-details/.gallery-details. Catch the inner block without touching cards. */
+html body #root .image-head ~ .detail-group,
+html body #root .gallery-head ~ .detail-group,
+html body #root .image-head .detail-group,
+html body #root .gallery-head .detail-group,
+html body #root .image-head .detail-item,
+html body #root .gallery-head .detail-item,
+html body #root .image-head .detail-item-value,
+html body #root .gallery-head .detail-item-value,
+html body #root .image-details .detail-group,
+html body #root .gallery-details .detail-group,
+html body #root .image-details .detail-item,
+html body #root .gallery-details .detail-item,
+html body #root .image-details .detail-item-value,
+html body #root .gallery-details .detail-item-value {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .image-head .detail-item,
+html body #root .gallery-head .detail-item,
+html body #root .image-details .detail-item,
+html body #root .gallery-details .detail-item {
+  margin: 0 0 0.24rem !important;
+  padding: 0 !important;
+  line-height: 1.32 !important;
+}
+
+html body #root .image-head .detail-item-title,
+html body #root .gallery-head .detail-item-title,
+html body #root .image-details .detail-item-title,
+html body #root .gallery-details .detail-item-title {
+  color: var(--graphite-muted) !important;
+  font-weight: 650 !important;
+}
+
+html body #root .image-head .detail-item-value,
+html body #root .gallery-head .detail-item-value,
+html body #root .image-details .detail-item-value,
+html body #root .gallery-details .detail-item-value {
+  color: var(--graphite-text) !important;
+  font-weight: 520 !important;
+}
+
+/* Gallery/Image split handle: Stash uses a few variants. Catch more without
+   changing scene player controls. */
+html body #root .image-container .resize-handle,
+html body #root .gallery-container .resize-handle,
+html body #root .image-view .resize-handle,
+html body #root .gallery-view .resize-handle,
+html body #root [class*="image"] > .resize-handle,
+html body #root [class*="gallery"] > .resize-handle,
+html body #root [class*="Image"] > .resize-handle,
+html body #root [class*="Gallery"] > .resize-handle {
+  background: rgba(236, 239, 244, 0.08) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .image-container .resize-handle > button,
+html body #root .gallery-container .resize-handle > button,
+html body #root .image-view .resize-handle > button,
+html body #root .gallery-view .resize-handle > button,
+html body #root [class*="image"] > .resize-handle > button,
+html body #root [class*="gallery"] > .resize-handle > button,
+html body #root [class*="Image"] > .resize-handle > button,
+html body #root [class*="Gallery"] > .resize-handle > button {
+  background: rgba(167, 139, 250, 0.42) !important;
+  border: 1px solid rgba(167, 139, 250, 0.32) !important;
+  color: #ede7ff !important;
+}
+
+/* Filter modal header search cleanup. */
+html body #root .modal-content .modal-header input.search-input.form-control,
+html body #root .modal-content .modal-header input.btn-secondary.search-input.form-control {
+  min-height: 2rem !important;
+  height: 2rem !important;
+  padding: 0.28rem 0.65rem !important;
+  background: var(--graphite-panel) !important;
+  border: 1px solid rgba(236, 239, 244, 0.065) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.22) !important;
+}
+
+html body #root .modal-content .modal-header input.search-input.form-control:focus,
+html body #root .modal-content .modal-header input.btn-secondary.search-input.form-control:focus {
+  border-color: rgba(167, 139, 250, 0.34) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.22), 0 0 0 2px rgba(167,139,250,.14) !important;
+}
+
+/* Custom Fields: stronger selector, because .btn-primary apparently woke up
+   and chose violence. */
+html body #root .performer-details .custom-fields .collapse-header button.collapse-button.minimal.btn.btn-primary,
+html body #root .custom-fields .collapse-header button.collapse-button.minimal.btn.btn-primary,
+html body #root .custom-fields .collapse-header .collapse-button.btn-primary {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--graphite-text) !important;
+  padding: 0.12rem 0 !important;
+  min-height: 0 !important;
+}
+
+html body #root .custom-fields .collapse-header button.collapse-button.minimal.btn.btn-primary span {
+  color: var(--graphite-text) !important;
+  font-weight: 720 !important;
+}
+
+/* -------------------------------------------------------------------------
+   Alpha22: performer header external-link buttons and header icon sanity.
+   ------------------------------------------------------------------------- */
+
+/* The external-links plugin emits btn-primary buttons inside .name-icons. Do
+   not let Bootstrap turn them into white candy buttons, and do not let the
+   global primary style make them purple. Keep them neutral header utilities. */
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn-primary,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.minimal,
+html body #root .performer-head .name-icons a.external-links-button-link.btn,
+html body #root .performer-head .name-icons a.external-links-button-link.btn-primary {
+  background: var(--graphite-panel-3) !important;
+  background-color: var(--graphite-panel-3) !important;
+  background-image: none !important;
+  border: 1px solid rgba(236, 239, 244, 0.08) !important;
+  color: var(--graphite-text-soft) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn:hover,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link:hover,
+html body #root .performer-head .name-icons a.external-links-button-link.btn:hover {
+  background: var(--graphite-hover) !important;
+  background-color: var(--graphite-hover) !important;
+  border-color: rgba(167, 139, 250, 0.22) !important;
+  color: var(--graphite-text) !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn svg,
+html body #root .performer-head .name-icons a.external-links-button-link.btn svg {
+  color: currentColor !important;
+  fill: currentColor !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn::after,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link::after {
+  display: none !important;
+}
+
+/* Alpha23: keep filter search compact and let External Links Enhanced own performer social icon colors. */
+.edit-filter-dialog .search-term-row,
+html body #root .modal-content .dialog-content > .search-term-row,
+html body #root .modal-content .modal-body .dialog-content > .search-term-row,
+html body #root .modal-content .search-term-row,
+html body .modal-content .search-term-row {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.45rem 0.65rem !important;
+  margin: 0 !important;
+  background: var(--graphite-panel-2) !important;
+  border-bottom: 1px solid rgba(236, 239, 244, 0.05) !important;
+}
+
+html body #root .modal-content .search-term-row > span,
+html body .modal-content .search-term-row > span {
+  white-space: nowrap !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: var(--graphite-text) !important;
+}
+
+html body #root .modal-content .search-term-row .search-term-input,
+html body .modal-content .search-term-row .search-term-input {
+  min-width: 0 !important;
+}
+
+html body #root .modal-content .search-term-row input.form-control,
+html body #root .modal-content .search-term-row .clearable-text-field.form-control,
+html body .modal-content .search-term-row input.form-control,
+html body .modal-content .search-term-row .clearable-text-field.form-control {
+  height: 2rem !important;
+  min-height: 2rem !important;
+  padding: 0.35rem 0.65rem !important;
+  background: var(--graphite-panel-1) !important;
+  border: 1px solid rgba(236, 239, 244, 0.06) !important;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Performer header icon row: keep favorite/expand Graphite, but do not box or recolor
+   External Links Enhanced icons. The plugin already knows which bird is blue. */
+html body #root .performer-head .name-icons {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.28rem !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button,
+html body #root .performer-head .name-icons .external-links-button.dropdown {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn-primary,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.minimal,
+html body #root .performer-head .name-icons a.external-links-button-link.btn,
+html body #root .performer-head .name-icons a.external-links-button-link.btn-primary {
+  width: auto !important;
+  min-width: 1.1rem !important;
+  height: auto !important;
+  min-height: 1.1rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn:hover,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link:hover,
+html body #root .performer-head .name-icons a.external-links-button-link.btn:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: brightness(1.16) !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn::after,
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.link::after {
+  display: none !important;
+}
+
+html body #root .performer-head .name-icons .external-links-button.dropdown > button.btn svg,
+html body #root .performer-head .name-icons a.external-links-button-link.btn svg {
+  width: 0.92rem !important;
+  height: 0.92rem !important;
+}
+
+html body #root .performer-head .name-icons > .favorite-button,
+html body #root .performer-head .name-icons > button.favorite-button {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: rgba(191, 204, 214, 0.62) !important;
+  padding: 0 !important;
+  min-width: 1.1rem !important;
+  min-height: 1.1rem !important;
+}
+
+html body #root .performer-head .name-icons > .favorite-button:hover,
+html body #root .performer-head .name-icons > button.favorite-button:hover {
+  color: var(--graphite-accent) !important;
+  background: transparent !important;
+}
+
+/* -------------------------------------------------------------------------
+   Alpha25: detail-page cleanup after alpha24 selector surgery.
+   ------------------------------------------------------------------------- */
+
+/* Stash ID lists: alpha24 keeps the pills; alpha25 keeps the scaffolding quiet. */
+html body #root .stash-ids ul,
+html body #root .stash-ids ul.pl-0,
+html body #root .stash-ids li,
+html body #root .stash-ids li.row,
+html body #root .stash-ids li.row.no-gutters,
+html body #root .detail-item.stash_ids ul,
+html body #root .detail-item.stash_ids li.row.no-gutters {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* React-select multi-value edit fields: hide the useless idle caret sliver,
+   but bring it back while the control has focus so searching still works. */
+html body #root .tagCopyPaste .react-select.tag-select .react-select__value-container--is-multi .react-select__input-container,
+html body #root .react-select.tag-select .react-select__value-container--is-multi .react-select__input-container,
+html body #root .react-select__value-container--is-multi.react-select__value-container--has-value .react-select__input-container {
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 0 0 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+html body #root .tagCopyPaste .react-select.tag-select .react-select__control:focus-within .react-select__value-container--is-multi .react-select__input-container,
+html body #root .react-select.tag-select .react-select__control:focus-within .react-select__value-container--is-multi .react-select__input-container,
+html body #root .react-select__control:focus-within .react-select__value-container--is-multi.react-select__value-container--has-value .react-select__input-container {
+  width: 5rem !important;
+  min-width: 3rem !important;
+  flex: 1 0 3rem !important;
+  overflow: visible !important;
+}
+
+/* Detail action row: compact the long Stash-Box button without killing semantics. */
+html body #root .performer-details .btn,
+html body #root .performer-head ~ .performer-details .btn,
+html body #root .detail-header .btn,
+html body #root .scene-details .btn,
+html body #root .gallery-details .btn,
+html body #root .image-details .btn {
+  padding-left: 0.48rem !important;
+  padding-right: 0.48rem !important;
+}
+
+html body #root .performer-details .btn-primary,
+html body #root .performer-details .btn-secondary,
+html body #root .performer-details .btn-danger,
+html body #root .performer-details .btn-success {
+  font-size: 0.88rem !important;
+  line-height: 1.15 !important;
+}
+
+/* Scene edit header: stop the generic Bootstrap row background from creating a
+   fat slate stripe behind Save/Delete/Scrape. */
+html body #root .scene-details .form-container.edit-buttons-container,
+html body #root .scene-details .form-container.edit-buttons-container.row,
+html body #root .scene-details .edit-buttons-container,
+html body #root .form-container.edit-buttons-container.px-3.pt-3.row {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+html body #root .scene-details .edit-buttons-container .scraper-group .btn,
+html body #root .form-container.edit-buttons-container .scraper-group .btn {
+  min-height: 2rem !important;
+}
+
+/* Gallery/Image details: remove the accidental row-panel background, leaving
+   metadata readable instead of sitting on a milky rectangle. */
+html body #root .row:has(> .gallery-details),
+html body #root .row:has(> .image-details),
+html body #root .row:has(.gallery-details),
+html body #root .row:has(.image-details),
+html body #root .gallery-details,
+html body #root .image-details {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .gallery-details h6,
+html body #root .image-details h6 {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  margin: 0 0 0.28rem !important;
+  line-height: 1.28 !important;
+}
+
+/* Gallery/Image split bars: the gallery pane got the cartoon-width handle.
+   Keep it visible, but not a purple highway divider. */
+html body #root:has(.gallery-head) [class*="resize"],
+html body #root:has(.gallery-head) [class*="Resize"],
+html body #root:has(.gallery-head) [class*="resizer"],
+html body #root:has(.gallery-head) [class*="Resizer"],
+html body #root:has(.gallery-details) [class*="resize"],
+html body #root:has(.gallery-details) [class*="Resize"],
+html body #root:has(.image-head) [class*="resize"],
+html body #root:has(.image-head) [class*="Resize"],
+html body #root:has(.image-details) [class*="resize"],
+html body #root:has(.image-details) [class*="Resize"] {
+  max-width: 0.55rem !important;
+}
+
+html body #root:has(.gallery-head) [class*="resize"] > button,
+html body #root:has(.gallery-details) [class*="resize"] > button,
+html body #root:has(.image-head) [class*="resize"] > button,
+html body #root:has(.image-details) [class*="resize"] > button {
+  width: 0.55rem !important;
+  min-width: 0.55rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-radius: 0.35rem !important;
+}
+
+/* Scene queue: tone down the active queue item and make it match Graphite. */
+html body #root .queue-controls {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  padding: 0.45rem 0.5rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(236, 239, 244, 0.06) !important;
+}
+
+html body #root .queue-controls .btn {
+  min-width: 2rem !important;
+  min-height: 2rem !important;
+  padding: 0.32rem 0.5rem !important;
+}
+
+html body #root li.my-2.current,
+html body #root li.current:has(.queue-scene-details),
+html body #root .scene-queue li.current {
+  background: rgba(35, 42, 50, 0.72) !important;
+  background-color: rgba(35, 42, 50, 0.72) !important;
+  border: 1px solid rgba(236, 239, 244, 0.06) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  box-shadow: none !important;
+  padding: 0.45rem !important;
+}
+
+html body #root li.current .queue-scene-details {
+  display: grid !important;
+  gap: 0.08rem !important;
+  min-width: 0 !important;
+}
+
+html body #root li.current .queue-scene-title {
+  color: var(--graphite-accent-soft, #c9b8ff) !important;
+  font-weight: 720 !important;
+  line-height: 1.2 !important;
+}
+
+html body #root li.current .queue-scene-studio,
+html body #root li.current .queue-scene-performers,
+html body #root li.current .queue-scene-date {
+  color: var(--graphite-text-soft) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.16 !important;
+}
+
+html body #root li.current .thumbnail-container {
+  border-radius: var(--graphite-radius-sm) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(236, 239, 244, 0.06) !important;
+}
+
+/* alpha26: restore a proper edit-toolbar surface without letting fields bleed through. */
+html body #root .scene-details .form-container.edit-buttons-container,
+html body #root .scene-details .form-container.edit-buttons-container.row,
+html body #root .scene-details .edit-buttons-container,
+html body #root .form-container.edit-buttons-container.px-3.pt-3.row {
+  background: var(--graphite-panel-2) !important;
+  background-color: var(--graphite-panel-2) !important;
+  border-top: 1px solid rgba(236, 239, 244, 0.045) !important;
+  border-bottom: 1px solid rgba(236, 239, 244, 0.06) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.018) !important;
+  padding-top: 0.68rem !important;
+  padding-bottom: 0.58rem !important;
+}
+
+/* alpha26: hide the empty React Select input/caret sliver everywhere, while
+   allowing the input to reappear once the user actually starts typing. */
+html body #root .react-select__input-container[data-value=""],
+html body #root .react-select__value-container--has-value .react-select__input-container[data-value=""],
+html body #root .react-select__value-container--is-multi .react-select__input-container[data-value=""] {
+  flex: 0 0 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+html body #root .react-select__input-container[data-value=""] input,
+html body #root .react-select__value-container--has-value .react-select__input-container[data-value=""] input,
+html body #root .react-select__value-container--is-multi .react-select__input-container[data-value=""] input {
+  width: 0 !important;
+  min-width: 0 !important;
+  caret-color: transparent !important;
+}
+
+/* alpha26: gallery/image detail panels should not paint giant Bootstrap rows. */
+html body #root .row:has(> .gallery-details),
+html body #root .row:has(> .image-details) {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .row > .gallery-details,
+html body #root .row > .image-details,
+html body #root .gallery-details.col-9,
+html body #root .image-details.col-9,
+html body #root .gallery-details.col-12,
+html body #root .image-details.col-12 {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* alpha26: keep gallery/image split handles slim, even when the page-specific
+   class names are being coy little goblins. */
+html body #root:has(.gallery-head) [class*="split"],
+html body #root:has(.gallery-head) [class*="Split"],
+html body #root:has(.gallery-head) [class*="resize"],
+html body #root:has(.gallery-head) [class*="Resize"],
+html body #root:has(.gallery-head) [class*="resizer"],
+html body #root:has(.gallery-head) [class*="Resizer"],
+html body #root:has(.image-head) [class*="split"],
+html body #root:has(.image-head) [class*="Split"],
+html body #root:has(.image-head) [class*="resize"],
+html body #root:has(.image-head) [class*="Resize"],
+html body #root:has(.image-head) [class*="resizer"],
+html body #root:has(.image-head) [class*="Resizer"] {
+  max-width: 0.5rem !important;
+}
+
+html body #root:has(.gallery-head) [class*="split"] > button,
+html body #root:has(.gallery-head) [class*="resize"] > button,
+html body #root:has(.gallery-head) [class*="resizer"] > button,
+html body #root:has(.image-head) [class*="split"] > button,
+html body #root:has(.image-head) [class*="resize"] > button,
+html body #root:has(.image-head) [class*="resizer"] > button {
+  width: 0.5rem !important;
+  min-width: 0.5rem !important;
+}
+
+/* alpha26: queue list should read like a compact Graphite list, not a random
+   blue-gray card dropped into a sidebar. */
+html body #root .queue-controls {
+  background: var(--graphite-panel-2) !important;
+  background-color: var(--graphite-panel-2) !important;
+}
+
+html body #root li.my-2.current,
+html body #root li.current:has(.queue-scene-details),
+html body #root .scene-queue li.current {
+  background: rgba(32, 38, 45, 0.92) !important;
+  background-color: rgba(32, 38, 45, 0.92) !important;
+}
+
+/* alpha27: restore the scene edit toolbar as a solid, clean surface without
+   letting child flex wrappers draw their own little black stage around buttons. */
+html body #root .scene-details .form-container.edit-buttons-container,
+html body #root .scene-details .form-container.edit-buttons-container.row,
+html body #root .scene-details .edit-buttons-container,
+html body #root .scene-details .form-container.edit-buttons-container.px-3.pt-3.row {
+  background: var(--graphite-panel-2) !important;
+  background-color: var(--graphite-panel-2) !important;
+  border-top: 1px solid rgba(236, 239, 244, 0.045) !important;
+  border-bottom: 1px solid rgba(236, 239, 244, 0.06) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.018) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow: visible !important;
+}
+
+html body #root .scene-details .edit-buttons-container > *,
+html body #root .scene-details .edit-buttons-container .edit-buttons,
+html body #root .scene-details .edit-buttons-container .ml-auto,
+html body #root .scene-details .edit-buttons-container .scraper-group,
+html body #root .scene-details .edit-buttons-container .scraper-menu,
+html body #root .scene-details .edit-buttons-container .btn-group,
+html body #root .scene-details .edit-buttons-container .dropdown {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .scene-details .edit-buttons-container .scraper-group .btn,
+html body #root .scene-details .edit-buttons-container .scraper-menu .btn {
+  margin: 0 !important;
+}
+
+html body #root .scene-details .edit-buttons-container .scraper-group {
+  gap: 0.2rem !important;
+}
+
+/* alpha27: gallery uses a dedicated divider class; keep the divider itself
+   invisible and slim so only the grab button reads as the handle. */
+html body #root .gallery-divider,
+html body #root .gallery-divider.d-none.d-xl-block {
+  flex: 0 0 0.55rem !important;
+  width: 0.55rem !important;
+  min-width: 0.55rem !important;
+  max-width: 0.55rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html body #root .gallery-divider > button,
+html body #root .gallery-divider.d-none.d-xl-block > button {
+  width: 1.15rem !important;
+  min-width: 1.15rem !important;
+  max-width: 1.15rem !important;
+  height: 5.2rem !important;
+  min-height: 5.2rem !important;
+  padding: 0 !important;
+  margin-left: -0.3rem !important;
+  border-radius: 0.45rem !important;
+  background: var(--graphite-accent) !important;
+  border-color: rgba(167, 139, 250, 0.55) !important;
+  color: #120c22 !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) !important;
+}
+
+html body #root .gallery-divider > button svg,
+html body #root .gallery-divider.d-none.d-xl-block > button svg {
+  width: 0.72rem !important;
+}
+
+/* alpha28: see compiled graphite.css for final toolbar/divider polish. */
+
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-alpha29
+   Scene scraper popover scaffold + gallery divider.
+   ------------------------------------------------------------------------- */
+
+/* Scene edit toolbar: the toolbar owns the surface. The scraper dropdown wrapper
+   must not paint an extra block under/around the Scrape button. */
+html body #root .scene-details .edit-buttons-container .scraper-menu,
+html body #root .scene-details .edit-buttons-container .scraper-menu.show,
+html body #root .scene-details .edit-buttons-container .scraper-menu.dropdown,
+html body #root .scene-details .edit-buttons-container .scraper-menu.show.dropdown,
+html body #root .scene-details .edit-buttons-container .scraper-group,
+html body #root .scene-details .edit-buttons-container .btn-group {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html body #root .scene-details .edit-buttons-container .scraper-menu > .dropdown-menu.show,
+html body #root .scene-details .edit-buttons-container .scraper-menu .dropdown-menu.show {
+  background: var(--graphite-panel-3) !important;
+  background-color: var(--graphite-panel-3) !important;
+  border: 1px solid rgba(236, 239, 244, 0.10) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.38) !important;
+  overflow: hidden auto !important;
+}
+
+html body #root .scene-details .edit-buttons-container .scraper-filter-container {
+  background: var(--graphite-panel-3) !important;
+  background-color: var(--graphite-panel-3) !important;
+  border-bottom: 1px solid rgba(236, 239, 244, 0.06) !important;
+}
+
+/* Gallery divider: match the scene divider model — a full-height quiet rail with
+   only the centered grab button calling attention to itself. */
+html body #root .gallery-divider,
+html body #root .gallery-divider.d-none,
+html body #root .gallery-divider.d-xl-block,
+html body #root .gallery-divider.d-none.d-xl-block {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: stretch !important;
+  flex: 0 0 10px !important;
+  width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #1b2026 !important;
+  background-color: #1b2026 !important;
+  border-left: 1px solid rgba(219, 229, 241, 0.10) !important;
+  border-right: 1px solid rgba(219, 229, 241, 0.10) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  z-index: 6 !important;
+}
+
+html body #root .gallery-divider::before,
+html body #root .gallery-divider::after,
+html body #root .gallery-divider.d-none.d-xl-block::before,
+html body #root .gallery-divider.d-none.d-xl-block::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body #root .gallery-divider > button,
+html body #root .gallery-divider > button.btn,
+html body #root .gallery-divider > button.btn-primary,
+html body #root .gallery-divider.d-none.d-xl-block > button,
+html body #root .gallery-divider.d-none.d-xl-block > button.btn,
+html body #root .gallery-divider.d-none.d-xl-block > button.btn-primary {
+  position: sticky !important;
+  top: 50vh !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 44px !important;
+  min-width: 18px !important;
+  min-height: 44px !important;
+  max-width: 18px !important;
+  max-height: 44px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  background: var(--graphite-accent) !important;
+  background-color: var(--graphite-accent) !important;
+  background-image: none !important;
+  border: 1px solid rgba(167, 139, 250, 0.55) !important;
+  color: #120c22 !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) !important;
+}
+
+html body #root .gallery-divider > button svg,
+html body #root .gallery-divider.d-none.d-xl-block > button svg {
+  width: 10px !important;
+  height: 10px !important;
+  margin: 0 !important;
+}
+
+/* Beta 1: stop generic menu/background rules from painting invisible Bootstrap wrappers.
+   The scraper dropdown wrapper uses `scraper-menu`; it should be transparent while
+   the actual dropdown panel keeps its Graphite surface. */
+html body #root .scraper-menu,
+html body #root .scraper-menu.show,
+html body #root .scraper-menu.dropdown,
+html body #root .scraper-group,
+html body #root .scraper-group.btn-group {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #root .scraper-menu > .dropdown-menu,
+html body #root .scraper-menu.show > .dropdown-menu,
+html body #root .scraper-menu .dropdown-menu.show {
+  background: var(--graphite-panel) !important;
+  background-color: var(--graphite-panel) !important;
+  background-image: none !important;
+  border: 1px solid rgba(236, 239, 244, 0.10) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.38) !important;
+}
+
+/* Beta 1: the broad `[class*="-menu"]` catch-all must never style wrappers.
+   Only actual dropdown/react-select menu surfaces should get a panel. */
+html body #root [class*="-menu"]:not(.dropdown-menu):not(.react-select__menu):not(.react-select__menu-list),
+html body #root [class*="__menu"]:not(.react-select__menu):not(.react-select__menu-list),
+html body #root [class*="MenuPortal"]:not(.react-select__menu-portal) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Beta 1: keep the scene edit toolbar aligned without globally redefining Bootstrap .pl-0. */
+html body #root .form-container.edit-buttons-container .edit-buttons.pl-0,
+html body #root .edit-buttons-container .edit-buttons.pl-0 {
+  padding-left: 1rem !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-beta2
+   Restore dropdown usability after beta cleanup. Menus need scroll, and
+   CountrySelect uses React Select in a way that needs its input area visible.
+   ------------------------------------------------------------------------- */
+
+/* Bootstrap/Stash scraper dropdowns: keep the wrapper transparent, but make
+   the actual menu scroll inside itself instead of stealing page scroll. */
+html body #root .scraper-menu > .dropdown-menu,
+html body #root .scraper-menu.show > .dropdown-menu,
+html body #root .scraper-menu .dropdown-menu.show,
+html body #root .dropdown-menu.show {
+  max-height: min(68vh, 34rem) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--graphite-accent) transparent !important;
+}
+
+html body #root .scraper-menu > .dropdown-menu::-webkit-scrollbar,
+html body #root .scraper-menu.show > .dropdown-menu::-webkit-scrollbar,
+html body #root .scraper-menu .dropdown-menu.show::-webkit-scrollbar,
+html body #root .dropdown-menu.show::-webkit-scrollbar {
+  width: 0.55rem !important;
+}
+
+html body #root .scraper-menu > .dropdown-menu::-webkit-scrollbar-thumb,
+html body #root .scraper-menu.show > .dropdown-menu::-webkit-scrollbar-thumb,
+html body #root .scraper-menu .dropdown-menu.show::-webkit-scrollbar-thumb,
+html body #root .dropdown-menu.show::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.62) !important;
+  border-radius: 999px !important;
+}
+
+/* React Select menus: the list needs to scroll, not the page. */
+html body #root .react-select__menu,
+html body #root .react-select__menu-list,
+html body #root .react-select__menu-portal .react-select__menu,
+html body #root [class*="__menu-list"] {
+  max-height: min(64vh, 30rem) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--graphite-accent) transparent !important;
+}
+
+/* CountrySelect was being caught by the global anti-caret rule. It needs its
+   input/value area available so the selected country remains visible. */
+html body #root .CountrySelect .react-select__value-container,
+html body #root .CountrySelect [class*="__value-container"] {
+  display: flex !important;
+  align-items: center !important;
+}
+
+html body #root .CountrySelect .react-select__single-value,
+html body #root .CountrySelect [class*="__single-value"] {
+  display: block !important;
+  position: static !important;
+  transform: none !important;
+  max-width: calc(100% - 3rem) !important;
+  color: var(--graphite-text) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html body #root .CountrySelect .react-select__input-container,
+html body #root .CountrySelect .react-select__input-container[data-value=""],
+html body #root .CountrySelect [class*="__input-container"] {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 2px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  color: var(--graphite-text) !important;
+}
+
+html body #root .CountrySelect .react-select__input-container input,
+html body #root .CountrySelect .react-select__input-container[data-value=""] input,
+html body #root .CountrySelect [class*="__input-container"] input {
+  width: 100% !important;
+  min-width: 2px !important;
+  caret-color: var(--graphite-accent) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Graphite 1.0.0-beta3
+   React Select single-value controls must keep their real input clickable and
+   tabbable. Beta2 fixed the visible country label, but the older anti-caret
+   rules still collapsed the actual input, so clicking the field body and
+   typing to filter could fail. Multi-select tag fields keep the idle-caret
+   cleanup; single-value fields get their input back.
+   ------------------------------------------------------------------------- */
+html body #root .react-select__control,
+html body #root [class*="__control"] {
+  pointer-events: auto !important;
+}
+
+html body #root .react-select__control:focus-within,
+html body #root [class*="__control"]:focus-within {
+  outline: 1px solid rgba(167, 139, 250, 0.38) !important;
+  outline-offset: 1px !important;
+}
+
+html body #root .react-select__value-container:not(.react-select__value-container--is-multi) .react-select__input-container,
+html body #root .react-select__value-container:not(.react-select__value-container--is-multi) .react-select__input-container[data-value=""],
+html body #root [class*="__value-container"]:not([class*="--is-multi"]) [class*="__input-container"],
+html body #root [class*="__value-container"]:not([class*="--is-multi"]) [class*="__input-container"][data-value=""] {
+  display: grid !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 2px !important;
+  max-width: none !important;
+  margin: 0 0.125rem !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  color: var(--graphite-text) !important;
+}
+
+html body #root .react-select__value-container:not(.react-select__value-container--is-multi) .react-select__input-container input,
+html body #root .react-select__value-container:not(.react-select__value-container--is-multi) .react-select__input-container[data-value=""] input,
+html body #root [class*="__value-container"]:not([class*="--is-multi"]) [class*="__input-container"] input,
+html body #root [class*="__value-container"]:not([class*="--is-multi"]) [class*="__input-container"][data-value=""] input {
+  width: 100% !important;
+  min-width: 2px !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  caret-color: var(--graphite-accent) !important;
+}
+
+html body #root .react-select__value-container:not(.react-select__value-container--is-multi) {
+  cursor: text !important;
+}
+
+html body #root .CountrySelect .react-select__control,
+html body #root .CountrySelect [class*="__control"],
+html body #root .CountrySelect .react-select__value-container,
+html body #root .CountrySelect [class*="__value-container"] {
+  cursor: text !important;
+  pointer-events: auto !important;
+}
+
+html body #root .CountrySelect .react-select__input-container,
+html body #root .CountrySelect .react-select__input-container[data-value=""],
+html body #root .CountrySelect [class*="__input-container"],
+html body #root .CountrySelect [class*="__input-container"][data-value=""] {
+  display: grid !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 2px !important;
+  max-width: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+
