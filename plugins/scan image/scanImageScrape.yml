@@ -1,0 +1,15 @@
+name: Scan Image Scrape
+description: >
+  Automatically scrapes new images with the imagescraper as they are
+  created during a library scan. Companion to Bulk Image Scrape.
+version: 1.0.0
+exec:
+  - python
+  - "{pluginDir}/scanImageScrape.py"
+interface: raw
+
+hooks:
+  - name: Scan Image Scrape
+    description: Scrape image metadata immediately after scan creates a new image
+    triggeredBy:
+      - Image.Create.Post

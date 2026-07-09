@@ -1,0 +1,27 @@
+name: Normalize Fake Tits
+description: Normalizes performer fake_tits values from Na/Natural to one preferred value.
+version: 1.0
+
+exec:
+  - python
+  - "{pluginDir}/normalize_fake_tits.py"
+
+interface: raw
+errLog: error
+
+tasks:
+  - name: Normalize all performer fake_tits
+    description: Scan all performers and normalize fake_tits values
+    defaultArgs:
+      preferredValue: "Na"
+      fromValues: "Natural,NA,N/A"
+
+hooks:
+  - name: Normalize performer fake_tits
+    description: Normalize fake_tits after performer create/update
+    triggeredBy:
+      - Performer.Create.Post
+      - Performer.Update.Post
+    defaultArgs:
+      preferredValue: "Na"
+      fromValues: "Natural,NA,N/A"
