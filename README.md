@@ -1,24 +1,54 @@
-# Template for creating Stash plugins source index
+# Graphite Theme 1.0.0-beta3
 
-This template allows you to create a new repository with a few clicks with preconfigured GitHub action to publish your plugins source index. 
-_This assumes you already know how to create plugins for Stash. If you don't, first read [this](https://docs.stashapp.cc/in-app-manual/plugins/#creating-plugins)._
+Graphite is a desktop-first dark theme for Stash 0.31.x. It keeps the core Stash layout, but makes the interface denser, quieter, and more consistent across detail pages, edit forms, settings, taggers, filters, galleries, and plugin-heavy screens.
 
-## How to use it?
+## Install
 
-1. Click **Use this template** > **Create a new repository**. 
-1. Choose a repository name and click **Create repository**.
-1. Open **Settings** and head to **Pages**.
-1. Under Build and deployment select the Source as GitHub Actions.
+1. Copy `graphite.yml` and the `graphite` folder into your Stash plugins folder.
+2. In Stash, go to **Settings → Plugins → Reload plugins**.
+3. Hard refresh the browser.
 
-Now add your plugins to [plugins](/plugins) directory and they will be automatically published to the source index.
+Typical Windows path:
 
-Source index URL: [`https://<your-username>.github.io/<repository-name>/main/index.yml`](https://<your-username>.github.io/<repository-name>/main/index.yml)
+```text
+%USERPROFILE%\.stash\plugins
+```
 
-## Share your plugins
+## Design direction
 
-- [Create a new topic](https://discourse.stashapp.cc/t/-/33) for your plugin on the community forum.
-- [Add your source index to the list](https://discourse.stashapp.cc/t/-/122) on the Stash community forum.
+Graphite uses a muted graphite palette, restrained purple accents, embedded form fields, compact spacing, and consistent resize handles. Color is semantic: purple for primary intent, muted red for destructive actions, muted green for save/success, and graphite for everything that does not need to yell.
 
-## License
+## File layout
 
-The default license is set to [AGPL-3.0](/LICENCE). Before publishing any plugins you can change it.
+Stash loads each source CSS file directly from `graphite.yml`, in order. There is no build step required.
+
+```text
+graphite.yml
+graphite/
+  src/
+    base/
+    layouts/
+    components/
+    utilities/
+    graphite.js
+  graphite.css
+```
+
+`graphite/graphite.css` is a concatenated reference copy of the loaded CSS. The source files under `graphite/src/` are the files to edit.
+
+# Changelog
+
+## 1.0.0-beta3
+
+- Fixed country selector regression caused by React-Select styling.
+
+## 1.0.0-beta2
+
+- Fixed React-Select scrolling.
+- Restored selected country display.
+
+## 1.0.0-beta1
+
+- First feature-complete beta release.
+- Unified styling across Scenes, Images, Galleries, Performers, Studios, Settings, Taggers, and modals.
+- Introduced Graphite design system and density improvements.
