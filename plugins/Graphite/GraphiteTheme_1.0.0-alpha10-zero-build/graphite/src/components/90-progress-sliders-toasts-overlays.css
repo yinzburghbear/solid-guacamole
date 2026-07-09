@@ -1,0 +1,30 @@
+/* Progress / sliders */
+.progress {
+  background: var(--graphite-panel-3) !important;
+  border-radius: 999px !important;
+}
+
+.progress-bar {
+  background: var(--graphite-accent) !important;
+}
+
+input[type="range"] {
+  accent-color: var(--graphite-accent);
+}
+
+/* Toasts */
+.toast,
+.toast-header {
+  background: var(--graphite-panel) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Keep media overlays readable */
+.overlay,
+.card-img-overlay,
+.video-js,
+.vjs-control-bar {
+  color: var(--graphite-text) !important;
+}
+

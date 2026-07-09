@@ -1,0 +1,30 @@
+name: Graphite Theme
+description: Graphite 1.0.0-alpha30 zero-build source layout. Stash loads each source CSS file directly in order.
+version: 1.0.0-alpha30-zero-build
+url: https://docs.stashapp.cc/themes/
+ui:
+  css:
+    - graphite/src/base/00-variables-and-document.css
+    - graphite/src/base/01-typography-and-links.css
+    - graphite/src/layouts/10-app-frame.css
+    - graphite/src/layouts/20-detail-pages.css
+    - graphite/src/components/10-navigation.css
+    - graphite/src/components/20-cards.css
+    - graphite/src/components/30-buttons.css
+    - graphite/src/components/40-forms.css
+    - graphite/src/components/41-dropdowns-and-menus.css
+    - graphite/src/components/42-search-and-filters.css
+    - graphite/src/components/50-tables.css
+    - graphite/src/components/60-tags-badges-pills.css
+    - graphite/src/components/70-tabs.css
+    - graphite/src/components/80-modals.css
+    - graphite/src/components/81-alerts.css
+    - graphite/src/components/90-progress-sliders-toasts-overlays.css
+    - graphite/src/components/99-alpha-refinements.css
+    - graphite/src/utilities/10-density.css
+    - graphite/src/utilities/20-reduced-motion.css
+    - graphite/src/components/95-plugin-integrations.css
+    - graphite/src/overrides/90-prototype-and-alpha-patches.css
+    - graphite/src/overrides/99-jason-alpha10-tweaks.css
+  javascript:
+    - graphite/src/graphite.js

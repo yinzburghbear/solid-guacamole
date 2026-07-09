@@ -1,0 +1,7 @@
+name: Graphite Theme
+description: Graphite 1.0.0-alpha9 zero-build source layout. Edit graphite/src files directly; graphite.css imports them.
+version: 1.0.0-alpha9-zero-build
+url: https://docs.stashapp.cc/themes/
+ui:
+  css:
+    - graphite/graphite.css

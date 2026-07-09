@@ -1,0 +1,19 @@
+/* Details pages */
+.detail-header,
+.scene-details,
+.performer-details,
+.movie-details,
+.studio-details,
+.gallery-details,
+.image-details {
+  background: transparent !important;
+}
+
+.detail-header .card,
+.scene-details .card,
+.performer-details .card,
+.movie-details .card,
+.studio-details .card {
+  background: var(--graphite-panel) !important;
+}
+

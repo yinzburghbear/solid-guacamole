@@ -1,0 +1,29 @@
+/* Global text */
+a,
+.btn-link,
+.nav-link {
+  color: var(--graphite-accent-2) !important;
+}
+
+a:hover,
+.btn-link:hover,
+.nav-link:hover {
+  color: var(--graphite-accent) !important;
+  text-decoration: none !important;
+}
+
+.text-muted,
+.muted,
+small,
+.metadata,
+.scene-card__details,
+.performer-card__details,
+.movie-card__details,
+.studio-card__details {
+  color: var(--graphite-muted) !important;
+}
+
+hr {
+  border-color: var(--graphite-border-soft) !important;
+}
+

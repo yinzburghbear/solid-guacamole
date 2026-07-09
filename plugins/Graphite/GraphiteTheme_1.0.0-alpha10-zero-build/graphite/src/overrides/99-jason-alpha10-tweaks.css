@@ -1,0 +1,133 @@
+/* Graphite alpha10 user-tuning pass
+   - darker base around #0d0e0f
+   - purple accent instead of blue
+   - quieter performer-card controls
+   - adjusted title sizing
+*/
+
+:root {
+  --g-accent: var(--graphite-accent) !important;
+  --g-accent-2: var(--graphite-accent-2) !important;
+  --g-accent-soft: rgba(167, 139, 250, 0.16) !important;
+  --g-accent-border: rgba(167, 139, 250, 0.34) !important;
+}
+
+/* Sweep up older alpha blue literals where the variables do not reach. */
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  border-color: rgba(167, 139, 250, 0.28) !important;
+}
+
+.btn-primary {
+  background: var(--graphite-accent) !important;
+  border-color: var(--graphite-accent) !important;
+  color: #100a1e !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent-2) !important;
+  color: #100a1e !important;
+}
+
+.navbar-nav .nav-link.active > a,
+.navbar-nav .nav-link > a.active,
+.top-nav .navbar-nav .nav-link.active > a,
+.top-nav .navbar-nav .nav-link > a.active {
+  border-color: rgba(167, 139, 250, 0.55) !important;
+  box-shadow: inset 0 -2px 0 rgba(167, 139, 250, 0.7) !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-pills .nav-link.active {
+  color: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent) !important;
+}
+
+/* Performer cards: favorite/link/social controls should not get a filled button bg. */
+.performer-card .favorite-button,
+.performer-card button.favorite-button,
+.performer-card .performer-card__link,
+.performer-card .performer-card__links .btn,
+.performer-card .external-links-button .btn,
+.performer-card .external-links-button button,
+.performer-card .card-controls .btn,
+.performer-card button.hide-not-favorite,
+.performer-card button.not-favorite {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.performer-card .favorite-button:hover,
+.performer-card button.favorite-button:hover,
+.performer-card .performer-card__link:hover,
+.performer-card .performer-card__links .btn:hover,
+.performer-card .external-links-button .btn:hover,
+.performer-card .external-links-button button:hover,
+.performer-card .card-controls .btn:hover,
+.performer-card button.hide-not-favorite:hover,
+.performer-card button.not-favorite:hover {
+  background: rgba(236, 239, 244, 0.08) !important;
+  background-color: rgba(236, 239, 244, 0.08) !important;
+  border-color: transparent !important;
+  color: var(--graphite-text) !important;
+}
+
+.performer-card .favorite-button.favorite,
+.performer-card button.favorite-button.favorite,
+.performer-card button.favorite {
+  color: var(--graphite-accent-2) !important;
+}
+
+/* Performer/group card names were a little shouty. */
+.performer-card h5.card-section-title,
+.performer-card .card-section-title,
+.group-card h5.card-section-title,
+.group-card .card-section-title,
+.movie-card h5.card-section-title,
+.movie-card .card-section-title {
+  font-size: 1.05rem !important;
+  line-height: 1.22 !important;
+}
+
+/* Scene detail title: restore stock-ish h3 scale. */
+h3.scene-header,
+.scene-header h3,
+.scene-header .TruncatedText {
+  font-size: 1.75rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Card footer chips remain graphite, not accent-colored. */
+html body #root .card-popovers.btn-group button.btn,
+html body #root .card-popovers.btn-group button.btn-primary,
+html body #root .card-popovers.btn-group > a > button.btn,
+html body #root .card-popovers.btn-group > div > button.btn {
+  --g-accent: #1b2026 !important;
+  --g-accent-2: #262c34 !important;
+  --g-accent-soft: #1b2026 !important;
+  --g-accent-border: rgba(219, 229, 241, 0.14) !important;
+  background: #1b2026 !important;
+  background-color: #1b2026 !important;
+  border-color: rgba(219, 229, 241, 0.14) !important;
+  color: #cbd3df !important;
+}
+
+html body #root .card-popovers.btn-group button.btn:hover,
+html body #root .card-popovers.btn-group button.btn-primary:hover,
+html body #root .card-popovers.btn-group > a > button.btn:hover,
+html body #root .card-popovers.btn-group > div > button.btn:hover {
+  background: #262c34 !important;
+  background-color: #262c34 !important;
+  border-color: rgba(219, 229, 241, 0.22) !important;
+  color: #f0f4f8 !important;
+}

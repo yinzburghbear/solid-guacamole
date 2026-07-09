@@ -1,0 +1,27 @@
+/* Slight density improvements */
+.form-group,
+.mb-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+h1,
+.h1 {
+  font-size: 1.85rem !important;
+}
+
+h2,
+.h2 {
+  font-size: 1.48rem !important;
+}
+
+h3,
+.h3 {
+  font-size: 1.22rem !important;
+}
+
+h4,
+.h4,
+.card-title {
+  font-size: 1rem !important;
+}
+

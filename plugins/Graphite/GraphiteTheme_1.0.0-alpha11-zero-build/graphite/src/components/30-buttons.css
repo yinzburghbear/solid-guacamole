@@ -1,0 +1,54 @@
+/* Buttons */
+.btn {
+  border-radius: var(--graphite-radius-sm) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  padding: 0.42rem 0.72rem !important;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--graphite-accent) !important;
+  border-color: var(--graphite-accent) !important;
+  color: #08111d !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent-2) !important;
+}
+
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light {
+  background: var(--graphite-panel-3) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.btn-secondary:hover,
+.btn-dark:hover,
+.btn-outline-secondary:hover,
+.btn-outline-light:hover {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.btn-danger {
+  background: rgba(255, 107, 107, 0.16) !important;
+  border-color: rgba(255, 107, 107, 0.35) !important;
+  color: #ff9b9b !important;
+}
+
+.btn-success {
+  background: rgba(88, 214, 141, 0.16) !important;
+  border-color: rgba(88, 214, 141, 0.35) !important;
+  color: #8ff0b5 !important;
+}
+

@@ -1,0 +1,13 @@
+/* Dropdowns and menus */
+.dropdown-item {
+  border-radius: var(--graphite-radius-sm);
+  color: var(--graphite-text-soft) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item.active {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+

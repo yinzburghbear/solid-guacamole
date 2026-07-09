@@ -1,0 +1,7 @@
+name: Graphite Theme
+description: Graphite 1.0.0-alpha4 design-system foundation for Stash 0.31.x. CSS-only, compact, dark, and allergic to decorative nonsense.
+version: 1.0.0-alpha4
+url: https://docs.stashapp.cc/themes/
+ui:
+  css:
+    - graphite/graphite.css

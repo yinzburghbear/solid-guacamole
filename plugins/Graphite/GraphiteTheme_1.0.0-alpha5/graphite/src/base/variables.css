@@ -1,0 +1,10 @@
+/* Graphite design tokens. Edit here first, then rebuild graphite.css. */
+:root {
+  --graphite-bg: #17191d;
+  --graphite-panel: #20242a;
+  --graphite-panel-2: #252a31;
+  --graphite-border: #3a414c;
+  --graphite-text: #eceff4;
+  --graphite-muted: #9ca5b1;
+  --graphite-accent: #5fa8ff;
+}

@@ -1,0 +1,7 @@
+name: Graphite Theme
+description: Lightweight dark UI theme for Stash 0.31.x. Modern density, cleaner cards, softer controls, and zero layout-rewrite nonsense.
+version: 0.1.0
+url: https://docs.stashapp.cc/themes/
+ui:
+  css:
+    - graphite/graphite.css

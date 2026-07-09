@@ -1,0 +1,16 @@
+/* Search / filter areas */
+.filter-container,
+.search-container,
+.query-text-field,
+.operation-buttons,
+.toolbar,
+.btn-toolbar {
+  background: transparent !important;
+}
+
+.filter-container .card,
+.search-container .card,
+.toolbar .card {
+  background: var(--graphite-panel) !important;
+}
+

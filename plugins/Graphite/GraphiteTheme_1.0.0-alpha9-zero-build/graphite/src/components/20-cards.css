@@ -1,0 +1,60 @@
+/* Cards: cleaner, compact, still recognizably Stash */
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card {
+  overflow: hidden;
+  transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  background: var(--graphite-panel-2) !important;
+  border-color: rgba(95, 168, 255, 0.28) !important;
+  box-shadow: var(--graphite-shadow);
+  transform: translateY(-2px);
+}
+
+.scene-card img,
+.performer-card img,
+.movie-card img,
+.studio-card img,
+.gallery-card img,
+.image-card img,
+.card-img,
+.card-img-top {
+  border-radius: calc(var(--graphite-radius) - 2px) !important;
+}
+
+.card-body,
+.scene-card .card-body,
+.performer-card .card-body,
+.movie-card .card-body,
+.studio-card .card-body {
+  padding: 0.65rem 0.7rem !important;
+}
+
+.card-title,
+.scene-card .card-title,
+.performer-card .card-title,
+.movie-card .card-title,
+.studio-card .card-title {
+  color: var(--graphite-text) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin-bottom: 0.28rem !important;
+}
+
+.card-text,
+.card-subtitle {
+  color: var(--graphite-muted) !important;
+  line-height: 1.25;
+}
+

@@ -1,0 +1,35 @@
+/* Tables */
+.table,
+table {
+  color: var(--graphite-text-soft) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.table thead th,
+thead th {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table td,
+.table th,
+td,
+th {
+  border-color: var(--graphite-border-soft) !important;
+  padding: 0.48rem 0.58rem !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.018) !important;
+}
+
+tbody tr:hover {
+  background: rgba(95, 168, 255, 0.07) !important;
+}
+

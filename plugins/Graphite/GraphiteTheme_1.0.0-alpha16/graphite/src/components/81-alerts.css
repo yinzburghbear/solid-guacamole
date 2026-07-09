@@ -1,0 +1,26 @@
+/* Alerts */
+.alert {
+  border-radius: var(--graphite-radius) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.alert-info {
+  background: rgba(95, 168, 255, 0.13) !important;
+  color: #b8dbff !important;
+}
+
+.alert-warning {
+  background: rgba(245, 197, 66, 0.13) !important;
+  color: #ffe08a !important;
+}
+
+.alert-danger {
+  background: rgba(255, 107, 107, 0.13) !important;
+  color: #ffb0b0 !important;
+}
+
+.alert-success {
+  background: rgba(88, 214, 141, 0.13) !important;
+  color: #a3f3c3 !important;
+}
+

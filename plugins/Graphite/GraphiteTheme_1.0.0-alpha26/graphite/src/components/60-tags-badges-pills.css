@@ -1,0 +1,54 @@
+/* Tags / badges / metadata pills */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag,
+.btn-group-sm > .btn,
+.btn-sm {
+  border-radius: 999px !important;
+}
+
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  background: rgba(95, 168, 255, 0.13) !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  color: var(--graphite-accent-2) !important;
+  font-weight: 650 !important;
+  line-height: 1.15;
+  padding: 0.24rem 0.48rem !important;
+}
+
+.badge-secondary,
+.bg-secondary {
+  background: rgba(156, 165, 177, 0.16) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.badge-success,
+.bg-success {
+  background: rgba(88, 214, 141, 0.16) !important;
+  color: #8ff0b5 !important;
+}
+
+.badge-warning,
+.bg-warning {
+  background: rgba(245, 197, 66, 0.16) !important;
+  color: #ffd96d !important;
+}
+
+.badge-danger,
+.bg-danger {
+  background: rgba(255, 107, 107, 0.16) !important;
+  color: #ff9b9b !important;
+}
+

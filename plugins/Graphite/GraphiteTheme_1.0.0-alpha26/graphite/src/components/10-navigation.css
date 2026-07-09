@@ -1,0 +1,38 @@
+/* App frame / nav */
+.navbar,
+.navbar.bg-dark,
+.bg-dark,
+.sidebar,
+.sidebar-content,
+.main-nav,
+.top-nav {
+  background: var(--graphite-bg-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.navbar {
+  box-shadow: var(--graphite-shadow-soft);
+}
+
+.sidebar .nav-link,
+.navbar .nav-link {
+  border-radius: var(--graphite-radius-sm);
+  color: var(--graphite-text-soft) !important;
+  margin: 2px 6px;
+  padding: 0.45rem 0.65rem !important;
+}
+
+.sidebar .nav-link:hover,
+.navbar .nav-link:hover {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.sidebar .nav-link.active,
+.navbar .nav-link.active,
+.nav-pills .nav-link.active {
+  background: rgba(95, 168, 255, 0.18) !important;
+  color: var(--graphite-accent-2) !important;
+  box-shadow: inset 3px 0 0 var(--graphite-accent);
+}
+

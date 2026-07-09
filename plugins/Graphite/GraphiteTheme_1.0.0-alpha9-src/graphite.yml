@@ -1,0 +1,7 @@
+name: Graphite Theme
+description: Graphite 1.0.0-alpha9 split into editable source CSS partials. Runtime CSS remains compiled.
+version: 1.0.0-alpha9-src
+url: https://docs.stashapp.cc/themes/
+ui:
+  css:
+    - graphite/graphite.css

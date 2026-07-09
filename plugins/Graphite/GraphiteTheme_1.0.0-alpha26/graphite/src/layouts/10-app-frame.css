@@ -1,0 +1,43 @@
+/* Main content containers */
+.main,
+.main-content,
+.content,
+.page,
+.container-fluid,
+.tab-content {
+  background: transparent !important;
+}
+
+.card,
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card,
+.tag-card,
+.scrape-dialog,
+.modal-content,
+.popover,
+.dropdown-menu,
+.list-group-item,
+.accordion,
+.accordion-item {
+  background: var(--graphite-panel) !important;
+  border: 1px solid var(--graphite-border-soft) !important;
+  border-radius: var(--graphite-radius) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none;
+}
+
+.card-header,
+.card-footer,
+.modal-header,
+.modal-footer,
+.accordion-header,
+.dropdown-header {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+}
+

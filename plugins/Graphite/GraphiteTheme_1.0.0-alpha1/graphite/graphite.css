@@ -1,0 +1,1415 @@
+/*
+  Graphite Theme for Stash 0.31.x
+  Lightweight CSS-only theme. No JS. No layout-rewrite nonsense.
+*/
+
+:root {
+  --graphite-bg: #17191d;
+  --graphite-bg-2: #1c2026;
+  --graphite-panel: #20242a;
+  --graphite-panel-2: #252a31;
+  --graphite-panel-3: #2b313a;
+  --graphite-hover: #313842;
+  --graphite-border: #3a414c;
+  --graphite-border-soft: rgba(236, 239, 244, 0.09);
+  --graphite-text: #eceff4;
+  --graphite-text-soft: #c8ced8;
+  --graphite-muted: #9ca5b1;
+  --graphite-muted-2: #77818e;
+  --graphite-accent: #5fa8ff;
+  --graphite-accent-2: #8cc2ff;
+  --graphite-success: #58d68d;
+  --graphite-warning: #f5c542;
+  --graphite-danger: #ff6b6b;
+  --graphite-radius-sm: 8px;
+  --graphite-radius: 12px;
+  --graphite-radius-lg: 16px;
+  --graphite-shadow: 0 4px 14px rgba(0, 0, 0, 0.26);
+  --graphite-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.18);
+  --graphite-font: "Figtree", "Roboto Flex", "Lexend", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root,
+.App {
+  background: var(--graphite-bg) !important;
+  color: var(--graphite-text) !important;
+  font-family: var(--graphite-font) !important;
+  letter-spacing: 0.005em;
+}
+
+body {
+  scrollbar-color: var(--graphite-border) var(--graphite-bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--graphite-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--graphite-border);
+  border: 2px solid var(--graphite-bg);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--graphite-muted-2);
+}
+
+/* Global text */
+a,
+.btn-link,
+.nav-link {
+  color: var(--graphite-accent-2) !important;
+}
+
+a:hover,
+.btn-link:hover,
+.nav-link:hover {
+  color: var(--graphite-accent) !important;
+  text-decoration: none !important;
+}
+
+.text-muted,
+.muted,
+small,
+.metadata,
+.scene-card__details,
+.performer-card__details,
+.movie-card__details,
+.studio-card__details {
+  color: var(--graphite-muted) !important;
+}
+
+hr {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+/* App frame / nav */
+.navbar,
+.navbar.bg-dark,
+.bg-dark,
+.sidebar,
+.sidebar-content,
+.main-nav,
+.top-nav {
+  background: var(--graphite-bg-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.navbar {
+  box-shadow: var(--graphite-shadow-soft);
+}
+
+.sidebar .nav-link,
+.navbar .nav-link {
+  border-radius: var(--graphite-radius-sm);
+  color: var(--graphite-text-soft) !important;
+  margin: 2px 6px;
+  padding: 0.45rem 0.65rem !important;
+}
+
+.sidebar .nav-link:hover,
+.navbar .nav-link:hover {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.sidebar .nav-link.active,
+.navbar .nav-link.active,
+.nav-pills .nav-link.active {
+  background: rgba(95, 168, 255, 0.18) !important;
+  color: var(--graphite-accent-2) !important;
+  box-shadow: inset 3px 0 0 var(--graphite-accent);
+}
+
+/* Main content containers */
+.main,
+.main-content,
+.content,
+.page,
+.container-fluid,
+.tab-content {
+  background: transparent !important;
+}
+
+.card,
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card,
+.tag-card,
+.scrape-dialog,
+.modal-content,
+.popover,
+.dropdown-menu,
+.list-group-item,
+.accordion,
+.accordion-item {
+  background: var(--graphite-panel) !important;
+  border: 1px solid var(--graphite-border-soft) !important;
+  border-radius: var(--graphite-radius) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none;
+}
+
+.card-header,
+.card-footer,
+.modal-header,
+.modal-footer,
+.accordion-header,
+.dropdown-header {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Cards: cleaner, compact, still recognizably Stash */
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card {
+  overflow: hidden;
+  transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  background: var(--graphite-panel-2) !important;
+  border-color: rgba(95, 168, 255, 0.28) !important;
+  box-shadow: var(--graphite-shadow);
+  transform: translateY(-2px);
+}
+
+.scene-card img,
+.performer-card img,
+.movie-card img,
+.studio-card img,
+.gallery-card img,
+.image-card img,
+.card-img,
+.card-img-top {
+  border-radius: calc(var(--graphite-radius) - 2px) !important;
+}
+
+.card-body,
+.scene-card .card-body,
+.performer-card .card-body,
+.movie-card .card-body,
+.studio-card .card-body {
+  padding: 0.65rem 0.7rem !important;
+}
+
+.card-title,
+.scene-card .card-title,
+.performer-card .card-title,
+.movie-card .card-title,
+.studio-card .card-title {
+  color: var(--graphite-text) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin-bottom: 0.28rem !important;
+}
+
+.card-text,
+.card-subtitle {
+  color: var(--graphite-muted) !important;
+  line-height: 1.25;
+}
+
+/* Buttons */
+.btn {
+  border-radius: var(--graphite-radius-sm) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  padding: 0.42rem 0.72rem !important;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--graphite-accent) !important;
+  border-color: var(--graphite-accent) !important;
+  color: #08111d !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--graphite-accent-2) !important;
+  border-color: var(--graphite-accent-2) !important;
+}
+
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light {
+  background: var(--graphite-panel-3) !important;
+  border-color: var(--graphite-border) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.btn-secondary:hover,
+.btn-dark:hover,
+.btn-outline-secondary:hover,
+.btn-outline-light:hover {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.btn-danger {
+  background: rgba(255, 107, 107, 0.16) !important;
+  border-color: rgba(255, 107, 107, 0.35) !important;
+  color: #ff9b9b !important;
+}
+
+.btn-success {
+  background: rgba(88, 214, 141, 0.16) !important;
+  border-color: rgba(88, 214, 141, 0.35) !important;
+  color: #8ff0b5 !important;
+}
+
+/* Inputs */
+.form-control,
+.form-select,
+.input-group-text,
+.react-select__control,
+.select-control,
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+select {
+  background: var(--graphite-panel-2) !important;
+  border: 1px solid var(--graphite-border) !important;
+  border-radius: var(--graphite-radius-sm) !important;
+  color: var(--graphite-text) !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus,
+input:focus,
+select:focus {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-accent) !important;
+  box-shadow: 0 0 0 0.18rem rgba(95, 168, 255, 0.18) !important;
+  color: var(--graphite-text) !important;
+}
+
+::placeholder {
+  color: var(--graphite-muted-2) !important;
+}
+
+/* Dropdowns and menus */
+.dropdown-item {
+  border-radius: var(--graphite-radius-sm);
+  color: var(--graphite-text-soft) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item.active {
+  background: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Tables */
+.table,
+table {
+  color: var(--graphite-text-soft) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.table thead th,
+thead th {
+  background: var(--graphite-panel-2) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table td,
+.table th,
+td,
+th {
+  border-color: var(--graphite-border-soft) !important;
+  padding: 0.48rem 0.58rem !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.018) !important;
+}
+
+tbody tr:hover {
+  background: rgba(95, 168, 255, 0.07) !important;
+}
+
+/* Tags / badges / metadata pills */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag,
+.btn-group-sm > .btn,
+.btn-sm {
+  border-radius: 999px !important;
+}
+
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  background: rgba(95, 168, 255, 0.13) !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  color: var(--graphite-accent-2) !important;
+  font-weight: 650 !important;
+  line-height: 1.15;
+  padding: 0.24rem 0.48rem !important;
+}
+
+.badge-secondary,
+.bg-secondary {
+  background: rgba(156, 165, 177, 0.16) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.badge-success,
+.bg-success {
+  background: rgba(88, 214, 141, 0.16) !important;
+  color: #8ff0b5 !important;
+}
+
+.badge-warning,
+.bg-warning {
+  background: rgba(245, 197, 66, 0.16) !important;
+  color: #ffd96d !important;
+}
+
+.badge-danger,
+.bg-danger {
+  background: rgba(255, 107, 107, 0.16) !important;
+  color: #ff9b9b !important;
+}
+
+/* Tabs */
+.nav-tabs {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.nav-tabs .nav-link {
+  border: 0 !important;
+  border-radius: var(--graphite-radius-sm) var(--graphite-radius-sm) 0 0 !important;
+  color: var(--graphite-muted) !important;
+}
+
+.nav-tabs .nav-link.active {
+  background: var(--graphite-panel) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: inset 0 -2px 0 var(--graphite-accent);
+}
+
+/* Modals */
+.modal-backdrop.show {
+  opacity: 0.72 !important;
+}
+
+.modal-content {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+.modal-title {
+  font-weight: 750;
+}
+
+.close,
+.btn-close {
+  filter: invert(1) grayscale(1);
+  opacity: 0.8;
+}
+
+/* Alerts */
+.alert {
+  border-radius: var(--graphite-radius) !important;
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.alert-info {
+  background: rgba(95, 168, 255, 0.13) !important;
+  color: #b8dbff !important;
+}
+
+.alert-warning {
+  background: rgba(245, 197, 66, 0.13) !important;
+  color: #ffe08a !important;
+}
+
+.alert-danger {
+  background: rgba(255, 107, 107, 0.13) !important;
+  color: #ffb0b0 !important;
+}
+
+.alert-success {
+  background: rgba(88, 214, 141, 0.13) !important;
+  color: #a3f3c3 !important;
+}
+
+/* Details pages */
+.detail-header,
+.scene-details,
+.performer-details,
+.movie-details,
+.studio-details,
+.gallery-details,
+.image-details {
+  background: transparent !important;
+}
+
+.detail-header .card,
+.scene-details .card,
+.performer-details .card,
+.movie-details .card,
+.studio-details .card {
+  background: var(--graphite-panel) !important;
+}
+
+/* Search / filter areas */
+.filter-container,
+.search-container,
+.query-text-field,
+.operation-buttons,
+.toolbar,
+.btn-toolbar {
+  background: transparent !important;
+}
+
+.filter-container .card,
+.search-container .card,
+.toolbar .card {
+  background: var(--graphite-panel) !important;
+}
+
+/* Slight density improvements */
+.form-group,
+.mb-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+h1,
+.h1 {
+  font-size: 1.85rem !important;
+}
+
+h2,
+.h2 {
+  font-size: 1.48rem !important;
+}
+
+h3,
+.h3 {
+  font-size: 1.22rem !important;
+}
+
+h4,
+.h4,
+.card-title {
+  font-size: 1rem !important;
+}
+
+/* Progress / sliders */
+.progress {
+  background: var(--graphite-panel-3) !important;
+  border-radius: 999px !important;
+}
+
+.progress-bar {
+  background: var(--graphite-accent) !important;
+}
+
+input[type="range"] {
+  accent-color: var(--graphite-accent);
+}
+
+/* Toasts */
+.toast,
+.toast-header {
+  background: var(--graphite-panel) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Keep media overlays readable */
+.overlay,
+.card-img-overlay,
+.video-js,
+.vjs-control-bar {
+  color: var(--graphite-text) !important;
+}
+
+/* Reduce motion for sanity and old GPUs with grudges */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* v0.1.1 fixes: dropdowns need to be solid, because translucent menus are a crime. */
+.dropdown-menu,
+.dropdown-menu.show,
+.popover,
+.tooltip-inner,
+.react-select__menu,
+.react-select__menu-list,
+.react-select__option,
+[class*="menuPortal"],
+[class*="MenuPortal"],
+[class*="menu-list"],
+[class*="MenuList"] {
+  background-color: var(--graphite-panel) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-image: none !important;
+}
+
+.dropdown-menu {
+  background-clip: padding-box !important;
+  overflow: hidden !important;
+}
+
+.dropdown-menu .dropdown-item,
+.dropdown-menu button,
+.dropdown-menu a,
+.dropdown-menu li,
+.dropdown-menu .btn,
+.dropdown-menu .btn-link {
+  background-color: transparent !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu button:hover,
+.dropdown-menu button:focus,
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+  background-color: var(--graphite-hover) !important;
+  color: var(--graphite-text) !important;
+}
+
+.dropdown-menu::before,
+.dropdown-menu::after,
+.popover::before,
+.popover::after {
+  opacity: 1 !important;
+}
+
+/* v0.1.1 fixes: Stash image preview/zoom overlay buttons should not become chunky blue censor stickers. */
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card .btn-primary[class*="overlay"],
+.gallery-card .btn-primary[class*="overlay"],
+.image-card .btn-primary[class*="overlay"],
+.scene-card .fa-search,
+.gallery-card .fa-search,
+.image-card .fa-search,
+.scene-card svg[data-icon="search"],
+.gallery-card svg[data-icon="search"],
+.image-card svg[data-icon="search"] {
+  background-color: rgba(8, 17, 29, 0.72) !important;
+  border-color: rgba(236, 239, 244, 0.18) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card .btn-primary[class*="overlay"],
+.gallery-card .btn-primary[class*="overlay"],
+.image-card .btn-primary[class*="overlay"] {
+  width: auto !important;
+  height: auto !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  padding: 0.45rem !important;
+  border-radius: 999px !important;
+}
+
+.card-img-overlay .btn-primary:hover,
+.scene-card .btn-primary.position-absolute:hover,
+.gallery-card .btn-primary.position-absolute:hover,
+.image-card .btn-primary.position-absolute:hover {
+  background-color: rgba(49, 56, 66, 0.88) !important;
+  transform: none !important;
+}
+
+/* v0.1.2 fixes: make the card/image preview magnifier overlay behave like an icon, not a Fisher-Price censor block. */
+.scene-card [class*="preview"] .btn,
+.scene-card [class*="Preview"] .btn,
+.scene-card [class*="thumbnail"] .btn,
+.scene-card [class*="Thumbnail"] .btn,
+.gallery-card [class*="preview"] .btn,
+.gallery-card [class*="Preview"] .btn,
+.gallery-card [class*="thumbnail"] .btn,
+.gallery-card [class*="Thumbnail"] .btn,
+.image-card [class*="preview"] .btn,
+.image-card [class*="Preview"] .btn,
+.image-card [class*="thumbnail"] .btn,
+.image-card [class*="Thumbnail"] .btn,
+.scene-card [class*="image"] .btn-primary,
+.gallery-card [class*="image"] .btn-primary,
+.image-card [class*="image"] .btn-primary,
+.scene-card button[title*="Preview"],
+.scene-card button[title*="Zoom"],
+.scene-card button[title*="View"],
+.gallery-card button[title*="Preview"],
+.gallery-card button[title*="Zoom"],
+.gallery-card button[title*="View"],
+.image-card button[title*="Preview"],
+.image-card button[title*="Zoom"],
+.image-card button[title*="View"] {
+  background: rgba(8, 17, 29, 0.48) !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  border-radius: 999px !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+  min-width: 1.9rem !important;
+  min-height: 1.9rem !important;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.scene-card [class*="preview"] .btn:hover,
+.scene-card [class*="Preview"] .btn:hover,
+.scene-card [class*="thumbnail"] .btn:hover,
+.scene-card [class*="Thumbnail"] .btn:hover,
+.gallery-card [class*="preview"] .btn:hover,
+.gallery-card [class*="Preview"] .btn:hover,
+.gallery-card [class*="thumbnail"] .btn:hover,
+.gallery-card [class*="Thumbnail"] .btn:hover,
+.image-card [class*="preview"] .btn:hover,
+.image-card [class*="Preview"] .btn:hover,
+.image-card [class*="thumbnail"] .btn:hover,
+.image-card [class*="Thumbnail"] .btn:hover,
+.scene-card [class*="image"] .btn-primary:hover,
+.gallery-card [class*="image"] .btn-primary:hover,
+.image-card [class*="image"] .btn-primary:hover {
+  background: rgba(8, 17, 29, 0.72) !important;
+  transform: none !important;
+}
+
+/* v0.1.2 density pass: slimmer pills and compact action buttons. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  padding: 0.16rem 0.36rem !important;
+  line-height: 1.05 !important;
+  font-size: 0.78rem !important;
+}
+
+.btn-sm,
+.btn-group-sm > .btn,
+.card-footer .btn,
+.scene-card .btn-group .btn,
+.gallery-card .btn-group .btn,
+.image-card .btn-group .btn,
+.performer-card .btn-group .btn,
+.movie-card .btn-group .btn,
+.studio-card .btn-group .btn {
+  padding: 0.24rem 0.44rem !important;
+  min-height: 1.75rem !important;
+  line-height: 1.1 !important;
+}
+
+/* v0.1.3: calm the card counter/action pills. The blue was getting main-character syndrome. */
+.card-footer .btn,
+.scene-card .btn-group .btn,
+.gallery-card .btn-group .btn,
+.image-card .btn-group .btn,
+.performer-card .btn-group .btn,
+.movie-card .btn-group .btn,
+.studio-card .btn-group .btn,
+.scene-card .btn-primary:not(.position-absolute),
+.gallery-card .btn-primary:not(.position-absolute),
+.image-card .btn-primary:not(.position-absolute) {
+  background: rgba(32, 36, 42, 0.82) !important;
+  border: 1px solid rgba(95, 168, 255, 0.32) !important;
+  color: var(--graphite-text-soft) !important;
+  border-radius: 0.48rem !important;
+  padding: 0.18rem 0.38rem !important;
+  min-height: 1.45rem !important;
+  line-height: 1 !important;
+  font-size: 0.78rem !important;
+  box-shadow: none !important;
+}
+
+.card-footer .btn:hover,
+.scene-card .btn-group .btn:hover,
+.gallery-card .btn-group .btn:hover,
+.image-card .btn-group .btn:hover,
+.performer-card .btn-group .btn:hover,
+.movie-card .btn-group .btn:hover,
+.studio-card .btn-group .btn:hover,
+.scene-card .btn-primary:not(.position-absolute):hover,
+.gallery-card .btn-primary:not(.position-absolute):hover,
+.image-card .btn-primary:not(.position-absolute):hover {
+  background: rgba(49, 56, 66, 0.95) !important;
+  border-color: rgba(95, 168, 255, 0.52) !important;
+  color: var(--graphite-text) !important;
+  transform: none !important;
+}
+
+.card-footer .btn svg,
+.scene-card .btn-group .btn svg,
+.gallery-card .btn-group .btn svg,
+.image-card .btn-group .btn svg,
+.performer-card .btn-group .btn svg,
+.movie-card .btn-group .btn svg,
+.studio-card .btn-group .btn svg,
+.card-footer .btn .fa,
+.scene-card .btn-group .btn .fa,
+.gallery-card .btn-group .btn .fa,
+.image-card .btn-group .btn .fa {
+  color: var(--graphite-accent-2) !important;
+}
+
+.card-footer,
+.scene-card .card-footer,
+.gallery-card .card-footer,
+.image-card .card-footer,
+.performer-card .card-footer,
+.movie-card .card-footer,
+.studio-card .card-footer {
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+
+/* -------------------------------------------------------------------------
+   Graphite v0.2.0 design-system pass
+   Principle: blue means state, not decoration. Wild concept, apparently.
+------------------------------------------------------------------------- */
+:root {
+  --g-bg-0: #16191e;
+  --g-bg-1: #1b2026;
+  --g-surface-1: #20262d;
+  --g-surface-2: #26303a;
+  --g-surface-3: #303945;
+  --g-border-1: rgba(219, 229, 241, 0.10);
+  --g-border-2: rgba(219, 229, 241, 0.16);
+  --g-text-1: #f0f4f8;
+  --g-text-2: #c9d1dc;
+  --g-text-3: #9aa6b4;
+  --g-accent: #5fa8ff;
+  --g-accent-soft: rgba(95, 168, 255, 0.14);
+  --g-accent-border: rgba(95, 168, 255, 0.36);
+  --g-radius-control: 8px;
+  --g-radius-card: 12px;
+  --g-space-1: 0.25rem;
+  --g-space-2: 0.5rem;
+  --g-space-3: 0.75rem;
+  --g-space-4: 1rem;
+}
+
+/* App chrome */
+.navbar,
+.navbar.bg-dark,
+.navbar-dark,
+.bg-dark,
+.top-nav,
+.main-nav {
+  background: var(--g-bg-1) !important;
+  border-bottom: 1px solid var(--g-border-1) !important;
+  box-shadow: none !important;
+  min-height: 3.05rem !important;
+  padding-top: 0.32rem !important;
+  padding-bottom: 0.32rem !important;
+}
+
+.navbar .container-fluid,
+.navbar .container,
+.navbar-nav,
+.nav {
+  align-items: center !important;
+}
+
+/* Global top navigation: compact, not giant blue app-store buttons. */
+.navbar .nav-link,
+.navbar .btn,
+.navbar a.btn,
+.navbar button.btn,
+.top-nav .nav-link,
+.top-nav .btn,
+.main-nav .nav-link,
+.main-nav .btn {
+  min-height: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem 0.62rem !important;
+  margin: 0 0.16rem !important;
+  border-radius: var(--g-radius-control) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--g-text-2) !important;
+  box-shadow: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 650 !important;
+  line-height: 1.1 !important;
+  transform: none !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover,
+.top-nav .nav-link:hover,
+.top-nav .btn:hover,
+.main-nav .nav-link:hover,
+.main-nav .btn:hover {
+  background: var(--g-surface-2) !important;
+  border-color: var(--g-border-2) !important;
+  color: var(--g-text-1) !important;
+  transform: none !important;
+}
+
+.navbar .nav-link.active,
+.navbar .btn.active,
+.navbar .btn-primary,
+.navbar .btn-primary:focus,
+.top-nav .nav-link.active,
+.top-nav .btn.active,
+.main-nav .nav-link.active,
+.main-nav .btn.active {
+  background: var(--g-accent-soft) !important;
+  border-color: var(--g-accent-border) !important;
+  color: var(--g-text-1) !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent) !important;
+}
+
+.navbar .nav-link svg,
+.navbar .btn svg,
+.navbar .nav-link .fa,
+.navbar .btn .fa,
+.top-nav svg,
+.main-nav svg {
+  margin-right: 0.32rem !important;
+  opacity: 0.95;
+}
+
+/* Buttons: default to graphite. Accent only when state matters. */
+.btn-primary:not(.navbar .btn-primary):not(.top-nav .btn-primary):not(.main-nav .btn-primary) {
+  background: var(--g-accent) !important;
+  border-color: var(--g-accent) !important;
+}
+
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light,
+.detail-header .btn,
+.scene-details .btn,
+.performer-details .btn,
+.movie-details .btn,
+.studio-details .btn,
+.gallery-details .btn,
+.image-details .btn {
+  background: var(--g-surface-2) !important;
+  border: 1px solid var(--g-border-1) !important;
+  color: var(--g-text-2) !important;
+  box-shadow: none !important;
+}
+
+.detail-header .btn:hover,
+.scene-details .btn:hover,
+.performer-details .btn:hover,
+.movie-details .btn:hover,
+.studio-details .btn:hover,
+.gallery-details .btn:hover,
+.image-details .btn:hover {
+  background: var(--g-surface-3) !important;
+  border-color: var(--g-border-2) !important;
+  color: var(--g-text-1) !important;
+  transform: none !important;
+}
+
+/* Detail pages: restore rhythm and stop the blue divider from auditioning for Broadway. */
+.detail-header,
+.scene-details,
+.performer-details,
+.movie-details,
+.studio-details,
+.gallery-details,
+.image-details {
+  background: var(--g-bg-1) !important;
+}
+
+.detail-header h1,
+.scene-details h1,
+.performer-details h1,
+.movie-details h1,
+.studio-details h1,
+.gallery-details h1,
+.image-details h1 {
+  margin-bottom: 0.9rem !important;
+}
+
+.scene-details h2,
+.scene-details .title,
+.detail-header h2,
+.detail-header .title {
+  margin-top: 0.8rem !important;
+  margin-bottom: 0.55rem !important;
+}
+
+/* Split panes / gutters / resizers: subtle divider, never accent blue. */
+.gutter,
+.gutter-horizontal,
+.gutter-vertical,
+.Resizer,
+.Resizer.vertical,
+.Resizer.horizontal,
+[class*="gutter"],
+[class*="Gutter"],
+[class*="resizer"],
+[class*="Resizer"],
+[class*="resize-handle"],
+[class*="ResizeHandle"],
+[class*="splitter"],
+[class*="Splitter"] {
+  background: var(--g-border-1) !important;
+  background-color: var(--g-border-1) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.gutter-horizontal,
+.Resizer.vertical,
+[class*="gutter-horizontal"],
+[class*="vertical"] [class*="Resizer"] {
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+}
+
+/* Scene/detail action row: compact graphite controls. */
+.scene-details .btn,
+.detail-header .btn,
+.performer-details .btn,
+.movie-details .btn,
+.studio-details .btn,
+.gallery-details .btn,
+.image-details .btn {
+  min-height: 2rem !important;
+  padding: 0.32rem 0.5rem !important;
+  border-radius: var(--g-radius-control) !important;
+}
+
+/* Tabs: slim underline, less Bootstrap cosplay. */
+.nav-tabs {
+  border-bottom: 1px solid var(--g-border-1) !important;
+  gap: 0.25rem;
+}
+
+.nav-tabs .nav-link,
+.scene-details .nav-tabs .nav-link,
+.detail-header .nav-tabs .nav-link {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--g-text-3) !important;
+  padding: 0.48rem 0.5rem !important;
+  margin: 0 !important;
+  font-weight: 650 !important;
+  box-shadow: none !important;
+}
+
+.nav-tabs .nav-link:hover,
+.scene-details .nav-tabs .nav-link:hover,
+.detail-header .nav-tabs .nav-link:hover {
+  color: var(--g-text-1) !important;
+  background: transparent !important;
+}
+
+.nav-tabs .nav-link.active,
+.scene-details .nav-tabs .nav-link.active,
+.detail-header .nav-tabs .nav-link.active {
+  color: var(--g-accent) !important;
+  background: transparent !important;
+  box-shadow: inset 0 -2px 0 var(--g-accent) !important;
+}
+
+/* Tags: keep the v0.1.3 size Jason liked, but make the color less noisy on detail pages. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  font-size: 0.78rem !important;
+  line-height: 1.05 !important;
+  padding: 0.16rem 0.36rem !important;
+}
+
+.scene-details .badge,
+.scene-details .tag-item,
+.scene-details .tag,
+.scene-details .scene-tag,
+.detail-header .badge,
+.detail-header .tag-item,
+.detail-header .tag,
+.detail-header .scene-tag {
+  background: rgba(38, 48, 58, 0.94) !important;
+  border: 1px solid rgba(95, 168, 255, 0.28) !important;
+  color: #b9d8fb !important;
+}
+
+.scene-details .badge:hover,
+.scene-details .tag-item:hover,
+.scene-details .tag:hover,
+.scene-details .scene-tag:hover {
+  background: rgba(48, 57, 69, 0.98) !important;
+  border-color: rgba(95, 168, 255, 0.45) !important;
+}
+
+/* Cards: tiny cleanup to match the new system without changing the layout. */
+.card,
+.scene-card,
+.performer-card,
+.movie-card,
+.studio-card,
+.gallery-card,
+.image-card {
+  background: var(--g-surface-1) !important;
+  border-color: var(--g-border-1) !important;
+}
+
+.scene-card:hover,
+.performer-card:hover,
+.movie-card:hover,
+.studio-card:hover,
+.gallery-card:hover,
+.image-card:hover {
+  background: var(--g-surface-2) !important;
+  border-color: rgba(95, 168, 255, 0.26) !important;
+}
+
+/* Image zoom buttons: preserve v0.1.3 fix after the button pass. */
+.card-img-overlay .btn-primary,
+.scene-card .btn-primary.position-absolute,
+.gallery-card .btn-primary.position-absolute,
+.image-card .btn-primary.position-absolute,
+.scene-card button[title*="Preview"],
+.scene-card button[title*="Zoom"],
+.scene-card button[title*="View"],
+.gallery-card button[title*="Preview"],
+.gallery-card button[title*="Zoom"],
+.gallery-card button[title*="View"],
+.image-card button[title*="Preview"],
+.image-card button[title*="Zoom"],
+.image-card button[title*="View"] {
+  background: rgba(8, 17, 29, 0.48) !important;
+  border: 1px solid rgba(236, 239, 244, 0.16) !important;
+  color: var(--graphite-text) !important;
+  border-radius: 999px !important;
+  min-width: 1.9rem !important;
+  min-height: 1.9rem !important;
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  padding: 0.28rem !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+
+/* =========================================================
+   Graphite 1.0.0-alpha1 design-system cleanup
+   ---------------------------------------------------------
+   Rules:
+   - Accent blue means active/focus/hover, not random decoration.
+   - Keep detail layouts familiar; refine spacing only.
+   - Tags retain the Graphite 0.1.3 look.
+   ========================================================= */
+
+:root {
+  --graphite-space-1: 4px;
+  --graphite-space-2: 8px;
+  --graphite-space-3: 12px;
+  --graphite-space-4: 16px;
+  --graphite-space-5: 24px;
+
+  --graphite-surface-0: #17191d;
+  --graphite-surface-1: #1c2026;
+  --graphite-surface-2: #20242a;
+  --graphite-surface-3: #252a31;
+  --graphite-surface-4: #2b313a;
+
+  --graphite-radius-xs: 6px;
+  --graphite-radius-sm: 8px;
+  --graphite-radius: 12px;
+  --graphite-radius-lg: 16px;
+}
+
+/* Global nav: same pages, less cafeteria-tray padding. */
+.navbar .nav-link,
+.navbar .btn,
+.main-nav .nav-link,
+.top-nav .nav-link,
+.nav-pills .nav-link {
+  min-height: 32px !important;
+  padding: 0.34rem 0.62rem !important;
+  line-height: 1.15 !important;
+}
+
+.navbar .btn,
+.btn-toolbar .btn,
+.operation-buttons .btn {
+  padding-top: 0.34rem !important;
+  padding-bottom: 0.34rem !important;
+}
+
+/* Buttons: neutral by default, blue only when it has a job. */
+.btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning),
+.btn-secondary,
+.btn-dark,
+.btn-outline-secondary,
+.btn-outline-light {
+  background: var(--graphite-surface-4) !important;
+  border-color: var(--graphite-border-soft) !important;
+  color: var(--graphite-text-soft) !important;
+}
+
+.btn:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):hover,
+.btn-secondary:hover,
+.btn-dark:hover,
+.btn-outline-secondary:hover,
+.btn-outline-light:hover {
+  background: var(--graphite-hover) !important;
+  border-color: rgba(95, 168, 255, 0.32) !important;
+  color: var(--graphite-text) !important;
+}
+
+/* Detail-page splitters: kill the giant blue lightsaber. */
+.scene-detail-container,
+.scene-details-container,
+.detail-container,
+.scene-player-container,
+.scene-tabs-container,
+.scene-details,
+.scene-page,
+.details-page {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.scene-detail-container > *,
+.scene-details-container > *,
+.detail-container > *,
+.scene-page > *,
+.details-page > * {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+.scene-detail-container .col,
+.scene-detail-container [class*="col-"],
+.scene-details-container .col,
+.scene-details-container [class*="col-"],
+.detail-container .col,
+.detail-container [class*="col-"] {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+/* Common Stash splitter/resizer classes and generic draggable separators. */
+.gutter,
+.gutter-horizontal,
+.gutter-vertical,
+.Resizer,
+.Resizer.horizontal,
+.Resizer.vertical,
+.SplitPane .Resizer,
+.Pane.vertical.Pane1 + .Resizer,
+[class*="splitter"],
+[class*="Splitter"],
+[class*="resizer"],
+[class*="Resizer"],
+[class*="gutter"] {
+  background: var(--graphite-border-soft) !important;
+  border-color: var(--graphite-border-soft) !important;
+  box-shadow: none !important;
+}
+
+.gutter-horizontal,
+.Resizer.vertical,
+[class*="gutter-horizontal"],
+[class*="vertical"][class*="Resizer"] {
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+}
+
+.gutter-vertical,
+.Resizer.horizontal,
+[class*="gutter-vertical"],
+[class*="horizontal"][class*="Resizer"] {
+  height: 1px !important;
+  min-height: 1px !important;
+  max-height: 1px !important;
+}
+
+/* Remove accidental accent borders on detail panes. */
+.scene-details [style*="border"],
+.detail-header [style*="border"],
+.scene-tabs-container [style*="border"] {
+  border-color: var(--graphite-border-soft) !important;
+}
+
+/* Scene detail rhythm. Don't redesign; just stop the metadata traffic jam. */
+.scene-details .card-body,
+.detail-header .card-body,
+.scene-detail-container .card-body {
+  padding: var(--graphite-space-3) !important;
+}
+
+.scene-details h1,
+.scene-details h2,
+.detail-header h1,
+.detail-header h2 {
+  line-height: 1.16 !important;
+  margin-bottom: var(--graphite-space-2) !important;
+}
+
+.scene-details .rating-stars,
+.scene-details .star-rating,
+.detail-header .rating-stars,
+.detail-header .star-rating {
+  margin: var(--graphite-space-2) 0 !important;
+}
+
+/* Tabs: quieter, smaller, active line instead of active blob. */
+.nav-tabs .nav-link,
+.scene-tabs .nav-link,
+.detail-tabs .nav-link {
+  padding: 0.42rem 0.68rem !important;
+  color: var(--graphite-muted) !important;
+  background: transparent !important;
+}
+
+.nav-tabs .nav-link.active,
+.scene-tabs .nav-link.active,
+.detail-tabs .nav-link.active {
+  background: transparent !important;
+  color: var(--graphite-text) !important;
+  box-shadow: inset 0 -2px 0 var(--graphite-accent) !important;
+}
+
+/* Keep Graphite 0.1.3-style tags: small, calm, blue-tinted, not billboard-sized. */
+.badge,
+.tag-item,
+.tag,
+.label,
+.scene-tag,
+.performer-tag,
+.movie-tag,
+.studio-tag {
+  background: rgba(95, 168, 255, 0.13) !important;
+  border: 1px solid rgba(95, 168, 255, 0.22) !important;
+  color: var(--graphite-accent-2) !important;
+  border-radius: 999px !important;
+  font-weight: 650 !important;
+  line-height: 1.15 !important;
+  padding: 0.24rem 0.48rem !important;
+}
+
+/* Image preview / zoom overlay: transparent button, visible icon, no blue censor square. */
+.image-card .btn,
+.gallery-card .btn,
+.scene-card-preview .btn,
+.scene-card .preview-button,
+.scene-card .image-preview-button,
+.scene-card [class*="Preview"] .btn,
+.scene-card [class*="Zoom"] .btn,
+.image-card [class*="Preview"] .btn,
+.image-card [class*="Zoom"] .btn,
+[class*="preview"] .btn,
+[class*="zoom"] .btn,
+[class*="Zoom"] .btn {
+  background: rgba(0, 0, 0, 0.34) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: var(--graphite-text) !important;
+  box-shadow: none !important;
+}
+
+.image-card .btn:hover,
+.gallery-card .btn:hover,
+[class*="preview"] .btn:hover,
+[class*="zoom"] .btn:hover,
+[class*="Zoom"] .btn:hover {
+  background: rgba(0, 0, 0, 0.52) !important;
+  border-color: rgba(95, 168, 255, 0.38) !important;
+}
+
+/* Dropdown/menu transparency fixes from prototype are now foundation. */
+.dropdown-menu,
+.popover,
+.tooltip-inner,
+.react-select__menu,
+[class*="menu"] [role="listbox"] {
+  background: var(--graphite-panel) !important;
+  border: 1px solid var(--graphite-border) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42) !important;
+  overflow: hidden;
+}
+
+.dropdown-item,
+.react-select__option,
+[role="option"] {
+  background-clip: padding-box !important;
+}
