@@ -11,7 +11,7 @@ from stashapi.scrape_parser import ScrapeParser
 # Hardcoded scraper — matches the imagescraper
 # folder name (scraper ID as Stash sees it)
 # ─────────────────────────────────────────────
-SCRAPER_ID: str = "imagescraper"
+SCRAPER_ID: str = "01 FanScraper"
 
 # Settings — mirror the defaults from BulkImageScrape
 # so behavior is consistent. Edit here if needed.
