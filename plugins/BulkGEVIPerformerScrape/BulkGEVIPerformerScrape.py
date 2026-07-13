@@ -125,6 +125,21 @@ def float_value(value: Any) -> float | None:
     return float(match.group()) if match else None
 
 
+
+
+def circumcised_value(value: Any) -> str | None:
+    if value is None or value == "":
+        return None
+    normalized = normalize(str(value)).replace("-", " ")
+    mapping = {
+        "cut": "CUT",
+        "circumcised": "CUT",
+        "uncut": "UNCUT",
+        "uncircumcised": "UNCUT",
+        "un cut": "UNCUT",
+    }
+    return mapping.get(normalized)
+
 def find_gevi_scraper(stash: StashGraphQL) -> str:
     query = """
       query FindScrapers { listScrapers(types: [PERFORMER]) { id name performer { supported_scrapes } } }
@@ -214,7 +229,6 @@ def selected_update(performer: dict[str, Any], scraped: dict[str, Any], options:
         "ethnicity": "ethnicity",
         "country": "country",
         "eye_color": "eye_color",
-        "circumcised": "circumcised",
         "tattoos": "tattoos",
         "details": "details",
         "death_date": "death_date",
@@ -223,6 +237,11 @@ def selected_update(performer: dict[str, Any], scraped: dict[str, Any], options:
     for selected, gql_field in direct_map.items():
         if selected in fields and scraped.get(selected) is not None:
             update[gql_field] = scraped[selected]
+
+    if "circumcised" in fields:
+        value = circumcised_value(scraped.get("circumcised"))
+        if value is not None:
+            update["circumcised"] = value
 
     if "height" in fields:
         value = integer_value(scraped.get("height"))

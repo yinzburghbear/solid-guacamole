@@ -1,6 +1,6 @@
 name: Bulk GEVI Performer Scrape
 description: Bulk scrape selected performers with the installed GEVI scraper, applying only explicitly selected fields.
-version: 1.0.3
+version: 1.0.4
 url: https://github.com/yinzburghbear/solid-guacamole
 exec:
   - python

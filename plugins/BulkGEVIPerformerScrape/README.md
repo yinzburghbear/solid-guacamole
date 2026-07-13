@@ -28,6 +28,7 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 - `BulkGEVIPerformerScrape.js` — performer-list bulk action and field-selection dialog
 - `BulkGEVIPerformerScrape.py` — matching, scraping, field filtering, updates, and skipped tagging
 
+
 ## 1.0.1
 
 - Uses Stash's `{pluginDir}` substitution to launch the backend from any plugin installation path.
@@ -43,3 +44,6 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 ## 1.0.3
 
 - Url wildcard removed from .py file to prevent WinError 10049
+
+## 1.0.4
+- Updating Circumcised enum. 
