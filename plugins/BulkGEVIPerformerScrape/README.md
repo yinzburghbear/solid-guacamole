@@ -1,6 +1,6 @@
 # Bulk GEVI Performer Scrape
 
-Version 1.1.2
+Version 1.1.3
 
 Adds **Scrape selected with GEVI…** to the bulk operations menu on the Stash performer list.
 
@@ -27,7 +27,6 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 - `BulkGEVIPerformerScrape.yml` — plugin manifest
 - `BulkGEVIPerformerScrape.js` — performer-list bulk action and field-selection dialog
 - `BulkGEVIPerformerScrape.py` — matching, scraping, field filtering, updates, and skipped tagging
-
 
 ## 1.0.1
 
@@ -63,6 +62,9 @@ Remove missing/status tags when the field is later populated
 - **Remove missing/status tags when the field is later populated** cleans up resolved tags.
 - `GEVI: Skipped Performer` remains the general tag for performers that cannot be matched or fully scraped.
 
+## 1.1.3
+
+- added tage for when there is no match
 
 ## Logging
 
