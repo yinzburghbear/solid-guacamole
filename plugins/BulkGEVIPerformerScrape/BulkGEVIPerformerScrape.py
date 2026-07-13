@@ -8,7 +8,9 @@ PLUGIN_ID = "BulkGEVIPerformerScrape"
 TASK_NAME = "Scrape selected performers"
 SCRAPER_NAME = "GEVI"
 SKIPPED_TAG_NAME = "GEVI: Skipped Performer"
+NO_MATCH_TAG_NAME = "GEVI No Match"
 MISSING_TAG_PREFIX = "GEVI: Missing "
+
 FIELD_LABELS = {
     "name": "Name", "disambiguation": "Disambiguation", "aliases": "Aliases",
     "gender": "Gender", "urls": "URL", "image": "Image",
@@ -432,9 +434,22 @@ def process() -> None:
             ambiguous = False
 
             if len(gevi_urls) == 1:
-                scraped = scrape_full_from_url(stash, scraper_id, gevi_urls[0], performer.get("name") or "")
-                if not scraped:
-                    reason = "GEVI URL did not return exactly one performer"
+                try:
+                    scraped = scrape_full_from_url(
+                        stash,
+                        scraper_id,
+                        gevi_urls[0],
+                        performer.get("name") or ""
+                    )
+                    if not scraped:
+                        reason = "GEVI page no longer exists"
+                except RuntimeError as exc:
+                    message = str(exc)
+
+                    if "requested element is null" in message.casefold():
+                        reason = "GEVI page no longer exists"
+                    else:
+                        raise
             elif len(gevi_urls) > 1:
                 reason = "more than one GEVI URL is attached"
                 ambiguous = True
@@ -458,14 +473,28 @@ def process() -> None:
 
             if not scraped:
                 stats["skipped"] += 1
+
                 if maintain_tags:
-                    skipped_tag_id = resolve_tag(SKIPPED_TAG_NAME)
-                    update_tag_membership(
-                        stash, performer,
-                        add_ids=[skipped_tag_id] if skipped_tag_id else [],
+                    tag_name = (
+                        NO_MATCH_TAG_NAME
+                        if reason == "GEVI page no longer exists"
+                        else SKIPPED_TAG_NAME
                     )
+
+                    tag_id = resolve_tag(tag_name)
+
+                    update_tag_membership(
+                        stash,
+                        performer,
+                        add_ids=[tag_id] if tag_id else [],
+                    )
+
                 if ambiguous:
-                    log("ambiguous", f'[{index}/{len(performer_ids)}] {expected_name}: {reason}')
+                    log(
+                        "ambiguous",
+                        f'[{index}/{len(performer_ids)}] {expected_name}: {reason}'
+                    )
+
                 continue
 
             update, missing_fields, considered_fields = selected_update(performer, scraped, options)
