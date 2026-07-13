@@ -1,6 +1,6 @@
 # Bulk GEVI Performer Scrape
 
-Version 1.0.1
+Version 1.1.1
 
 Adds **Scrape selected with GEVI…** to the bulk operations menu on the Stash performer list.
 
@@ -28,16 +28,15 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 - `BulkGEVIPerformerScrape.js` — performer-list bulk action and field-selection dialog
 - `BulkGEVIPerformerScrape.py` — matching, scraping, field filtering, updates, and skipped tagging
 
-
 ## 1.0.1
 
-- Uses Stash's `{pluginDir}` substitution to launch the backend from any plugin installation path.
+- Uses Stash's {pluginDir} substitution to launch the backend from any plugin installation path.
 - GEVI itself is still called through Stash GraphQL by scraper ID; no GEVI filesystem path is required.
 - The plugin does not add anything to the Tagger source dropdown.
 
 ## 1.0.2
 
-- Uses Stash's `{pluginDir}` substitution to launch the backend from any plugin installation path.
+- Uses Stash's {pluginDir} substitution to launch the backend from any plugin installation path.
 - GEVI itself is still called through Stash GraphQL by scraper ID; no GEVI filesystem path is required.
 - The plugin does not add anything to the Tagger source dropdown.
 
@@ -46,4 +45,22 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 - Url wildcard removed from .py file to prevent WinError 10049
 
 ## 1.0.4
-- Updating Circumcised enum. 
+
+- Updating Circumcised enum.
+
+## 1.1.1
+
+## GEVI maintenance tags
+
+New options in the modal:
+
+Maintain GEVI missing/status tags
+Create tags automatically when needed
+Remove missing/status tags when the field is later populated
+
+When enabled, the plugin adds field-specific tags such as `GEVI: Missing Birth Year`,
+`GEVI: Missing Height`, and `GEVI: Missing Tattoos`.
+
+- **Create tags automatically when needed** creates only tags required by the current run.
+- **Remove missing/status tags when the field is later populated** cleans up resolved tags.
+- `GEVI: Skipped Performer` remains the general tag for performers that cannot be matched or fully scraped.

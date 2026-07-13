@@ -8,6 +8,16 @@ PLUGIN_ID = "BulkGEVIPerformerScrape"
 TASK_NAME = "Scrape selected performers"
 SCRAPER_NAME = "GEVI"
 SKIPPED_TAG_NAME = "GEVI: Skipped Performer"
+MISSING_TAG_PREFIX = "GEVI: Missing "
+FIELD_LABELS = {
+    "name": "Name", "disambiguation": "Disambiguation", "aliases": "Aliases",
+    "gender": "Gender", "urls": "URL", "image": "Image",
+    "hair_color": "Hair Color", "eye_color": "Eye Color",
+    "height": "Height", "weight": "Weight", "ethnicity": "Ethnicity",
+    "country": "Country", "circumcised": "Circumcision",
+    "penis_length": "Penis Length", "tattoos": "Tattoos",
+    "birthdate": "Birth Year", "death_date": "Death Year", "details": "Details",
+}
 GEVI_HOST = "gayeroticvideoindex.com"
 
 SCRAPED_FIELDS = """
@@ -38,6 +48,20 @@ PERFORMER_FIELDS = """
   disambiguation
   urls
   alias_list
+  gender
+  birthdate
+  ethnicity
+  country
+  eye_color
+  height_cm
+  penis_length
+  circumcised
+  tattoos
+  details
+  death_date
+  hair_color
+  weight
+  image_path
   tag_ids: tags { id name }
 """
 
@@ -154,7 +178,7 @@ def find_gevi_scraper(stash: StashGraphQL) -> str:
     return str(exact[0]["id"])
 
 
-def get_or_create_tag(stash: StashGraphQL, name: str) -> str:
+def find_tag(stash: StashGraphQL, name: str) -> str | None:
     query = """
       query FindTags($filter: FindFilterType, $tag_filter: TagFilterType) {
         findTags(filter: $filter, tag_filter: $tag_filter) { tags { id name } }
@@ -168,8 +192,19 @@ def get_or_create_tag(stash: StashGraphQL, name: str) -> str:
     for tag in tags:
         if normalize(tag.get("name")) == normalize(name):
             return str(tag["id"])
+    return None
+
+
+def get_tag(stash: StashGraphQL, name: str, create: bool) -> str | None:
+    tag_id = find_tag(stash, name)
+    if tag_id or not create:
+        return tag_id
     mutation = "mutation CreateTag($input: TagCreateInput!) { tagCreate(input: $input) { id } }"
     return str(stash.call(mutation, {"input": {"name": name}})["tagCreate"]["id"])
+
+
+def missing_tag_name(field: str) -> str:
+    return f"{MISSING_TAG_PREFIX}{FIELD_LABELS.get(field, field.replace('_', ' ').title())}"
 
 
 def find_performer(stash: StashGraphQL, performer_id: str) -> dict[str, Any]:
@@ -217,9 +252,70 @@ def scrape_full_from_url(stash: StashGraphQL, scraper_id: str, url: str, name: s
     return results[0] if len(results) == 1 else None
 
 
-def selected_update(performer: dict[str, Any], scraped: dict[str, Any], options: dict[str, Any]) -> dict[str, Any]:
-    fields = set(options.get("fields") or [])
+def has_value(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, tuple, set, dict)):
+        return bool(value)
+    return True
+
+
+def local_field_has_value(performer: dict[str, Any], field: str) -> bool:
+    mapping = {
+        "name": "name",
+        "disambiguation": "disambiguation",
+        "aliases": "alias_list",
+        "gender": "gender",
+        "urls": "urls",
+        "image": "image_path",
+        "hair_color": "hair_color",
+        "eye_color": "eye_color",
+        "height": "height_cm",
+        "weight": "weight",
+        "ethnicity": "ethnicity",
+        "country": "country",
+        "circumcised": "circumcised",
+        "penis_length": "penis_length",
+        "tattoos": "tattoos",
+        "birthdate": "birthdate",
+        "death_date": "death_date",
+        "details": "details",
+    }
+    value = performer.get(mapping[field])
+    if field == "urls":
+        return any(is_gevi_url(url) for url in (value or []))
+    return has_value(value)
+
+
+def scraped_field_value(scraped: dict[str, Any], field: str) -> Any:
+    if field == "aliases":
+        aliases = parse_aliases(scraped.get("aliases"))
+        return aliases or None
+    if field == "urls":
+        urls = scraped.get("urls") or ([] if not scraped.get("url") else [scraped["url"]])
+        return urls or None
+    if field == "image":
+        images = scraped.get("images") or []
+        return (images[0] if images else scraped.get("image")) or None
+    if field in {"height", "weight"}:
+        return integer_value(scraped.get(field))
+    if field == "penis_length":
+        return float_value(scraped.get(field))
+    if field == "circumcised":
+        return circumcised_value(scraped.get(field))
+    return scraped.get(field)
+
+
+def selected_update(
+    performer: dict[str, Any], scraped: dict[str, Any], options: dict[str, Any]
+) -> tuple[dict[str, Any], list[str], list[str]]:
+    fields = list(options.get("fields") or [])
+    merge_mode = options.get("update_mode") == "merge"
     update: dict[str, Any] = {"id": performer["id"]}
+    missing: list[str] = []
+    considered: list[str] = []
 
     direct_map = {
         "name": "name",
@@ -234,59 +330,63 @@ def selected_update(performer: dict[str, Any], scraped: dict[str, Any], options:
         "death_date": "death_date",
         "hair_color": "hair_color",
     }
-    for selected, gql_field in direct_map.items():
-        if selected in fields and scraped.get(selected) is not None:
-            update[gql_field] = scraped[selected]
 
-    if "circumcised" in fields:
-        value = circumcised_value(scraped.get("circumcised"))
-        if value is not None:
-            update["circumcised"] = value
+    for field in fields:
+        # In merge mode, only fields that are empty in Stash actually need data.
+        if merge_mode and local_field_has_value(performer, field):
+            continue
 
-    if "height" in fields:
-        value = integer_value(scraped.get("height"))
-        if value is not None:
+        considered.append(field)
+        value = scraped_field_value(scraped, field)
+        if not has_value(value):
+            missing.append(field)
+            continue
+
+        if field in direct_map:
+            update[direct_map[field]] = value
+        elif field == "height":
             update["height_cm"] = value
-    if "weight" in fields:
-        value = integer_value(scraped.get("weight"))
-        if value is not None:
+        elif field == "weight":
             update["weight"] = value
-    if "penis_length" in fields:
-        value = float_value(scraped.get("penis_length"))
-        if value is not None:
+        elif field == "penis_length":
             update["penis_length"] = value
+        elif field == "circumcised":
+            update["circumcised"] = value
+        elif field == "aliases":
+            scraped_aliases = list(value)
+            if merge_mode or options.get("merge_aliases", True):
+                scraped_aliases = unique_casefold((performer.get("alias_list") or []) + scraped_aliases)
+            update["alias_list"] = scraped_aliases
+        elif field == "urls":
+            update["urls"] = unique_casefold((performer.get("urls") or []) + list(value))
+        elif field == "image":
+            update["image"] = value
 
-    if "aliases" in fields and scraped.get("aliases") is not None:
-        scraped_aliases = parse_aliases(scraped.get("aliases"))
-        if options.get("merge_aliases", True):
-            scraped_aliases = unique_casefold((performer.get("alias_list") or []) + scraped_aliases)
-        update["alias_list"] = scraped_aliases
-
-    if "urls" in fields:
-        scraped_urls = scraped.get("urls") or ([] if not scraped.get("url") else [scraped["url"]])
-        update["urls"] = unique_casefold((performer.get("urls") or []) + scraped_urls)
-
-    if "image" in fields:
-        images = scraped.get("images") or []
-        image = images[0] if images else scraped.get("image")
-        if image:
-            update["image"] = image
-
-    return update
-
+    return update, missing, considered
 
 def update_performer(stash: StashGraphQL, update: dict[str, Any]) -> None:
     mutation = "mutation Update($input: PerformerUpdateInput!) { performerUpdate(input: $input) { id } }"
     stash.call(mutation, {"input": update})
 
 
-def set_skipped_tag(stash: StashGraphQL, performer: dict[str, Any], tag_id: str, add: bool) -> None:
+def update_tag_membership(
+    stash: StashGraphQL,
+    performer: dict[str, Any],
+    add_ids: list[str] | None = None,
+    remove_ids: list[str] | None = None,
+) -> None:
     existing = [str(tag["id"]) for tag in performer.get("tag_ids") or []]
-    if add and tag_id not in existing:
-        existing.append(tag_id)
-    if not add and tag_id in existing:
-        existing.remove(tag_id)
-    update_performer(stash, {"id": performer["id"], "tag_ids": existing})
+    changed = False
+    for tag_id in add_ids or []:
+        if tag_id and tag_id not in existing:
+            existing.append(tag_id)
+            changed = True
+    for tag_id in remove_ids or []:
+        if tag_id and tag_id in existing:
+            existing.remove(tag_id)
+            changed = True
+    if changed:
+        update_performer(stash, {"id": performer["id"], "tag_ids": existing})
 
 
 def process() -> None:
@@ -304,7 +404,17 @@ def process() -> None:
 
     stash = StashGraphQL(connection)
     scraper_id = find_gevi_scraper(stash)
-    skipped_tag_id = get_or_create_tag(stash, SKIPPED_TAG_NAME) if options.get("tag_skipped", True) else ""
+    maintain_tags = bool(options.get("maintain_tags", True))
+    create_tags = bool(options.get("create_tags", True))
+    remove_resolved = bool(options.get("remove_resolved_tags", True))
+    tag_cache: dict[str, str | None] = {}
+
+    def resolve_tag(name: str) -> str | None:
+        if name not in tag_cache:
+            tag_cache[name] = get_tag(stash, name, create_tags)
+            if tag_cache[name] is None:
+                log("info", f'Tag "{name}" does not exist and automatic tag creation is disabled.')
+        return tag_cache[name]
 
     stats = {"selected": len(performer_ids), "updated": 0, "skipped": 0, "failed": 0}
 
@@ -341,19 +451,69 @@ def process() -> None:
 
             if not scraped:
                 stats["skipped"] += 1
-                if skipped_tag_id:
-                    set_skipped_tag(stash, performer, skipped_tag_id, True)
+                if maintain_tags:
+                    skipped_tag_id = resolve_tag(SKIPPED_TAG_NAME)
+                    update_tag_membership(
+                        stash, performer,
+                        add_ids=[skipped_tag_id] if skipped_tag_id else [],
+                    )
                 log("info", f'[{index}/{len(performer_ids)}] Skipped {expected_name}: {reason}')
                 continue
 
-            update = selected_update(performer, scraped, options)
-            if len(update) > 1:
+            update, missing_fields, considered_fields = selected_update(performer, scraped, options)
+            changed = len(update) > 1
+            if changed:
                 update_performer(stash, update)
-            if skipped_tag_id and options.get("remove_skipped_on_success", True):
-                refreshed = find_performer(stash, performer_id)
-                set_skipped_tag(stash, refreshed, skipped_tag_id, False)
-            stats["updated"] += 1
-            log("info", f'[{index}/{len(performer_ids)}] Updated {expected_name}')
+
+            refreshed = find_performer(stash, performer_id)
+
+            if maintain_tags:
+                names_by_field = {field: missing_tag_name(field) for field in considered_fields}
+                missing_names = [names_by_field[field] for field in missing_fields]
+                resolved_names = [
+                    names_by_field[field] for field in considered_fields
+                    if field not in missing_fields
+                ]
+
+                add_ids = [
+                    tag_id for tag_id in (resolve_tag(name) for name in missing_names)
+                    if tag_id
+                ]
+                remove_ids: list[str] = []
+
+                if remove_resolved:
+                    remove_ids.extend(
+                        tag_id for tag_id in (resolve_tag(name) for name in resolved_names)
+                        if tag_id
+                    )
+
+                skipped_tag_id = resolve_tag(SKIPPED_TAG_NAME)
+                if skipped_tag_id:
+                    if missing_fields:
+                        add_ids.append(skipped_tag_id)
+                    elif remove_resolved:
+                        remove_ids.append(skipped_tag_id)
+
+                update_tag_membership(
+                    stash, refreshed, add_ids=add_ids, remove_ids=remove_ids
+                )
+
+            if missing_fields:
+                stats["skipped"] += 1
+                missing_text = ", ".join(FIELD_LABELS.get(field, field) for field in missing_fields)
+                action = "Updated available fields; " if changed else ""
+                log("info", f'[{index}/{len(performer_ids)}] {action}Tagged {expected_name}: GEVI returned no value for {missing_text}')
+            else:
+                if changed:
+                    stats["updated"] += 1
+                    log("info", f'[{index}/{len(performer_ids)}] Updated {expected_name}')
+                else:
+                    stats.setdefault("unchanged", 0)
+                    stats["unchanged"] += 1
+                    if considered_fields:
+                        log("info", f'[{index}/{len(performer_ids)}] No changes needed for {expected_name}')
+                    else:
+                        log("info", f'[{index}/{len(performer_ids)}] Merge skipped {expected_name}: selected fields already had values')
         except Exception as exc:
             stats["failed"] += 1
             log("error", f"[{index}/{len(performer_ids)}] Performer {performer_id} failed: {exc}")

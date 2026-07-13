@@ -51,9 +51,11 @@
 
   function Modal({ selectedIds, host }) {
     const [fields, setFields] = React.useState([]);
+    const [updateMode, setUpdateMode] = React.useState("overwrite");
     const [mergeAliases, setMergeAliases] = React.useState(true);
-    const [tagSkipped, setTagSkipped] = React.useState(true);
-    const [removeSkipped, setRemoveSkipped] = React.useState(true);
+    const [maintainTags, setMaintainTags] = React.useState(true);
+    const [createTags, setCreateTags] = React.useState(true);
+    const [removeResolvedTags, setRemoveResolvedTags] = React.useState(true);
     const [submitting, setSubmitting] = React.useState(false);
     const [error, setError] = React.useState("");
 
@@ -81,9 +83,11 @@
             performer_ids: Array.from(selectedIds),
             options: {
               fields,
+              update_mode: updateMode,
               merge_aliases: mergeAliases,
-              tag_skipped: tagSkipped,
-              remove_skipped_on_success: removeSkipped,
+              maintain_tags: maintainTags,
+              create_tags: createTags,
+              remove_resolved_tags: removeResolvedTags,
             },
           },
         });
@@ -118,9 +122,19 @@
               )
             )),
             h("hr"),
-            checkbox("gevi-merge-aliases", "Merge aliases instead of replacing them", mergeAliases, (e) => setMergeAliases(e.target.checked), !fields.includes("aliases")),
-            checkbox("gevi-tag-skipped", 'Apply "GEVI: Skipped Performer" when ambiguous or unmatched', tagSkipped, (e) => setTagSkipped(e.target.checked)),
-            checkbox("gevi-remove-skipped", "Remove the skipped tag after a successful scrape", removeSkipped, (e) => setRemoveSkipped(e.target.checked), !tagSkipped)
+            h("h6", null, "Update behavior"),
+            h("div", { className: "form-check" },
+              h("input", { className: "form-check-input", type: "radio", id: "gevi-overwrite", name: "gevi-update-mode", checked: updateMode === "overwrite", onChange: () => setUpdateMode("overwrite") }),
+              h("label", { className: "form-check-label", htmlFor: "gevi-overwrite" }, "Overwrite selected fields when GEVI has a value")
+            ),
+            h("div", { className: "form-check mb-2" },
+              h("input", { className: "form-check-input", type: "radio", id: "gevi-merge", name: "gevi-update-mode", checked: updateMode === "merge", onChange: () => setUpdateMode("merge") }),
+              h("label", { className: "form-check-label", htmlFor: "gevi-merge" }, "Merge / fill empty fields only")
+            ),
+            checkbox("gevi-merge-aliases", "Merge aliases instead of replacing them", mergeAliases, (e) => setMergeAliases(e.target.checked), !fields.includes("aliases") || updateMode === "merge"),
+            checkbox("gevi-maintain-tags", "Maintain GEVI missing/status tags", maintainTags, (e) => setMaintainTags(e.target.checked)),
+            checkbox("gevi-create-tags", "Create tags automatically when needed", createTags, (e) => setCreateTags(e.target.checked), !maintainTags),
+            checkbox("gevi-remove-resolved-tags", "Remove missing/status tags when the field is later populated", removeResolvedTags, (e) => setRemoveResolvedTags(e.target.checked), !maintainTags)
           ),
           h("div", { className: "modal-footer" },
             h("button", { className: "btn btn-secondary", disabled: submitting, onClick: () => closeModal(host) }, "Cancel"),
