@@ -67,11 +67,15 @@ PERFORMER_FIELDS = """
 
 
 def log(level: str, message: str) -> None:
-    """Write diagnostic output away from stdout.
+    """Write only actionable problems to stderr.
 
-    With interface: raw, Stash expects stdout to contain exactly one JSON result.
+    Stash classifies every stderr line as an Error, regardless of the prefix.
+    Routine progress is therefore kept silent and returned only in the final
+    JSON summary.
     """
-    print(f"[{level.upper()}] {message}", file=sys.stderr, flush=True)
+    if level.casefold() in {"error", "ambiguous"}:
+        label = "AMBIGUOUS" if level.casefold() == "ambiguous" else "ERROR"
+        print(f"[{label}] {message}", file=sys.stderr, flush=True)
 
 
 class StashGraphQL:
@@ -425,6 +429,7 @@ def process() -> None:
             gevi_urls = [u for u in performer.get("urls") or [] if is_gevi_url(u)]
             scraped: dict[str, Any] | None = None
             reason = ""
+            ambiguous = False
 
             if len(gevi_urls) == 1:
                 scraped = scrape_full_from_url(stash, scraper_id, gevi_urls[0], performer.get("name") or "")
@@ -432,10 +437,12 @@ def process() -> None:
                     reason = "GEVI URL did not return exactly one performer"
             elif len(gevi_urls) > 1:
                 reason = "more than one GEVI URL is attached"
+                ambiguous = True
             else:
                 candidates = scrape_by_name(stash, scraper_id, expected_name)
                 if len(candidates) != 1:
                     reason = f"GEVI search returned {len(candidates)} results"
+                    ambiguous = len(candidates) > 1
                 else:
                     candidate = candidates[0]
                     candidate_name = display_name(candidate.get("name"), candidate.get("disambiguation"))
@@ -457,7 +464,8 @@ def process() -> None:
                         stash, performer,
                         add_ids=[skipped_tag_id] if skipped_tag_id else [],
                     )
-                log("info", f'[{index}/{len(performer_ids)}] Skipped {expected_name}: {reason}')
+                if ambiguous:
+                    log("ambiguous", f'[{index}/{len(performer_ids)}] {expected_name}: {reason}')
                 continue
 
             update, missing_fields, considered_fields = selected_update(performer, scraped, options)
