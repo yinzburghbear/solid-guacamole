@@ -53,8 +53,18 @@ def log(level: str, message: str) -> None:
 class StashGraphQL:
     def __init__(self, connection: dict[str, Any]):
         scheme = connection.get("Scheme") or connection.get("scheme") or "http"
-        host = connection.get("Host") or connection.get("host") or "localhost"
+        host = str(connection.get("Host") or connection.get("host") or "localhost").strip()
         port = connection.get("Port") or connection.get("port") or 9999
+
+        # Stash may report its bind/listen address to plugins. Wildcard addresses
+        # are valid for a server to listen on, but are not valid destinations for
+        # a client connection on Windows (WinError 10049). Connect locally instead.
+        if host.casefold() in {"0.0.0.0", "::", "[::]", "*"}:
+            host = "127.0.0.1"
+        elif ":" in host and not host.startswith("["):
+            # Bracket ordinary IPv6 literals when constructing a URL.
+            host = f"[{host}]"
+
         self.url = f"{scheme}://{host}:{port}/graphql"
         self.api_key = connection.get("ApiKey") or connection.get("api_key") or ""
 
