@@ -4,11 +4,11 @@ version: 1.0.0
 url: https://github.com/yinzburghbear/solid-guacamole
 exec:
   - python
-  - BulkGEVIPerformerScrape.py
+  - "{pluginDir}/BulkGEVIPerformerScrape.py"
 interface: raw
 tasks:
   - name: Scrape selected performers
     description: Scrapes performer IDs supplied by the performer-list bulk action.
 ui:
   javascript:
-    - BulkGEVIPerformerScrape.js
+    - "{pluginDir}/BulkGEVIPerformerScrape.py"
