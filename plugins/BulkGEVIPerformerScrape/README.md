@@ -1,6 +1,6 @@
 # Bulk GEVI Performer Scrape
 
-Version 1.0.1
+Version 1.0.2
 
 Adds **Scrape selected with GEVI…** to the bulk operations menu on the Stash performer list.
 
@@ -29,8 +29,13 @@ The existing **GEVI** scraper must be installed and working. The plugin locates 
 - `BulkGEVIPerformerScrape.py` — matching, scraping, field filtering, updates, and skipped tagging
 
 
-## 1.0.1
+## 1.0.2
 
 - Uses Stash's `{pluginDir}` substitution to launch the backend from any plugin installation path.
 - GEVI itself is still called through Stash GraphQL by scraper ID; no GEVI filesystem path is required.
 - The plugin does not add anything to the Tagger source dropdown.
+
+
+## 1.0.2
+
+Fixed raw-interface output handling so progress logs no longer corrupt the final plugin JSON result.

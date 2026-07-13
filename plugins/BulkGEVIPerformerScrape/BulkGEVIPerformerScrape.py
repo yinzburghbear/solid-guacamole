@@ -43,7 +43,11 @@ PERFORMER_FIELDS = """
 
 
 def log(level: str, message: str) -> None:
-    print(json.dumps({"output": message, "error": level == "error"}), flush=True)
+    """Write diagnostic output away from stdout.
+
+    With interface: raw, Stash expects stdout to contain exactly one JSON result.
+    """
+    print(f"[{level.upper()}] {message}", file=sys.stderr, flush=True)
 
 
 class StashGraphQL:
@@ -325,12 +329,16 @@ def process() -> None:
             stats["failed"] += 1
             log("error", f"[{index}/{len(performer_ids)}] Performer {performer_id} failed: {exc}")
 
-    log("info", "Bulk GEVI Performer Scrape complete — " + ", ".join(f"{k}: {v}" for k, v in stats.items()))
+    summary = "Bulk GEVI Performer Scrape complete — " + ", ".join(f"{k}: {v}" for k, v in stats.items())
+    log("info", summary)
+    print(json.dumps({"output": summary}), flush=True)
 
 
 if __name__ == "__main__":
     try:
         process()
     except Exception as exc:
-        log("error", str(exc))
+        message = str(exc) or exc.__class__.__name__
+        log("error", message)
+        print(json.dumps({"error": message}), flush=True)
         sys.exit(1)
