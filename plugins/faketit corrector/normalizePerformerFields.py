@@ -72,6 +72,28 @@ def update_performer_fake_tits(gql_url, performer_id, preferred, cookie=None):
         cookie
     )["performerUpdate"]
 
+def update_performer_ethnicity(gql_url, performer_id, ethnicity, cookie=None):
+    mutation = """
+    mutation PerformerUpdate($input: PerformerUpdateInput!) {
+      performerUpdate(input: $input) {
+        id
+        name
+        ethnicity
+      }
+    }
+    """
+
+    return graphql(
+        gql_url,
+        mutation,
+        {
+            "input": {
+                "id": performer_id,
+                "ethnicity": ethnicity
+            }
+        },
+        cookie
+    )["performerUpdate"]
 
 def normalize_performer(gql_url, performer, preferred, from_values, cookie=None):
     current = performer.get("fake_tits")
@@ -101,6 +123,7 @@ def run_task(gql_url, preferred, from_values, cookie=None):
           id
           name
           fake_tits
+          ethnicity
         }
       }
     }
@@ -133,6 +156,15 @@ def run_task(gql_url, preferred, from_values, cookie=None):
         for performer in performers:
             checked += 1
 
+            # Normalize ethnicity independently of the fake_tits value.
+            if performer.get("ethnicity") == "Caucasian":
+                update_performer_ethnicity(
+                    gql_url,
+                    performer["id"],
+                    "White",
+                    cookie
+                )
+
             current = performer.get("fake_tits")
 
             if current not in from_values:
@@ -153,7 +185,6 @@ def run_task(gql_url, preferred, from_values, cookie=None):
                 changed += 1
             else:
                 failed += 1
-
         if len(performers) < per_page:
             break
 
@@ -187,6 +218,7 @@ def run_hook(gql_url, hook_context, preferred, from_values, cookie=None):
         id
         name
         fake_tits
+        ethnicity
       }
     }
     """
@@ -216,6 +248,14 @@ def run_hook(gql_url, hook_context, preferred, from_values, cookie=None):
         from_values,
         cookie
     )
+
+    if performer.get("ethnicity") == "Caucasian":
+        update_performer_ethnicity(
+            gql_url,
+            performer["id"],
+            "White",
+            cookie
+        )
 
     output({
         "mode": "hook",

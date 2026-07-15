@@ -1,0 +1,28 @@
+name: Normalize Performer Fields
+description: Normalizes performer fake_tits and ethnicity values from Natural or Caucasian to one preferred value.
+version: 1.1.0
+# This started as tits only. Updated to include ethnicity as well. The name of updated the name of the plugin to reflect that.
+
+exec:
+  - python
+  - "{pluginDir}/normalizePerformerFields.py"
+
+interface: raw
+errLog: error
+
+tasks:
+  - name: Normalize all performer fake_tits
+    description: Scan all performers and normalize fake_tits values
+    defaultArgs:
+      preferredValue: "Na"
+      fromValues: "Natural,NA,N/A"
+
+hooks:
+  - name: Normalize performer Fake Tits & Ethnicity
+    description: Normalize fake_tits and ethnicity after performer create/update
+    triggeredBy:
+      - Performer.Create.Post
+      - Performer.Update.Post
+    defaultArgs:
+      preferredValue: "Na for fake_tits and 'White' for ethnicity"
+      fromValues: "Natural,NA,N/A,Caucasian"
