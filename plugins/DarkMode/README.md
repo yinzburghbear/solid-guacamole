@@ -27,3 +27,7 @@ Full Width Settings, Raleway Font.
 ### v1.0.1
 
 Updated scene card to use a little smaller font size.
+
+### v1.0.2
+
+Additional Font Updates
