@@ -236,9 +236,14 @@ button#themeSwitchPlugin.dropdown-toggle.minimal.d-flex.align-items-center.h-100
     width: 50%  !important;
 }
 
-/* Update female performer name color */
+/* Update male performer name color */
+.scene-card .card-section .performers .list a.MALE {
+    color: var(--75pct_cyan) !important;
+}
+
+/* Update Female performer name color */
 .scene-card .card-section .performers .list a.FEMALE {
-    color: var(--foreground) !important;
+    color: var(--50pct_red) !important;
 }
 
 /* Update non-binary performer name color */
@@ -248,11 +253,11 @@ button#themeSwitchPlugin.dropdown-toggle.minimal.d-flex.align-items-center.h-100
 
 .scene-card .card-section a .card-section-title {
     color: var(--pale_purple) !important;
-    font-size: 1em !important;
+    /* font-size: 1em !important; */
     font-weight: 700 !important;
     height: auto !important;
-    line-height: 1em !important;
-    margin-bottom: 1rem !important;
+    /* line-height: 1em !important; */
+    margin-bottom: .5rem !important;
     margin-top: 0.2rem !important;
 }
 
@@ -266,9 +271,9 @@ button#themeSwitchPlugin.dropdown-toggle.minimal.d-flex.align-items-center.h-100
 }
 
 /* Recolor studio name */
-.scene-card .card-section .footer span.studio > a {
+/* .scene-card .card-section .footer span.studio > a {
     color: var(--overcast_white) !important;
-}
+} */
 
 /* Hide views section */
 .scene-card .card-section .footer span.views {
