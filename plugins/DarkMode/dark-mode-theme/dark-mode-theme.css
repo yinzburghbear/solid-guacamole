@@ -248,17 +248,17 @@ button#themeSwitchPlugin.dropdown-toggle.minimal.d-flex.align-items-center.h-100
 
 .scene-card .card-section a .card-section-title {
     color: var(--pale_purple) !important;
-    font-size: 1.5em !important;
+    font-size: 1em !important;
     font-weight: 700 !important;
     height: auto !important;
-    line-height: 1.4em !important;
-    margin-bottom: 1.5rem !important;
+    line-height: .7em !important;
+    margin-bottom: 1rem !important;
     margin-top: 0.2rem !important;
 }
 
 .scene-card .card-section .performers .list a {
     font-weight: 500 !important;
-    margin-right: 1.5em !important;
+    margin-right: 1em !important;
 }
 
 .scene-card .card-section .footer {
