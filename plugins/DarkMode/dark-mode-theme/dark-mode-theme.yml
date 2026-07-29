@@ -1,7 +1,7 @@
 name: Dark Mode Theme
-description: A dark theme for Stash based on Solarized.
+description: A dark theme for Stash based on Solarized. Edited by badyinzbear on GitHub
 version: 1.0.3
-author: badyinzbear
+url: https://docs.stashapp.cc/themes/
 ui:
   css:
     - dark-mode-theme.css
