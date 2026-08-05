@@ -4876,7 +4876,7 @@ div.react-select__menu .react-select__option--is-focused,div.react-select__menu 
 /* [Tags changes] */ 
 /* changes the layout of tag cards on tags page and hover */
 
-.tag-parent-tags,
+/* .tag-parent-tags,
 .tag-sub-tags {
 	display: none;
 }
@@ -4940,9 +4940,9 @@ div.thumbnail-section
 	position: relative;
 	top: 0.5em;
 	/* -webkit-text-stroke-width: 1px; */
-	font-size: 16px;
-}
-
+	/* font-size: 16px;
+} */
+/* 
 .tag-card .card-popovers .btn {
 	text-shadow: 1px 1px 1px var(--superdark);
 	stroke: var(--background);
@@ -4952,7 +4952,7 @@ div.thumbnail-section
     button.favorite-button {
     z-index: 1;
     top: 0.2em;
-}
+} */ 
 
 #settings-container .tab-content {
     max-width: none !important;
