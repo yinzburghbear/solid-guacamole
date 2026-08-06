@@ -1,0 +1,10 @@
+name: Performer Cut/Uncut Badge
+description: Shows a cut or uncut badge overlay on performer card images based on their circumcised status - Customized from Opie.
+version: 0.1.0
+url:
+ui:
+  requires:
+    - stashUserscriptLibrary7dJx1qPFork
+  javascript:
+    - opie_performerCircumcisedBadge.js
+    - opie_performerCircumcisedManager.js
