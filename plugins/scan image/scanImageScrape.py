@@ -15,8 +15,8 @@ SCRAPER_ID: str = "01 FanScraper"
 
 # Settings — mirror the defaults from BulkImageScrape
 # so behavior is consistent. Edit here if needed.
-CREATE_MISSING_PERFORMERS: bool = True
-CREATE_MISSING_STUDIOS:    bool = True
+CREATE_MISSING_PERFORMERS: bool = False
+CREATE_MISSING_STUDIOS:    bool = False
 CREATE_MISSING_TAGS:       bool = True
 MERGE_EXISTING_TAGS:       bool = True
 
